@@ -1,0 +1,33 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@fastify/cors": "^11.2.0",
+    "@fastify/jwt": "^10.1.0",
+    "@fastify/swagger": "^9.7.0",
+    "@fastify/swagger-ui": "^6.0.0",
+    "@fastify/websocket": "^11.2.0",
+    "@prisma/client": "^6.19.3",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.4.2",
+    "fastify": "^5.8.5",
+    "mqtt": "^5.15.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14",
+    "prisma": "^6.19.3"
+  }
+}
