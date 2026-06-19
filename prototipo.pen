@@ -1,0 +1,4794 @@
+{
+  "version": "2.13",
+  "children": [
+    {
+      "type": "frame",
+      "id": "AM0KF",
+      "x": 1120,
+      "y": 0,
+      "name": "MVP 01 - Login",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "$--background",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "C3jxK",
+          "name": "Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [
+            0,
+            22
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "HMMTY",
+              "name": "Status Time",
+              "fill": "$--foreground",
+              "content": "9:41",
+              "lineHeight": 1.25,
+              "fontFamily": "$--font-secondary",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "K67vO",
+              "name": "Status Indicators",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "M3oQH",
+                  "name": "Signal Icon",
+                  "width": 17,
+                  "height": 17,
+                  "icon": "signal",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                },
+                {
+                  "type": "icon",
+                  "id": "NstdK",
+                  "name": "Wifi Icon",
+                  "width": 17,
+                  "height": 17,
+                  "icon": "wifi",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                },
+                {
+                  "type": "icon",
+                  "id": "xlvBr",
+                  "name": "Battery Icon",
+                  "width": 21,
+                  "height": 21,
+                  "icon": "battery",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "O4jJHS",
+          "name": "Content",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 22,
+          "padding": [
+            16,
+            18
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "uj675",
+              "name": "Brand Header",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "gxtzr",
+                  "name": "Logo Mark",
+                  "width": 56,
+                  "height": 56,
+                  "fill": "$--primary",
+                  "cornerRadius": 18,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "ffpac",
+                      "name": "Bike Logo Icon",
+                      "width": 30,
+                      "height": 30,
+                      "icon": "bike",
+                      "library": "lucide",
+                      "fill": "$--primary-foreground"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "m3LvTS",
+                  "name": "Login Title",
+                  "fill": "$--foreground",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "BikeShare UFAL",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 32,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "LhUXx",
+                  "name": "Login Subtitle",
+                  "fill": "$--muted-foreground",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Acesse para alugar bicicletas conectadas ao sistema embarcado.",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 15
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "E6iWB",
+              "name": "Login Form",
+              "width": "fill_container",
+              "fill": "$--card",
+              "cornerRadius": "$--radius-m",
+              "stroke": "$--border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 16,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Vhbno",
+                  "name": "Email Input",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Jf5tm",
+                      "name": "Email Input Label",
+                      "fill": "$--muted-foreground",
+                      "content": "EMAIL",
+                      "lineHeight": 1.2,
+                      "fontFamily": "$--font-primary",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "kAPgz",
+                      "name": "Email Input Field",
+                      "width": "fill_container",
+                      "height": 50,
+                      "fill": "$--card",
+                      "cornerRadius": "$--radius-m",
+                      "stroke": "$--border",
+                      "strokeWidth": 1,
+                      "gap": 10,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "QXLKw",
+                          "name": "Email Input Icon",
+                          "width": 18,
+                          "height": 18,
+                          "icon": "mail",
+                          "library": "lucide",
+                          "fill": "$--muted-foreground"
+                        },
+                        {
+                          "type": "text",
+                          "id": "KGJEP",
+                          "name": "Email Input Value",
+                          "fill": "$--foreground",
+                          "content": "aluno@ufal.br",
+                          "lineHeight": 1.25,
+                          "fontFamily": "$--font-secondary",
+                          "fontSize": 14
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Z6FNAg",
+                  "name": "Password Input",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "iEumQ",
+                      "name": "Password Input Label",
+                      "fill": "$--muted-foreground",
+                      "content": "SENHA",
+                      "lineHeight": 1.2,
+                      "fontFamily": "$--font-primary",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "i6nxGJ",
+                      "name": "Password Input Field",
+                      "width": "fill_container",
+                      "height": 50,
+                      "fill": "$--card",
+                      "cornerRadius": "$--radius-m",
+                      "stroke": "$--border",
+                      "strokeWidth": 1,
+                      "gap": 10,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "Z00iGa",
+                          "name": "Password Input Icon",
+                          "width": 18,
+                          "height": 18,
+                          "icon": "lock",
+                          "library": "lucide",
+                          "fill": "$--muted-foreground"
+                        },
+                        {
+                          "type": "text",
+                          "id": "GodUZ",
+                          "name": "Password Input Value",
+                          "fill": "$--foreground",
+                          "content": "••••••••",
+                          "lineHeight": 1.25,
+                          "fontFamily": "$--font-secondary",
+                          "fontSize": 14
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "XaeUA",
+                  "name": "Login Button",
+                  "width": "fill_container",
+                  "height": 52,
+                  "fill": "$--primary",
+                  "cornerRadius": "$--radius-pill",
+                  "gap": 8,
+                  "padding": [
+                    0,
+                    18
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "h0LAtG",
+                      "name": "Login Button Icon",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "arrow-right",
+                      "library": "lucide",
+                      "fill": "$--primary-foreground"
+                    },
+                    {
+                      "type": "text",
+                      "id": "cm3hE",
+                      "name": "Login Button Label",
+                      "fill": "$--primary-foreground",
+                      "content": "Entrar",
+                      "lineHeight": 1.25,
+                      "fontFamily": "$--font-secondary",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "HINBs",
+              "name": "Create Account Link",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "$--secondary",
+              "cornerRadius": "$--radius-pill",
+              "gap": 8,
+              "padding": [
+                0,
+                18
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "X0ZdB",
+                  "name": "Create Account Link Label",
+                  "fill": "$--secondary-foreground",
+                  "content": "Criar conta",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 15,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "PlcCi",
+      "x": 1574,
+      "y": 0,
+      "name": "MVP 02 - Cadastro",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "$--background",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "QFHvw",
+          "name": "Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [
+            0,
+            22
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "R16t1",
+              "name": "Status Time",
+              "fill": "$--foreground",
+              "content": "9:41",
+              "lineHeight": 1.25,
+              "fontFamily": "$--font-secondary",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "E5zSuA",
+              "name": "Status Indicators",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "D0te0F",
+                  "name": "Signal Icon",
+                  "width": 17,
+                  "height": 17,
+                  "icon": "signal",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                },
+                {
+                  "type": "icon",
+                  "id": "DgnY0",
+                  "name": "Wifi Icon",
+                  "width": 17,
+                  "height": 17,
+                  "icon": "wifi",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                },
+                {
+                  "type": "icon",
+                  "id": "J86zuG",
+                  "name": "Battery Icon",
+                  "width": 21,
+                  "height": 21,
+                  "icon": "battery",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Kjlsu",
+          "name": "Content",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 22,
+          "padding": [
+            16,
+            18
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "bT7dR",
+              "name": "Page Intro",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "aE9qt",
+                  "name": "Signup Title",
+                  "fill": "$--foreground",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Criar conta",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 28,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "cWttB",
+                  "name": "Signup Subtitle",
+                  "fill": "$--muted-foreground",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Dados básicos para iniciar e consultar suas viagens.",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 14
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "g9g4pU",
+              "name": "Signup Form",
+              "width": "fill_container",
+              "fill": "$--card",
+              "cornerRadius": "$--radius-m",
+              "stroke": "$--border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "POF45",
+                  "name": "Name Input",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "QR9t7",
+                      "name": "Name Input Label",
+                      "fill": "$--muted-foreground",
+                      "content": "NOME",
+                      "lineHeight": 1.2,
+                      "fontFamily": "$--font-primary",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "K09VRt",
+                      "name": "Name Input Field",
+                      "width": "fill_container",
+                      "height": 50,
+                      "fill": "$--card",
+                      "cornerRadius": "$--radius-m",
+                      "stroke": "$--border",
+                      "strokeWidth": 1,
+                      "gap": 10,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "rTRv9",
+                          "name": "Name Input Icon",
+                          "width": 18,
+                          "height": 18,
+                          "icon": "user",
+                          "library": "lucide",
+                          "fill": "$--muted-foreground"
+                        },
+                        {
+                          "type": "text",
+                          "id": "M0BL48",
+                          "name": "Name Input Value",
+                          "fill": "$--foreground",
+                          "content": "Ruan Melo",
+                          "lineHeight": 1.25,
+                          "fontFamily": "$--font-secondary",
+                          "fontSize": 14
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "L3nw4",
+                  "name": "Signup Email Input",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "YnmH2",
+                      "name": "Signup Email Input Label",
+                      "fill": "$--muted-foreground",
+                      "content": "EMAIL",
+                      "lineHeight": 1.2,
+                      "fontFamily": "$--font-primary",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Y6sn5A",
+                      "name": "Signup Email Input Field",
+                      "width": "fill_container",
+                      "height": 50,
+                      "fill": "$--card",
+                      "cornerRadius": "$--radius-m",
+                      "stroke": "$--border",
+                      "strokeWidth": 1,
+                      "gap": 10,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "owaAI",
+                          "name": "Signup Email Input Icon",
+                          "width": 18,
+                          "height": 18,
+                          "icon": "mail",
+                          "library": "lucide",
+                          "fill": "$--muted-foreground"
+                        },
+                        {
+                          "type": "text",
+                          "id": "nizxe",
+                          "name": "Signup Email Input Value",
+                          "fill": "$--foreground",
+                          "content": "ruan@ic.ufal.br",
+                          "lineHeight": 1.25,
+                          "fontFamily": "$--font-secondary",
+                          "fontSize": 14
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "TvZmJ",
+                  "name": "Signup Password Input",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "fnhZ3",
+                      "name": "Signup Password Input Label",
+                      "fill": "$--muted-foreground",
+                      "content": "SENHA",
+                      "lineHeight": 1.2,
+                      "fontFamily": "$--font-primary",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "wNgaa",
+                      "name": "Signup Password Input Field",
+                      "width": "fill_container",
+                      "height": 50,
+                      "fill": "$--card",
+                      "cornerRadius": "$--radius-m",
+                      "stroke": "$--border",
+                      "strokeWidth": 1,
+                      "gap": 10,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "O4Qyg",
+                          "name": "Signup Password Input Icon",
+                          "width": 18,
+                          "height": 18,
+                          "icon": "lock",
+                          "library": "lucide",
+                          "fill": "$--muted-foreground"
+                        },
+                        {
+                          "type": "text",
+                          "id": "naJ6K",
+                          "name": "Signup Password Input Value",
+                          "fill": "$--foreground",
+                          "content": "••••••••",
+                          "lineHeight": 1.25,
+                          "fontFamily": "$--font-secondary",
+                          "fontSize": 14
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "OKFkS",
+                  "name": "Phone Input",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "J1gXG",
+                      "name": "Phone Input Label",
+                      "fill": "$--muted-foreground",
+                      "content": "TELEFONE",
+                      "lineHeight": 1.2,
+                      "fontFamily": "$--font-primary",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ogp7m",
+                      "name": "Phone Input Field",
+                      "width": "fill_container",
+                      "height": 50,
+                      "fill": "$--card",
+                      "cornerRadius": "$--radius-m",
+                      "stroke": "$--border",
+                      "strokeWidth": 1,
+                      "gap": 10,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "qdggn",
+                          "name": "Phone Input Icon",
+                          "width": 18,
+                          "height": 18,
+                          "icon": "phone",
+                          "library": "lucide",
+                          "fill": "$--muted-foreground"
+                        },
+                        {
+                          "type": "text",
+                          "id": "GMbWG",
+                          "name": "Phone Input Value",
+                          "fill": "$--foreground",
+                          "content": "(82) 99999-0000",
+                          "lineHeight": 1.25,
+                          "fontFamily": "$--font-secondary",
+                          "fontSize": 14
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "LtqS3",
+                  "name": "Signup Button",
+                  "width": "fill_container",
+                  "height": 52,
+                  "fill": "$--primary",
+                  "cornerRadius": "$--radius-pill",
+                  "gap": 8,
+                  "padding": [
+                    0,
+                    18
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "RtvsZ",
+                      "name": "Signup Button Icon",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "check",
+                      "library": "lucide",
+                      "fill": "$--primary-foreground"
+                    },
+                    {
+                      "type": "text",
+                      "id": "A5aAc1",
+                      "name": "Signup Button Label",
+                      "fill": "$--primary-foreground",
+                      "content": "Cadastrar",
+                      "lineHeight": 1.25,
+                      "fontFamily": "$--font-secondary",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "nVe7C",
+      "x": 2028,
+      "y": 0,
+      "name": "MVP 03 - Home Mapa",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "$--background",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "H492Cy",
+          "name": "Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [
+            0,
+            22
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "yHZor",
+              "name": "Status Time",
+              "fill": "$--foreground",
+              "content": "9:41",
+              "lineHeight": 1.25,
+              "fontFamily": "$--font-secondary",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "YPlOU",
+              "name": "Status Indicators",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "RpUzi",
+                  "name": "Signal Icon",
+                  "width": 17,
+                  "height": 17,
+                  "icon": "signal",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                },
+                {
+                  "type": "icon",
+                  "id": "YsVK4",
+                  "name": "Wifi Icon",
+                  "width": 17,
+                  "height": 17,
+                  "icon": "wifi",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                },
+                {
+                  "type": "icon",
+                  "id": "K6ZXj",
+                  "name": "Battery Icon",
+                  "width": 21,
+                  "height": 21,
+                  "icon": "battery",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "r0W1e",
+          "name": "Content",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "children": [
+            {
+              "type": "frame",
+              "id": "SepXE",
+              "x": 0,
+              "y": 0,
+              "name": "Mapbox Home Map",
+              "metadata": {
+                "type": "mapbox-static-map",
+                "source": "/tmp/opencode/mapbox_home.png"
+              },
+              "clip": true,
+              "width": 390,
+              "height": 718,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "../../../../../tmp/opencode/mapbox_home.png",
+                "mode": "fill"
+              },
+              "layout": "none"
+            },
+            {
+              "type": "frame",
+              "id": "oYlvM",
+              "x": 18,
+              "y": 18,
+              "name": "Home Floating Header",
+              "width": 274,
+              "fill": "#FFFFFFDD",
+              "cornerRadius": 24,
+              "stroke": "$--border",
+              "strokeWidth": 1,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#00000018",
+                "offset": {
+                  "x": 0,
+                  "y": 8
+                },
+                "blur": 22
+              },
+              "padding": [
+                14,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "TWxAf",
+                  "name": "Home Floating Text",
+                  "layout": "vertical",
+                  "gap": 3,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "kSkxA",
+                      "name": "Home Floating Title",
+                      "fill": "$--foreground",
+                      "content": "Olá, Ruan 👋",
+                      "lineHeight": 1.25,
+                      "fontFamily": "$--font-secondary",
+                      "fontSize": 19,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "text",
+                      "id": "N335IN",
+                      "name": "Home Microcopy",
+                      "fill": "$--muted-foreground",
+                      "content": "Escolha uma bike no mapa",
+                      "lineHeight": 1.2,
+                      "fontFamily": "$--font-primary",
+                      "fontSize": 11,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "asCeQ",
+              "x": 18,
+              "y": 636,
+              "name": "Floating Enter Bike Id",
+              "width": 172,
+              "height": 52,
+              "fill": "$--primary",
+              "cornerRadius": "$--radius-pill",
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#00000022",
+                "offset": {
+                  "x": 0,
+                  "y": 8
+                },
+                "blur": 22
+              },
+              "gap": 8,
+              "padding": [
+                0,
+                16
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "j1HcrO",
+                  "name": "Floating Enter Bike Id Icon",
+                  "width": 18,
+                  "height": 18,
+                  "icon": "keyboard",
+                  "library": "lucide",
+                  "fill": "$--primary-foreground"
+                },
+                {
+                  "type": "text",
+                  "id": "s1006k",
+                  "name": "Floating Enter Bike Id Label",
+                  "fill": "$--primary-foreground",
+                  "content": "Inserir ID",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 14,
+                  "fontWeight": "800"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "u3S4RN",
+              "x": 316,
+              "y": 636,
+              "name": "Floating Center Map",
+              "width": 56,
+              "height": 52,
+              "fill": "$--card",
+              "cornerRadius": "$--radius-pill",
+              "stroke": "$--border",
+              "strokeWidth": 1,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#00000022",
+                "offset": {
+                  "x": 0,
+                  "y": 8
+                },
+                "blur": 22
+              },
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "j9Lri",
+                  "name": "Floating Center Map Icon",
+                  "width": 18,
+                  "height": 18,
+                  "icon": "locate-fixed",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "x5MjME",
+              "x": 135,
+              "y": 363,
+              "name": "Bike Selected Popup",
+              "metadata": {
+                "type": "map-popup",
+                "trigger": "tap-bike-marker",
+                "bikeId": "BIKE_001"
+              },
+              "width": 237,
+              "fill": "#FFFFFFF2",
+              "cornerRadius": 22,
+              "stroke": "$--border",
+              "strokeWidth": 1,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#0000002A",
+                "offset": {
+                  "x": 0,
+                  "y": 10
+                },
+                "blur": 28
+              },
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 14,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "dwvNm",
+                  "name": "Bike Popup Header",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "WpfT2",
+                      "name": "Bike Popup Title Wrap",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "MQNzd",
+                          "name": "Bike Popup Bike Icon Wrap",
+                          "width": 34,
+                          "height": 34,
+                          "fill": "$--primary",
+                          "cornerRadius": "$--radius-pill",
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "H5OjFA",
+                              "name": "Bike Popup Bike Icon",
+                              "width": 19,
+                              "height": 19,
+                              "icon": "bike",
+                              "library": "lucide",
+                              "fill": "$--primary-foreground"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Vr9A9",
+                          "name": "Bike Popup Titles",
+                          "layout": "vertical",
+                          "gap": 1,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "nuqf5",
+                              "name": "Bike Popup Title",
+                              "fill": "$--foreground",
+                              "content": "Bike selecionada",
+                              "lineHeight": 1.25,
+                              "fontFamily": "$--font-secondary",
+                              "fontSize": 15,
+                              "fontWeight": "800"
+                            },
+                            {
+                              "type": "text",
+                              "id": "vGmmq",
+                              "name": "Bike Popup Distance",
+                              "fill": "$--muted-foreground",
+                              "content": "120 m de distância",
+                              "lineHeight": 1.2,
+                              "fontFamily": "$--font-primary",
+                              "fontSize": 10,
+                              "fontWeight": "800"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "jMObR",
+                      "name": "Bike Popup Close",
+                      "width": 28,
+                      "height": 28,
+                      "fill": "$--secondary",
+                      "cornerRadius": "$--radius-pill",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "agGVC",
+                          "name": "Bike Popup Close Icon",
+                          "width": 14,
+                          "height": 14,
+                          "icon": "x",
+                          "library": "lucide",
+                          "fill": "$--foreground"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "T7LAYm",
+                  "name": "Bike Popup Row ID",
+                  "width": "fill_container",
+                  "gap": 9,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "YSj0o",
+                      "name": "Bike Popup Icon Wrap ID",
+                      "width": 30,
+                      "height": 30,
+                      "fill": "$--secondary",
+                      "cornerRadius": "$--radius-pill",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "h1UHU",
+                          "name": "Bike Popup Icon ID",
+                          "width": 15,
+                          "height": 15,
+                          "icon": "hash",
+                          "library": "lucide",
+                          "fill": "$--foreground"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "VkEls",
+                      "name": "Bike Popup Texts ID",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 1,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "fuIQe",
+                          "name": "Bike Popup Label ID",
+                          "fill": "$--muted-foreground",
+                          "content": "ID",
+                          "lineHeight": 1.2,
+                          "fontFamily": "$--font-primary",
+                          "fontSize": 9,
+                          "fontWeight": "800"
+                        },
+                        {
+                          "type": "text",
+                          "id": "YP1XU",
+                          "name": "Bike Popup Value ID",
+                          "fill": "$--foreground",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "BIKE_001",
+                          "lineHeight": 1.25,
+                          "fontFamily": "$--font-secondary",
+                          "fontSize": 13,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "d9lg1Z",
+                  "name": "Bike Popup Row Bateria",
+                  "width": "fill_container",
+                  "gap": 9,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "oZuWx",
+                      "name": "Bike Popup Icon Wrap Bateria",
+                      "width": 30,
+                      "height": 30,
+                      "fill": "$--secondary",
+                      "cornerRadius": "$--radius-pill",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "lQMS2",
+                          "name": "Bike Popup Icon Bateria",
+                          "width": 15,
+                          "height": 15,
+                          "icon": "battery-charging",
+                          "library": "lucide",
+                          "fill": "$--foreground"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "LBqeZ",
+                      "name": "Bike Popup Texts Bateria",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 1,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "RB0J8",
+                          "name": "Bike Popup Label Bateria",
+                          "fill": "$--muted-foreground",
+                          "content": "BATERIA",
+                          "lineHeight": 1.2,
+                          "fontFamily": "$--font-primary",
+                          "fontSize": 9,
+                          "fontWeight": "800"
+                        },
+                        {
+                          "type": "text",
+                          "id": "qPALx",
+                          "name": "Bike Popup Value Bateria",
+                          "fill": "$--foreground",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "83%",
+                          "lineHeight": 1.25,
+                          "fontFamily": "$--font-secondary",
+                          "fontSize": 13,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "WRrRN",
+                  "name": "Bike Popup Row Status",
+                  "width": "fill_container",
+                  "gap": 9,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "eMbpy",
+                      "name": "Bike Popup Icon Wrap Status",
+                      "width": 30,
+                      "height": 30,
+                      "fill": "$--secondary",
+                      "cornerRadius": "$--radius-pill",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "otxXC",
+                          "name": "Bike Popup Icon Status",
+                          "width": 15,
+                          "height": 15,
+                          "icon": "check-circle",
+                          "library": "lucide",
+                          "fill": "$--color-success-foreground"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "m3GK2d",
+                      "name": "Bike Popup Texts Status",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 1,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "RlcaS",
+                          "name": "Bike Popup Label Status",
+                          "fill": "$--muted-foreground",
+                          "content": "STATUS",
+                          "lineHeight": 1.2,
+                          "fontFamily": "$--font-primary",
+                          "fontSize": 9,
+                          "fontWeight": "800"
+                        },
+                        {
+                          "type": "text",
+                          "id": "D3ce5i",
+                          "name": "Bike Popup Value Status",
+                          "fill": "$--color-success-foreground",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Disponível",
+                          "lineHeight": 1.25,
+                          "fontFamily": "$--font-secondary",
+                          "fontSize": 13,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "NNcA8",
+                  "name": "Bike Popup Action",
+                  "metadata": {
+                    "type": "prototype-link",
+                    "target": "MVP 04 - Inserir ID",
+                    "action": "Alugar BIKE_001"
+                  },
+                  "width": "fill_container",
+                  "height": 42,
+                  "fill": "$--primary",
+                  "cornerRadius": "$--radius-pill",
+                  "gap": 8,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "m2wwKk",
+                      "name": "Bike Popup Action Icon",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "unlock",
+                      "library": "lucide",
+                      "fill": "$--primary-foreground"
+                    },
+                    {
+                      "type": "text",
+                      "id": "m4GC8G",
+                      "name": "Bike Popup Action Label",
+                      "fill": "$--primary-foreground",
+                      "content": "Alugar esta bike",
+                      "lineHeight": 1.25,
+                      "fontFamily": "$--font-secondary",
+                      "fontSize": 13,
+                      "fontWeight": "800"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "v9FFNO",
+              "x": 184,
+              "y": 332,
+              "name": "Bike Selected Marker Highlight",
+              "metadata": {
+                "type": "tap-target",
+                "targetPopup": "Bike Selected Popup"
+              },
+              "width": 42,
+              "height": 42,
+              "fill": "#FF840033",
+              "cornerRadius": "$--radius-pill",
+              "stroke": "$--primary",
+              "strokeWidth": 2,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "l9CEM5",
+                  "name": "Bike Selected Marker Dot",
+                  "fill": "$--primary",
+                  "width": 14,
+                  "height": 14,
+                  "stroke": "$--card",
+                  "strokeWidth": 3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "LSYN7",
+          "name": "Tab Bar",
+          "width": "fill_container",
+          "height": 64,
+          "fill": "#FFFFFFCC",
+          "cornerRadius": "$--radius-pill",
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#00000022",
+            "offset": {
+              "x": 0,
+              "y": 8
+            },
+            "blur": 24
+          },
+          "gap": 6,
+          "padding": 6,
+          "children": [
+            {
+              "type": "frame",
+              "id": "I78z9",
+              "name": "Tab Início",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "$--secondary",
+              "cornerRadius": "$--radius-pill",
+              "layout": "vertical",
+              "gap": 2,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "LFgHp",
+                  "name": "Tab Início Icon",
+                  "width": 19,
+                  "height": 19,
+                  "icon": "home",
+                  "library": "lucide",
+                  "fill": "$--primary"
+                },
+                {
+                  "type": "text",
+                  "id": "vGVNU",
+                  "name": "Tab Início Label",
+                  "fill": "$--foreground",
+                  "content": "Início",
+                  "lineHeight": 1.2,
+                  "fontFamily": "$--font-primary",
+                  "fontSize": 10,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "s5dKp",
+              "name": "Tab Histórico",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "#FFFFFF00",
+              "cornerRadius": "$--radius-pill",
+              "layout": "vertical",
+              "gap": 2,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "DH71H",
+                  "name": "Tab Histórico Icon",
+                  "width": 19,
+                  "height": 19,
+                  "icon": "clock",
+                  "library": "lucide",
+                  "fill": "$--muted-foreground"
+                },
+                {
+                  "type": "text",
+                  "id": "hGHeI",
+                  "name": "Tab Histórico Label",
+                  "fill": "$--muted-foreground",
+                  "content": "Histórico",
+                  "lineHeight": 1.2,
+                  "fontFamily": "$--font-primary",
+                  "fontSize": 10,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "jNvpC",
+              "name": "Tab Perfil",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "#FFFFFF00",
+              "cornerRadius": "$--radius-pill",
+              "layout": "vertical",
+              "gap": 2,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "vo6DX",
+                  "name": "Tab Perfil Icon",
+                  "width": 19,
+                  "height": 19,
+                  "icon": "user",
+                  "library": "lucide",
+                  "fill": "$--muted-foreground"
+                },
+                {
+                  "type": "text",
+                  "id": "H41bt",
+                  "name": "Tab Perfil Label",
+                  "fill": "$--muted-foreground",
+                  "content": "Perfil",
+                  "lineHeight": 1.2,
+                  "fontFamily": "$--font-primary",
+                  "fontSize": 10,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "j8zgj2",
+      "x": 2669,
+      "y": 0,
+      "name": "MVP 04 - Inserir ID",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "$--background",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "djlin",
+          "name": "Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [
+            0,
+            22
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "lssaj",
+              "name": "Status Time",
+              "fill": "$--foreground",
+              "content": "9:41",
+              "lineHeight": 1.25,
+              "fontFamily": "$--font-secondary",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "cu6O7",
+              "name": "Status Indicators",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "pb0tt",
+                  "name": "Signal Icon",
+                  "width": 17,
+                  "height": 17,
+                  "icon": "signal",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                },
+                {
+                  "type": "icon",
+                  "id": "Q3ZqUW",
+                  "name": "Wifi Icon",
+                  "width": 17,
+                  "height": 17,
+                  "icon": "wifi",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                },
+                {
+                  "type": "icon",
+                  "id": "EjZsy",
+                  "name": "Battery Icon",
+                  "width": 21,
+                  "height": 21,
+                  "icon": "battery",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "A5Cy7",
+          "name": "Content",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 18,
+          "padding": [
+            16,
+            18
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "OtFbn",
+              "name": "Back Flow Button",
+              "metadata": {
+                "type": "prototype-link",
+                "target": "MVP 03 - Home Mapa",
+                "action": "Voltar"
+              },
+              "width": 46,
+              "height": 46,
+              "fill": "$--card",
+              "cornerRadius": "$--radius-pill",
+              "stroke": "$--border",
+              "strokeWidth": 1,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#0000001F",
+                "offset": {
+                  "x": 0,
+                  "y": 6
+                },
+                "blur": 18
+              },
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "U75QjU",
+                  "name": "Back Flow Icon",
+                  "width": 21,
+                  "height": 21,
+                  "icon": "arrow-left",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "fig0h",
+              "name": "Rent Intro",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "HqUVS",
+                  "name": "Rent Title",
+                  "fill": "$--foreground",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Alugar bicicleta",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 28,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "xx9iM",
+                  "name": "Rent Subtitle",
+                  "fill": "$--muted-foreground",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Digite o identificador mostrado na bicicleta.",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 14
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "yPgsl",
+              "name": "Bike Id Form",
+              "width": "fill_container",
+              "fill": "$--card",
+              "cornerRadius": "$--radius-m",
+              "stroke": "$--border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 16,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "EMUvy",
+                  "name": "Bike Id Input",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "rONTx",
+                      "name": "Bike Id Input Label",
+                      "fill": "$--muted-foreground",
+                      "content": "ID DA BICICLETA",
+                      "lineHeight": 1.2,
+                      "fontFamily": "$--font-primary",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "aDOjk",
+                      "name": "Bike Id Input Field",
+                      "width": "fill_container",
+                      "height": 50,
+                      "fill": "$--card",
+                      "cornerRadius": "$--radius-m",
+                      "stroke": "$--border",
+                      "strokeWidth": 1,
+                      "gap": 10,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "mm4Lo",
+                          "name": "Bike Id Input Icon",
+                          "width": 18,
+                          "height": 18,
+                          "icon": "bike",
+                          "library": "lucide",
+                          "fill": "$--muted-foreground"
+                        },
+                        {
+                          "type": "text",
+                          "id": "z0em8",
+                          "name": "Bike Id Input Value",
+                          "fill": "$--foreground",
+                          "content": "BIKE_001",
+                          "lineHeight": 1.25,
+                          "fontFamily": "$--font-secondary",
+                          "fontSize": 14
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "y0a7LP",
+                  "name": "Bike Status Preview",
+                  "width": "fill_container",
+                  "fill": "$--muted",
+                  "cornerRadius": "$--radius-m",
+                  "padding": 12,
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "h6L7W",
+                      "name": "Preview Texts",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "s7qbgq",
+                          "name": "Preview Label",
+                          "fill": "$--muted-foreground",
+                          "content": "STATUS RECEBIDO",
+                          "lineHeight": 1.2,
+                          "fontFamily": "$--font-primary",
+                          "fontSize": 11,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "qs1yQ",
+                          "name": "Preview Status",
+                          "fill": "$--foreground",
+                          "content": "Disponível para aluguel",
+                          "lineHeight": 1.25,
+                          "fontFamily": "$--font-secondary",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "WSt0t",
+                      "name": "Preview Chip",
+                      "fill": "$--color-success",
+                      "cornerRadius": "$--radius-pill",
+                      "gap": 6,
+                      "padding": [
+                        7,
+                        11
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ZhkZz",
+                          "name": "Preview Chip Text",
+                          "fill": "$--color-success-foreground",
+                          "content": "Disponível",
+                          "lineHeight": 1.2,
+                          "fontFamily": "$--font-primary",
+                          "fontSize": 11,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ftRJi",
+                  "name": "Confirm Rent Button",
+                  "width": "fill_container",
+                  "height": 52,
+                  "fill": "$--primary",
+                  "cornerRadius": "$--radius-pill",
+                  "gap": 8,
+                  "padding": [
+                    0,
+                    18
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "hs0jP",
+                      "name": "Confirm Rent Button Icon",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "unlock",
+                      "library": "lucide",
+                      "fill": "$--primary-foreground"
+                    },
+                    {
+                      "type": "text",
+                      "id": "n6TKfb",
+                      "name": "Confirm Rent Button Label",
+                      "fill": "$--primary-foreground",
+                      "content": "Confirmar aluguel",
+                      "lineHeight": 1.25,
+                      "fontFamily": "$--font-secondary",
+                      "fontSize": 15,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "x7Sd7",
+      "x": 1120,
+      "y": 908,
+      "name": "MVP 05 - Corrida em andamento",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "$--background",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "yHkrW",
+          "name": "Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [
+            0,
+            22
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "xDn8t",
+              "name": "Status Time",
+              "fill": "$--foreground",
+              "content": "9:41",
+              "lineHeight": 1.25,
+              "fontFamily": "$--font-secondary",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "O48wI4",
+              "name": "Status Indicators",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "AILKD",
+                  "name": "Signal Icon",
+                  "width": 17,
+                  "height": 17,
+                  "icon": "signal",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                },
+                {
+                  "type": "icon",
+                  "id": "r9zlt",
+                  "name": "Wifi Icon",
+                  "width": 17,
+                  "height": 17,
+                  "icon": "wifi",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                },
+                {
+                  "type": "icon",
+                  "id": "IcvuJ",
+                  "name": "Battery Icon",
+                  "width": 21,
+                  "height": 21,
+                  "icon": "battery",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "V2B5R",
+          "name": "Content",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "none",
+          "children": [
+            {
+              "type": "frame",
+              "id": "r4HOgr",
+              "x": 0,
+              "y": 0,
+              "name": "Mapbox Ride Map",
+              "metadata": {
+                "type": "mapbox-static-map",
+                "source": "/tmp/opencode/mapbox_ride.png"
+              },
+              "clip": true,
+              "width": 390,
+              "height": 782,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "../../../../../tmp/opencode/mapbox_ride.png",
+                "mode": "fill"
+              },
+              "layout": "none"
+            },
+            {
+              "type": "frame",
+              "id": "xNv0n",
+              "x": 18,
+              "y": 22,
+              "name": "Ride Floating Status",
+              "width": 354,
+              "fill": "#FFFFFFE6",
+              "cornerRadius": 24,
+              "stroke": "$--border",
+              "strokeWidth": 1,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#0000001F",
+                "offset": {
+                  "x": 0,
+                  "y": 8
+                },
+                "blur": 24
+              },
+              "layout": "vertical",
+              "gap": 6,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "nkQit",
+                  "name": "Ride Status Row",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "j6lbev",
+                      "name": "Ride Floating Title",
+                      "fill": "$--foreground",
+                      "content": "Corrida em andamento",
+                      "lineHeight": 1.25,
+                      "fontFamily": "$--font-secondary",
+                      "fontSize": 20,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "l2q6Uq",
+                      "name": "Ride Status Chip",
+                      "fill": "$--color-info",
+                      "cornerRadius": "$--radius-pill",
+                      "gap": 6,
+                      "padding": [
+                        7,
+                        10
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "RFJSM",
+                          "name": "Ride Status Chip Text",
+                          "fill": "$--color-info-foreground",
+                          "content": "Em Uso",
+                          "lineHeight": 1.2,
+                          "fontFamily": "$--font-secondary",
+                          "fontSize": 12,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "TvLcX",
+                  "name": "Ride Floating Timer",
+                  "fill": "$--foreground",
+                  "content": "00:16:42",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 42,
+                  "fontWeight": "800"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "txZnI",
+              "x": 18,
+              "y": 588,
+              "name": "Ride Floating Stats",
+              "width": 354,
+              "gap": 10,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "JIwct",
+                  "name": "Ride Distance Floating",
+                  "width": "fill_container",
+                  "fill": "#FFFFFFE6",
+                  "cornerRadius": 20,
+                  "stroke": "$--border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "padding": 14,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "D57xJk",
+                      "name": "Ride Distance Floating Label",
+                      "fill": "$--muted-foreground",
+                      "content": "DISTÂNCIA",
+                      "lineHeight": 1.2,
+                      "fontFamily": "$--font-primary",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "qeKEI",
+                      "name": "Ride Distance Floating Value",
+                      "fill": "$--foreground",
+                      "content": "2,4 km",
+                      "lineHeight": 1.25,
+                      "fontFamily": "$--font-secondary",
+                      "fontSize": 22,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ekaK6",
+                  "name": "Ride Speed Floating",
+                  "width": "fill_container",
+                  "fill": "#FFFFFFE6",
+                  "cornerRadius": 20,
+                  "stroke": "$--border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "padding": 14,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "xIygn",
+                      "name": "Ride Speed Floating Label",
+                      "fill": "$--muted-foreground",
+                      "content": "VELOCIDADE",
+                      "lineHeight": 1.2,
+                      "fontFamily": "$--font-primary",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "FHXl3",
+                      "name": "Ride Speed Floating Value",
+                      "fill": "$--foreground",
+                      "content": "12 km/h",
+                      "lineHeight": 1.25,
+                      "fontFamily": "$--font-secondary",
+                      "fontSize": 22,
+                      "fontWeight": "800"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "j4HYBo",
+              "layoutPosition": "absolute",
+              "x": 18,
+              "y": 696,
+              "name": "Finish Ride Button",
+              "width": 354,
+              "height": 52,
+              "fill": "$--primary",
+              "cornerRadius": "$--radius-pill",
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#00000022",
+                "offset": {
+                  "x": 0,
+                  "y": 8
+                },
+                "blur": 22
+              },
+              "gap": 8,
+              "padding": [
+                0,
+                18
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "Hgl9i",
+                  "name": "Finish Ride Button Icon",
+                  "width": 18,
+                  "height": 18,
+                  "icon": "square",
+                  "library": "lucide",
+                  "fill": "$--primary-foreground"
+                },
+                {
+                  "type": "text",
+                  "id": "WKEro",
+                  "name": "Finish Ride Button Label",
+                  "fill": "$--primary-foreground",
+                  "content": "Finalizar corrida",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 15,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "JfBtS",
+      "x": 1574,
+      "y": 908,
+      "name": "MVP 06 - Finalização",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "$--background",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "c115GR",
+          "name": "Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [
+            0,
+            22
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "fcdNC",
+              "name": "Status Time",
+              "fill": "$--foreground",
+              "content": "9:41",
+              "lineHeight": 1.25,
+              "fontFamily": "$--font-secondary",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "u30tl",
+              "name": "Status Indicators",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "J9429",
+                  "name": "Signal Icon",
+                  "width": 17,
+                  "height": 17,
+                  "icon": "signal",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                },
+                {
+                  "type": "icon",
+                  "id": "ZIPGJ",
+                  "name": "Wifi Icon",
+                  "width": 17,
+                  "height": 17,
+                  "icon": "wifi",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                },
+                {
+                  "type": "icon",
+                  "id": "h1KsGw",
+                  "name": "Battery Icon",
+                  "width": 21,
+                  "height": 21,
+                  "icon": "battery",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "IyL2x",
+          "name": "Content",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 18,
+          "padding": 18,
+          "children": [
+            {
+              "type": "frame",
+              "id": "Q97ie",
+              "name": "Finish Header",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "x7Eqjr",
+                  "name": "Success Icon Wrap",
+                  "width": 72,
+                  "height": 72,
+                  "fill": "$--color-success",
+                  "cornerRadius": "$--radius-pill",
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "zAmWQ",
+                      "name": "Success Icon",
+                      "width": 36,
+                      "height": 36,
+                      "icon": "check",
+                      "library": "lucide",
+                      "fill": "$--color-success-foreground"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "sEH6i",
+                  "name": "Finish Title",
+                  "fill": "$--foreground",
+                  "content": "Corrida finalizada",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 28,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "d4QNh",
+                  "name": "Finish Subtitle",
+                  "fill": "$--muted-foreground",
+                  "content": "Obrigado por usar o BikeShare UFAL.",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 14
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "b2pZD",
+              "name": "Ride Finished Illustration",
+              "clip": true,
+              "width": "fill_container",
+              "height": 250,
+              "fill": "$--secondary",
+              "cornerRadius": 28,
+              "layout": "none",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "b02L8",
+                  "x": 266,
+                  "y": 28,
+                  "name": "Illustration Sun",
+                  "fill": "$--primary",
+                  "width": 54,
+                  "height": 54
+                },
+                {
+                  "type": "path",
+                  "id": "FBMum",
+                  "x": 24,
+                  "y": 148,
+                  "name": "Illustration Horizon",
+                  "geometry": "M0 32c64-32 118 18 178-14s80-6 128 12",
+                  "viewBox": [
+                    0,
+                    0,
+                    306,
+                    44
+                  ],
+                  "fill": "#00000000",
+                  "width": 306,
+                  "height": 44,
+                  "stroke": "$--border",
+                  "strokeWidth": 4,
+                  "strokeLinecap": "round"
+                },
+                {
+                  "type": "path",
+                  "id": "LjvM9",
+                  "x": 58,
+                  "y": 186,
+                  "name": "Illustration Road",
+                  "geometry": "M0 30c72-28 166-30 238-4",
+                  "viewBox": [
+                    0,
+                    0,
+                    238,
+                    42
+                  ],
+                  "fill": "#00000000",
+                  "width": 238,
+                  "height": 42,
+                  "stroke": "$--foreground",
+                  "strokeWidth": 5,
+                  "strokeLinecap": "round"
+                },
+                {
+                  "type": "path",
+                  "id": "IJPH0",
+                  "x": 104,
+                  "y": 112,
+                  "name": "Illustration Bike Frame",
+                  "geometry": "M18 52l40-34 36 34-49 0 27-32 46 0m-24 32l28-34",
+                  "viewBox": [
+                    0,
+                    0,
+                    152,
+                    72
+                  ],
+                  "fill": "#00000000",
+                  "width": 152,
+                  "height": 72,
+                  "stroke": "$--foreground",
+                  "strokeWidth": 5,
+                  "strokeLinejoin": "round",
+                  "strokeLinecap": "round"
+                },
+                {
+                  "type": "ellipse",
+                  "id": "zD6lY",
+                  "x": 82,
+                  "y": 146,
+                  "name": "Illustration Bike Wheel Left",
+                  "fill": "#00000000",
+                  "width": 52,
+                  "height": 52,
+                  "stroke": "$--foreground",
+                  "strokeWidth": 5
+                },
+                {
+                  "type": "ellipse",
+                  "id": "nfZcm",
+                  "x": 234,
+                  "y": 146,
+                  "name": "Illustration Bike Wheel Right",
+                  "fill": "#00000000",
+                  "width": 52,
+                  "height": 52,
+                  "stroke": "$--foreground",
+                  "strokeWidth": 5
+                },
+                {
+                  "type": "path",
+                  "id": "i1cnNg",
+                  "x": 178,
+                  "y": 72,
+                  "name": "Illustration Flag",
+                  "geometry": "M8 58l0-58 54 12-54 13",
+                  "viewBox": [
+                    0,
+                    0,
+                    72,
+                    58
+                  ],
+                  "fill": "#00000000",
+                  "width": 72,
+                  "height": 58,
+                  "stroke": "$--primary",
+                  "strokeWidth": 5,
+                  "strokeLinejoin": "round",
+                  "strokeLinecap": "round"
+                },
+                {
+                  "type": "frame",
+                  "id": "lrDsK",
+                  "x": 22,
+                  "y": 22,
+                  "name": "Illustration Badge",
+                  "fill": "$--card",
+                  "cornerRadius": "$--radius-pill",
+                  "stroke": "$--border",
+                  "strokeWidth": 1,
+                  "gap": 6,
+                  "padding": [
+                    8,
+                    11
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "t6Oqco",
+                      "name": "Illustration Badge Icon",
+                      "width": 14,
+                      "height": 14,
+                      "icon": "flag",
+                      "library": "lucide",
+                      "fill": "$--primary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "dBk8r",
+                      "name": "Illustration Badge Text",
+                      "fill": "$--foreground",
+                      "content": "VIAGEM CONCLUÍDA",
+                      "lineHeight": 1.2,
+                      "fontFamily": "$--font-primary",
+                      "fontSize": 11,
+                      "fontWeight": "800"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "T6jzP",
+              "name": "Ride Summary",
+              "width": "fill_container",
+              "fill": "$--card",
+              "cornerRadius": "$--radius-m",
+              "stroke": "$--border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "yZpZo",
+                  "name": "Summary Row Tempo total",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "r4Zub9",
+                      "name": "Summary Label Tempo total",
+                      "fill": "$--muted-foreground",
+                      "content": "TEMPO TOTAL",
+                      "lineHeight": 1.2,
+                      "fontFamily": "$--font-primary",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "e4TCWt",
+                      "name": "Summary Value Tempo total",
+                      "fill": "$--foreground",
+                      "content": "00:18:03",
+                      "lineHeight": 1.25,
+                      "fontFamily": "$--font-secondary",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "xDI2Q",
+                  "name": "Summary Row Distância",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "pJnhH",
+                      "name": "Summary Label Distância",
+                      "fill": "$--muted-foreground",
+                      "content": "DISTÂNCIA",
+                      "lineHeight": 1.2,
+                      "fontFamily": "$--font-primary",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "p2acC",
+                      "name": "Summary Value Distância",
+                      "fill": "$--foreground",
+                      "content": "2,8 km",
+                      "lineHeight": 1.25,
+                      "fontFamily": "$--font-secondary",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ne8b1",
+                  "name": "Summary Row Bicicleta",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "ctBiX",
+                      "name": "Summary Label Bicicleta",
+                      "fill": "$--muted-foreground",
+                      "content": "BICICLETA",
+                      "lineHeight": 1.2,
+                      "fontFamily": "$--font-primary",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "vAwiF",
+                      "name": "Summary Value Bicicleta",
+                      "fill": "$--foreground",
+                      "content": "BIKE_001",
+                      "lineHeight": 1.25,
+                      "fontFamily": "$--font-secondary",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "T7uJO",
+              "name": "Back Home Button",
+              "width": "fill_container",
+              "height": 52,
+              "fill": "$--primary",
+              "cornerRadius": "$--radius-pill",
+              "gap": 8,
+              "padding": [
+                0,
+                18
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "gdnmP",
+                  "name": "Back Home Button Icon",
+                  "width": 18,
+                  "height": 18,
+                  "icon": "home",
+                  "library": "lucide",
+                  "fill": "$--primary-foreground"
+                },
+                {
+                  "type": "text",
+                  "id": "VgTKu",
+                  "name": "Back Home Button Label",
+                  "fill": "$--primary-foreground",
+                  "content": "Voltar ao início",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 15,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "ukjnH",
+      "x": 2028,
+      "y": 908,
+      "name": "MVP 07 - Histórico",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "$--background",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "MPLlz",
+          "name": "Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [
+            0,
+            22
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "Bb2TK",
+              "name": "Status Time",
+              "fill": "$--foreground",
+              "content": "9:41",
+              "lineHeight": 1.25,
+              "fontFamily": "$--font-secondary",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "S8kAaA",
+              "name": "Status Indicators",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "bdGGk",
+                  "name": "Signal Icon",
+                  "width": 17,
+                  "height": 17,
+                  "icon": "signal",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                },
+                {
+                  "type": "icon",
+                  "id": "vYkUA",
+                  "name": "Wifi Icon",
+                  "width": 17,
+                  "height": 17,
+                  "icon": "wifi",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                },
+                {
+                  "type": "icon",
+                  "id": "jhYbA",
+                  "name": "Battery Icon",
+                  "width": 21,
+                  "height": 21,
+                  "icon": "battery",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "E2G6oR",
+          "name": "Content",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 22,
+          "padding": [
+            16,
+            18
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "B07rNB",
+              "name": "History Header",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "FAyKX",
+                  "name": "History Title",
+                  "fill": "$--foreground",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Histórico",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 28,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "s95VJ",
+                  "name": "History Subtitle",
+                  "fill": "$--muted-foreground",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Corridas concluídas e sincronizadas com o backend.",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 14
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "jF1d3",
+              "name": "History Item BIKE_001",
+              "width": "fill_container",
+              "fill": "$--card",
+              "cornerRadius": "$--radius-m",
+              "stroke": "$--border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "x6g63O",
+                  "name": "History Row Top BIKE_001",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "o7D8e",
+                      "name": "History Bike BIKE_001",
+                      "fill": "$--foreground",
+                      "content": "BIKE_001",
+                      "lineHeight": 1.25,
+                      "fontFamily": "$--font-secondary",
+                      "fontSize": 17,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "T959n",
+                      "name": "History Done BIKE_001",
+                      "fill": "$--color-success",
+                      "cornerRadius": "$--radius-pill",
+                      "gap": 6,
+                      "padding": [
+                        7,
+                        11
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "gvZ8H",
+                          "name": "History Done BIKE_001 Text",
+                          "fill": "$--color-success-foreground",
+                          "content": "concluída",
+                          "lineHeight": 1.2,
+                          "fontFamily": "$--font-primary",
+                          "fontSize": 11,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "iuIPn",
+                  "name": "History Info BIKE_001",
+                  "fill": "$--muted-foreground",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Hoje · 18 min · 2,8 km",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 13
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "i688V",
+              "name": "History Item BIKE_014",
+              "width": "fill_container",
+              "fill": "$--card",
+              "cornerRadius": "$--radius-m",
+              "stroke": "$--border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "e725a",
+                  "name": "History Row Top BIKE_014",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "bDOMu",
+                      "name": "History Bike BIKE_014",
+                      "fill": "$--foreground",
+                      "content": "BIKE_014",
+                      "lineHeight": 1.25,
+                      "fontFamily": "$--font-secondary",
+                      "fontSize": 17,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "onGAU",
+                      "name": "History Done BIKE_014",
+                      "fill": "$--color-success",
+                      "cornerRadius": "$--radius-pill",
+                      "gap": 6,
+                      "padding": [
+                        7,
+                        11
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "h3FmXu",
+                          "name": "History Done BIKE_014 Text",
+                          "fill": "$--color-success-foreground",
+                          "content": "concluída",
+                          "lineHeight": 1.2,
+                          "fontFamily": "$--font-primary",
+                          "fontSize": 11,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "m3E4K",
+                  "name": "History Info BIKE_014",
+                  "fill": "$--muted-foreground",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Ontem · 11 min · 1,5 km",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 13
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "vVuXO",
+              "name": "History Item BIKE_022",
+              "width": "fill_container",
+              "fill": "$--card",
+              "cornerRadius": "$--radius-m",
+              "stroke": "$--border",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 8,
+              "padding": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "IObz4",
+                  "name": "History Row Top BIKE_022",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "bZphP",
+                      "name": "History Bike BIKE_022",
+                      "fill": "$--foreground",
+                      "content": "BIKE_022",
+                      "lineHeight": 1.25,
+                      "fontFamily": "$--font-secondary",
+                      "fontSize": 17,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "BSupS",
+                      "name": "History Done BIKE_022",
+                      "fill": "$--color-success",
+                      "cornerRadius": "$--radius-pill",
+                      "gap": 6,
+                      "padding": [
+                        7,
+                        11
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "be0ib",
+                          "name": "History Done BIKE_022 Text",
+                          "fill": "$--color-success-foreground",
+                          "content": "concluída",
+                          "lineHeight": 1.2,
+                          "fontFamily": "$--font-primary",
+                          "fontSize": 11,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "jVvI6",
+                  "name": "History Info BIKE_022",
+                  "fill": "$--muted-foreground",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "12 jun · 26 min · 4,2 km",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 13
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "JvkDX",
+          "name": "Tab Bar",
+          "width": "fill_container",
+          "height": 64,
+          "fill": "#FFFFFFCC",
+          "cornerRadius": "$--radius-pill",
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#00000022",
+            "offset": {
+              "x": 0,
+              "y": 8
+            },
+            "blur": 24
+          },
+          "gap": 6,
+          "padding": 6,
+          "children": [
+            {
+              "type": "frame",
+              "id": "DaPvj",
+              "name": "Tab Início",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "#FFFFFF00",
+              "cornerRadius": "$--radius-pill",
+              "layout": "vertical",
+              "gap": 2,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "EKZOT",
+                  "name": "Tab Início Icon",
+                  "width": 19,
+                  "height": 19,
+                  "icon": "home",
+                  "library": "lucide",
+                  "fill": "$--muted-foreground"
+                },
+                {
+                  "type": "text",
+                  "id": "ZtUeq",
+                  "name": "Tab Início Label",
+                  "fill": "$--muted-foreground",
+                  "content": "Início",
+                  "lineHeight": 1.2,
+                  "fontFamily": "$--font-primary",
+                  "fontSize": 10,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "D3Tvp",
+              "name": "Tab Histórico",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "$--secondary",
+              "cornerRadius": "$--radius-pill",
+              "layout": "vertical",
+              "gap": 2,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "oOLY6",
+                  "name": "Tab Histórico Icon",
+                  "width": 19,
+                  "height": 19,
+                  "icon": "clock",
+                  "library": "lucide",
+                  "fill": "$--primary"
+                },
+                {
+                  "type": "text",
+                  "id": "ypiL9",
+                  "name": "Tab Histórico Label",
+                  "fill": "$--foreground",
+                  "content": "Histórico",
+                  "lineHeight": 1.2,
+                  "fontFamily": "$--font-primary",
+                  "fontSize": 10,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "mG8mu",
+              "name": "Tab Perfil",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "#FFFFFF00",
+              "cornerRadius": "$--radius-pill",
+              "layout": "vertical",
+              "gap": 2,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "D20M8e",
+                  "name": "Tab Perfil Icon",
+                  "width": 19,
+                  "height": 19,
+                  "icon": "user",
+                  "library": "lucide",
+                  "fill": "$--muted-foreground"
+                },
+                {
+                  "type": "text",
+                  "id": "Jlitq",
+                  "name": "Tab Perfil Label",
+                  "fill": "$--muted-foreground",
+                  "content": "Perfil",
+                  "lineHeight": 1.2,
+                  "fontFamily": "$--font-primary",
+                  "fontSize": 10,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "Za6Ei",
+      "x": 1040,
+      "y": -58,
+      "name": "Protótipo do Aplicativo Mobile - Usuário",
+      "metadata": {
+        "type": "prototype-annotations"
+      },
+      "width": 1940,
+      "height": 1920,
+      "fill": "#FFFFFF00",
+      "layout": "none",
+      "children": [
+        {
+          "type": "frame",
+          "id": "sDh9q",
+          "x": 1452,
+          "y": 960,
+          "name": "MVP 08 - Perfil do usuário",
+          "clip": true,
+          "width": 390,
+          "height": 844,
+          "fill": "$--background",
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "U3tmY",
+              "name": "Status Bar",
+              "width": "fill_container",
+              "height": 62,
+              "padding": [
+                0,
+                22
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "w8uBl",
+                  "name": "Status Time",
+                  "fill": "$--foreground",
+                  "content": "9:41",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "OyCOp",
+                  "name": "Status Indicators",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "P5EYBD",
+                      "name": "Signal Icon",
+                      "width": 17,
+                      "height": 17,
+                      "icon": "signal",
+                      "library": "lucide",
+                      "fill": "$--foreground"
+                    },
+                    {
+                      "type": "icon",
+                      "id": "UEZyj",
+                      "name": "Wifi Icon",
+                      "width": 17,
+                      "height": 17,
+                      "icon": "wifi",
+                      "library": "lucide",
+                      "fill": "$--foreground"
+                    },
+                    {
+                      "type": "icon",
+                      "id": "YipWl",
+                      "name": "Battery Icon",
+                      "width": 21,
+                      "height": 21,
+                      "icon": "battery",
+                      "library": "lucide",
+                      "fill": "$--foreground"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "sHLNg",
+              "name": "Content",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                12,
+                18
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "WsjPi",
+                  "name": "Profile Header",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "qY5Yv",
+                      "name": "Profile Avatar",
+                      "width": 70,
+                      "height": 70,
+                      "fill": "$--primary",
+                      "cornerRadius": "$--radius-pill",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "u45yA6",
+                          "name": "Profile Avatar Initials",
+                          "fill": "$--primary-foreground",
+                          "content": "RM",
+                          "lineHeight": 1.25,
+                          "fontFamily": "$--font-secondary",
+                          "fontSize": 24,
+                          "fontWeight": "900"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "TUiGc",
+                      "name": "Profile Name",
+                      "fill": "$--foreground",
+                      "content": "Ruan Melo",
+                      "lineHeight": 1.25,
+                      "fontFamily": "$--font-secondary",
+                      "fontSize": 24,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "text",
+                      "id": "quhW6",
+                      "name": "Profile Caption",
+                      "fill": "$--muted-foreground",
+                      "content": "BikeShare UFAL",
+                      "lineHeight": 1.25,
+                      "fontFamily": "$--font-secondary",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "SshEQ",
+                  "name": "Profile Info Card",
+                  "width": "fill_container",
+                  "fill": "$--card",
+                  "cornerRadius": "$--radius-m",
+                  "stroke": "$--border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "padding": 10,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Y9nXyJ",
+                      "name": "Profile Row Nome",
+                      "width": "fill_container",
+                      "gap": 10,
+                      "padding": [
+                        7,
+                        0
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "uUP4O",
+                          "name": "Profile Row Icon Wrap Nome",
+                          "width": 32,
+                          "height": 32,
+                          "fill": "$--secondary",
+                          "cornerRadius": "$--radius-pill",
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "rxqLP",
+                              "name": "Profile Row Icon Nome",
+                              "width": 18,
+                              "height": 18,
+                              "icon": "user",
+                              "library": "lucide",
+                              "fill": "$--foreground"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "P3jsUI",
+                          "name": "Profile Row Texts Nome",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 3,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "n2dBA",
+                              "name": "Profile Row Label Nome",
+                              "fill": "$--muted-foreground",
+                              "content": "NOME",
+                              "lineHeight": 1.2,
+                              "fontFamily": "$--font-primary",
+                              "fontSize": 10,
+                              "fontWeight": "800"
+                            },
+                            {
+                              "type": "text",
+                              "id": "tBLFV",
+                              "name": "Profile Row Value Nome",
+                              "fill": "$--foreground",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Ruan Melo",
+                              "lineHeight": 1.25,
+                              "fontFamily": "$--font-secondary",
+                              "fontSize": 14,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "A9TmIf",
+                      "name": "Profile Row Email",
+                      "width": "fill_container",
+                      "gap": 10,
+                      "padding": [
+                        7,
+                        0
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "GPj4U",
+                          "name": "Profile Row Icon Wrap Email",
+                          "width": 32,
+                          "height": 32,
+                          "fill": "$--secondary",
+                          "cornerRadius": "$--radius-pill",
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "HGIoo",
+                              "name": "Profile Row Icon Email",
+                              "width": 18,
+                              "height": 18,
+                              "icon": "mail",
+                              "library": "lucide",
+                              "fill": "$--foreground"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "o5jkuD",
+                          "name": "Profile Row Texts Email",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 3,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "xlG23",
+                              "name": "Profile Row Label Email",
+                              "fill": "$--muted-foreground",
+                              "content": "EMAIL",
+                              "lineHeight": 1.2,
+                              "fontFamily": "$--font-primary",
+                              "fontSize": 10,
+                              "fontWeight": "800"
+                            },
+                            {
+                              "type": "text",
+                              "id": "RwXsn",
+                              "name": "Profile Row Value Email",
+                              "fill": "$--foreground",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "ruan@ic.ufal.br",
+                              "lineHeight": 1.25,
+                              "fontFamily": "$--font-secondary",
+                              "fontSize": 14,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "cgmJN",
+                      "name": "Profile Row Telefone",
+                      "width": "fill_container",
+                      "gap": 10,
+                      "padding": [
+                        7,
+                        0
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "Kmbj7",
+                          "name": "Profile Row Icon Wrap Telefone",
+                          "width": 32,
+                          "height": 32,
+                          "fill": "$--secondary",
+                          "cornerRadius": "$--radius-pill",
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "eUrcW",
+                              "name": "Profile Row Icon Telefone",
+                              "width": 18,
+                              "height": 18,
+                              "icon": "phone",
+                              "library": "lucide",
+                              "fill": "$--foreground"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "UPgI3",
+                          "name": "Profile Row Texts Telefone",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 3,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "P2IJG",
+                              "name": "Profile Row Label Telefone",
+                              "fill": "$--muted-foreground",
+                              "content": "TELEFONE",
+                              "lineHeight": 1.2,
+                              "fontFamily": "$--font-primary",
+                              "fontSize": 10,
+                              "fontWeight": "800"
+                            },
+                            {
+                              "type": "text",
+                              "id": "k9tHXQ",
+                              "name": "Profile Row Value Telefone",
+                              "fill": "$--foreground",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "(82) 99999-0000",
+                              "lineHeight": 1.25,
+                              "fontFamily": "$--font-secondary",
+                              "fontSize": 14,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Ccw1N",
+                      "name": "Profile Row Matrícula",
+                      "width": "fill_container",
+                      "gap": 10,
+                      "padding": [
+                        7,
+                        0
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "jgN14",
+                          "name": "Profile Row Icon Wrap Matrícula",
+                          "width": 32,
+                          "height": 32,
+                          "fill": "$--secondary",
+                          "cornerRadius": "$--radius-pill",
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "hcek0",
+                              "name": "Profile Row Icon Matrícula",
+                              "width": 18,
+                              "height": 18,
+                              "icon": "id-card",
+                              "library": "lucide",
+                              "fill": "$--foreground"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "RO6b8",
+                          "name": "Profile Row Texts Matrícula",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 3,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "bKbVm",
+                              "name": "Profile Row Label Matrícula",
+                              "fill": "$--muted-foreground",
+                              "content": "MATRÍCULA",
+                              "lineHeight": 1.2,
+                              "fontFamily": "$--font-primary",
+                              "fontSize": 10,
+                              "fontWeight": "800"
+                            },
+                            {
+                              "type": "text",
+                              "id": "ofv2c",
+                              "name": "Profile Row Value Matrícula",
+                              "fill": "$--foreground",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "2024000000",
+                              "lineHeight": 1.25,
+                              "fontFamily": "$--font-secondary",
+                              "fontSize": 14,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "M9i4Z",
+                      "name": "Profile Row Conta criada",
+                      "width": "fill_container",
+                      "gap": 10,
+                      "padding": [
+                        7,
+                        0
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "a3lVIt",
+                          "name": "Profile Row Icon Wrap Conta criada",
+                          "width": 32,
+                          "height": 32,
+                          "fill": "$--secondary",
+                          "cornerRadius": "$--radius-pill",
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "ewJ9S",
+                              "name": "Profile Row Icon Conta criada",
+                              "width": 18,
+                              "height": 18,
+                              "icon": "calendar",
+                              "library": "lucide",
+                              "fill": "$--foreground"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "PtgKD",
+                          "name": "Profile Row Texts Conta criada",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 3,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "xeeaS",
+                              "name": "Profile Row Label Conta criada",
+                              "fill": "$--muted-foreground",
+                              "content": "CONTA CRIADA",
+                              "lineHeight": 1.2,
+                              "fontFamily": "$--font-primary",
+                              "fontSize": 10,
+                              "fontWeight": "800"
+                            },
+                            {
+                              "type": "text",
+                              "id": "p0vhj",
+                              "name": "Profile Row Value Conta criada",
+                              "fill": "$--foreground",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "19 jun 2026",
+                              "lineHeight": 1.25,
+                              "fontFamily": "$--font-secondary",
+                              "fontSize": 14,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "JlHEd",
+                  "name": "Profile Stats",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "aECwC",
+                      "name": "Profile Rides Stat",
+                      "width": "fill_container",
+                      "fill": "$--card",
+                      "cornerRadius": 20,
+                      "stroke": "$--border",
+                      "strokeWidth": 1,
+                      "layout": "vertical",
+                      "gap": 4,
+                      "padding": 10,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "huQDd",
+                          "name": "Profile Rides Label",
+                          "fill": "$--muted-foreground",
+                          "content": "CORRIDAS",
+                          "lineHeight": 1.2,
+                          "fontFamily": "$--font-primary",
+                          "fontSize": 10,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "CjvBk",
+                          "name": "Profile Rides Value",
+                          "fill": "$--foreground",
+                          "content": "3",
+                          "lineHeight": 1.25,
+                          "fontFamily": "$--font-secondary",
+                          "fontSize": 21,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "n48Phy",
+                      "name": "Profile Distance Stat",
+                      "width": "fill_container",
+                      "fill": "$--card",
+                      "cornerRadius": 20,
+                      "stroke": "$--border",
+                      "strokeWidth": 1,
+                      "layout": "vertical",
+                      "gap": 4,
+                      "padding": 10,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "qD7hB",
+                          "name": "Profile Distance Label",
+                          "fill": "$--muted-foreground",
+                          "content": "DISTÂNCIA",
+                          "lineHeight": 1.2,
+                          "fontFamily": "$--font-primary",
+                          "fontSize": 10,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "csodr",
+                          "name": "Profile Distance Value",
+                          "fill": "$--foreground",
+                          "content": "8,5 km",
+                          "lineHeight": 1.25,
+                          "fontFamily": "$--font-secondary",
+                          "fontSize": 21,
+                          "fontWeight": "800"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "IP5Rp",
+                  "name": "Logout Button",
+                  "metadata": {
+                    "type": "prototype-link",
+                    "target": "MVP 01 - Login",
+                    "action": "Logout"
+                  },
+                  "width": "fill_container",
+                  "height": 48,
+                  "fill": "$--color-error",
+                  "cornerRadius": "$--radius-pill",
+                  "gap": 8,
+                  "padding": [
+                    0,
+                    18
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "Ik0de",
+                      "name": "Logout Icon",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "log-out",
+                      "library": "lucide",
+                      "fill": "$--color-error-foreground"
+                    },
+                    {
+                      "type": "text",
+                      "id": "VudYu",
+                      "name": "Logout Label",
+                      "fill": "$--color-error-foreground",
+                      "content": "Sair da conta",
+                      "lineHeight": 1.25,
+                      "fontFamily": "$--font-secondary",
+                      "fontSize": 15,
+                      "fontWeight": "800"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Hu82s",
+              "name": "Tab Bar",
+              "width": "fill_container",
+              "height": 64,
+              "fill": "#FFFFFFCC",
+              "cornerRadius": "$--radius-pill",
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#00000022",
+                "offset": {
+                  "x": 0,
+                  "y": 8
+                },
+                "blur": 24
+              },
+              "gap": 6,
+              "padding": 6,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "YRHV6",
+                  "name": "Tab Início",
+                  "metadata": {
+                    "type": "prototype-link",
+                    "target": "MVP 03 - Home Mapa",
+                    "action": "Início"
+                  },
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "#FFFFFF00",
+                  "cornerRadius": "$--radius-pill",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "Ogmsf",
+                      "name": "Tab Início Icon",
+                      "width": 19,
+                      "height": 19,
+                      "icon": "home",
+                      "library": "lucide",
+                      "fill": "$--muted-foreground"
+                    },
+                    {
+                      "type": "text",
+                      "id": "oOVkE",
+                      "name": "Tab Início Label",
+                      "fill": "$--muted-foreground",
+                      "content": "Início",
+                      "lineHeight": 1.2,
+                      "fontFamily": "$--font-primary",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "DwkPo",
+                  "name": "Tab Histórico",
+                  "metadata": {
+                    "type": "prototype-link",
+                    "target": "MVP 07 - Histórico",
+                    "action": "Histórico"
+                  },
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "#FFFFFF00",
+                  "cornerRadius": "$--radius-pill",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "LBIlj",
+                      "name": "Tab Histórico Icon",
+                      "width": 19,
+                      "height": 19,
+                      "icon": "clock",
+                      "library": "lucide",
+                      "fill": "$--muted-foreground"
+                    },
+                    {
+                      "type": "text",
+                      "id": "bXZSc",
+                      "name": "Tab Histórico Label",
+                      "fill": "$--muted-foreground",
+                      "content": "Histórico",
+                      "lineHeight": 1.2,
+                      "fontFamily": "$--font-primary",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "XOoHM",
+                  "name": "Tab Perfil",
+                  "metadata": {
+                    "type": "prototype-link",
+                    "target": "MVP 08 - Perfil do usuário",
+                    "action": "Perfil"
+                  },
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "fill": "$--secondary",
+                  "cornerRadius": "$--radius-pill",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "uwEEC",
+                      "name": "Tab Perfil Icon",
+                      "width": 19,
+                      "height": 19,
+                      "icon": "user",
+                      "library": "lucide",
+                      "fill": "$--primary"
+                    },
+                    {
+                      "type": "text",
+                      "id": "YEUb2",
+                      "name": "Tab Perfil Label",
+                      "fill": "$--foreground",
+                      "content": "Perfil",
+                      "lineHeight": 1.2,
+                      "fontFamily": "$--font-primary",
+                      "fontSize": 10,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "oanY5",
+      "x": 2028,
+      "y": -438,
+      "name": "Notas - Estados das Bikes",
+      "width": 300,
+      "fill": "$--card",
+      "cornerRadius": "$--radius-m",
+      "stroke": "$--border",
+      "strokeWidth": 1,
+      "effect": {
+        "type": "shadow",
+        "shadowType": "outer",
+        "color": "#00000018",
+        "offset": {
+          "x": 0,
+          "y": 8
+        },
+        "blur": 24
+      },
+      "layout": "vertical",
+      "gap": 14,
+      "padding": 18,
+      "children": [
+        {
+          "type": "text",
+          "id": "wvOJK",
+          "name": "Notes Eyebrow",
+          "fill": "$--primary",
+          "content": "NOTAS PARA DESENVOLVIMENTO",
+          "lineHeight": 1.2,
+          "fontFamily": "$--font-primary",
+          "fontSize": 11,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "Pmwuq",
+          "name": "Notes Title",
+          "fill": "$--foreground",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "Cores no mapa",
+          "lineHeight": 1.25,
+          "fontFamily": "$--font-secondary",
+          "fontSize": 20,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "U3IFbc",
+          "name": "Notes Body",
+          "fill": "$--muted-foreground",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "Usar estes estados para renderizar pins e filtros da frota no app.",
+          "lineHeight": 1.25,
+          "fontFamily": "$--font-secondary",
+          "fontSize": 13
+        },
+        {
+          "type": "frame",
+          "id": "A3SxAm",
+          "name": "Legend Row Disponível",
+          "width": "fill_container",
+          "gap": 10,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "ellipse",
+              "id": "xMGbf",
+              "name": "Legend Dot Disponível",
+              "fill": "$--color-success-foreground",
+              "width": 14,
+              "height": 14,
+              "stroke": "$--card",
+              "strokeWidth": 2
+            },
+            {
+              "type": "frame",
+              "id": "Al2y9",
+              "name": "Legend Text Disponível",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 2,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "MPjqg",
+                  "name": "Legend Label Disponível",
+                  "fill": "$--foreground",
+                  "content": "Disponível",
+                  "lineHeight": 1.2,
+                  "fontFamily": "$--font-primary",
+                  "fontSize": 11,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "VmNsQ",
+                  "name": "Legend Description Disponível",
+                  "fill": "$--muted-foreground",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Bike pronta para aluguel.",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 12
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "YiQdK",
+          "name": "Legend Row Em uso",
+          "width": "fill_container",
+          "gap": 10,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "ellipse",
+              "id": "xMw4V",
+              "name": "Legend Dot Em uso",
+              "fill": "$--primary",
+              "width": 14,
+              "height": 14,
+              "stroke": "$--card",
+              "strokeWidth": 2
+            },
+            {
+              "type": "frame",
+              "id": "flZMS",
+              "name": "Legend Text Em uso",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 2,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "SAgX1",
+                  "name": "Legend Label Em uso",
+                  "fill": "$--foreground",
+                  "content": "Em uso",
+                  "lineHeight": 1.2,
+                  "fontFamily": "$--font-primary",
+                  "fontSize": 11,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "UySkT",
+                  "name": "Legend Description Em uso",
+                  "fill": "$--muted-foreground",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Viagem em andamento.",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 12
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "jGhTX",
+          "name": "Legend Row Erro",
+          "width": "fill_container",
+          "gap": 10,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "ellipse",
+              "id": "eCD16",
+              "name": "Legend Dot Erro",
+              "fill": "$--destructive",
+              "width": 14,
+              "height": 14,
+              "stroke": "$--card",
+              "strokeWidth": 2
+            },
+            {
+              "type": "frame",
+              "id": "EjWok",
+              "name": "Legend Text Erro",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 2,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "a21lH",
+                  "name": "Legend Label Erro",
+                  "fill": "$--foreground",
+                  "content": "Erro",
+                  "lineHeight": 1.2,
+                  "fontFamily": "$--font-primary",
+                  "fontSize": 11,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "R9Lsx",
+                  "name": "Legend Description Erro",
+                  "fill": "$--muted-foreground",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Falha reportada pelo firmware.",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 12
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "eRddP",
+          "name": "Legend Row Não registrada",
+          "width": "fill_container",
+          "gap": 10,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "ellipse",
+              "id": "gNeSR",
+              "name": "Legend Dot Não registrada",
+              "fill": "$--muted-foreground",
+              "width": 14,
+              "height": 14,
+              "stroke": "$--card",
+              "strokeWidth": 2
+            },
+            {
+              "type": "frame",
+              "id": "J5JSPX",
+              "name": "Legend Text Não registrada",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 2,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "av3aQ",
+                  "name": "Legend Label Não registrada",
+                  "fill": "$--foreground",
+                  "content": "Não registrada",
+                  "lineHeight": 1.2,
+                  "fontFamily": "$--font-primary",
+                  "fontSize": 11,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "UDuw5",
+                  "name": "Legend Description Não registrada",
+                  "fill": "$--muted-foreground",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Placa sem identificação válida.",
+                  "lineHeight": 1.25,
+                  "fontFamily": "$--font-secondary",
+                  "fontSize": 12
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "themes": {
+    "Mode": [
+      "Light",
+      "Dark"
+    ]
+  },
+  "variables": {
+    "--sidebar": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#E7E8E5"
+        },
+        {
+          "value": "#18181b",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#666666"
+        },
+        {
+          "value": "#fafafa",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-primary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#18181b"
+        },
+        {
+          "value": "#18181b",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-primary-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#fafafa"
+        },
+        {
+          "value": "#fafafa",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-border": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#CBCCC9"
+        },
+        {
+          "value": "#ffffff1a",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-accent": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#CBCCC9"
+        },
+        {
+          "value": "#2a2a30",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-accent-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#18181b"
+        },
+        {
+          "value": "#fafafa",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-ring": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#71717a"
+        },
+        {
+          "value": "#71717a",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--background": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#F2F3F0"
+        },
+        {
+          "value": "#111111",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#FFFFFF",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--card": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#FFFFFF"
+        },
+        {
+          "value": "#1A1A1A",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--card-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#FFFFFF",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--popover": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#FFFFFF"
+        },
+        {
+          "value": "#1A1A1A",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--popover-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#FFFFFF",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--primary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#FF8400"
+        },
+        {
+          "value": "#FF8400",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--primary-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#111111",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--secondary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#E7E8E5"
+        },
+        {
+          "value": "#2E2E2E",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--secondary-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#FFFFFF",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--muted": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#F2F3F0"
+        },
+        {
+          "value": "#2E2E2E",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--muted-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#666666"
+        },
+        {
+          "value": "#B8B9B6",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--accent": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#F2F3F0"
+        },
+        {
+          "value": "#111111",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--accent-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#F2F3F0",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--destructive": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#D93C15"
+        },
+        {
+          "value": "#FF5C33",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--border": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#CBCCC9"
+        },
+        {
+          "value": "#2E2E2E",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--input": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#CBCCC9"
+        },
+        {
+          "value": "#2E2E2E",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--ring": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#666666"
+        },
+        {
+          "value": "#666666",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--white": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "--black": {
+      "type": "color",
+      "value": "#000000"
+    },
+    "--font-primary": {
+      "type": "string",
+      "value": "JetBrains Mono"
+    },
+    "--font-secondary": {
+      "type": "string",
+      "value": "Geist"
+    },
+    "--radius-none": {
+      "type": "number",
+      "value": 0
+    },
+    "--radius-pill": {
+      "type": "number",
+      "value": 999
+    },
+    "--color-success": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#DFE6E1"
+        },
+        {
+          "value": "#222924",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-success-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#004D1A"
+        },
+        {
+          "value": "#B6FFCE",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-warning": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#E9E3D8"
+        },
+        {
+          "value": "#291C0F",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-warning-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#804200"
+        },
+        {
+          "value": "#FF8400",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-error": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#E5DCDA"
+        },
+        {
+          "value": "#24100B",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-error-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#8C1C00"
+        },
+        {
+          "value": "#FF5C33",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-info": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#DFDFE6"
+        },
+        {
+          "value": "#222229",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-info-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#000066"
+        },
+        {
+          "value": "#B2B2FF",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--radius-m": {
+      "type": "number",
+      "value": 16
+    }
+  }
+}
