@@ -1,22 +1,25 @@
-import { StatusBar } from "expo-status-bar";
-import { Alert, Text, View } from "react-native";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useState } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { Button } from "@/components";
+import { LoginScreen, RegisterScreen } from './src/screens';
+
+const queryClient = new QueryClient();
+
+type Screen = 'login' | 'register';
 
 export default function App() {
+  const [screen, setScreen] = useState<Screen>('login');
+
   return (
-    <View className="flex-1 items-center justify-center gap-4 bg-slate-950 px-6">
-      <Text className="text-center text-2xl font-bold text-white">
-        NativeWind is ready
-      </Text>
-      <Text className="text-center text-base text-slate-300">
-        This button is styled with Tailwind classes from a component imported
-        via @/components.
-      </Text>
-      <Button onPress={() => Alert.alert("NativeWind", "The button works!")}>
-        Press me
-      </Button>
-      <StatusBar style="auto" />
-    </View>
+    <QueryClientProvider client={queryClient}>
+      <SafeAreaProvider>
+        {screen === 'login' ? (
+          <LoginScreen onCreateAccount={() => setScreen('register')} />
+        ) : (
+          <RegisterScreen onBackToLogin={() => setScreen('login')} />
+        )}
+      </SafeAreaProvider>
+    </QueryClientProvider>
   );
 }

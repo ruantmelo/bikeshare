@@ -41,6 +41,7 @@
   - `./App.tsx`
   - `./src/**/*.{js,jsx,ts,tsx}`
 - Use `className` for NativeWind styles on React Native components.
+- Never implement fake device status bars from design/prototype pages. Use the real OS status bar via Expo/React Native only; omit any designed time, signal, Wi-Fi, or battery mock UI when translating screens from Pencil/Figma.
 
 ## Components
 
