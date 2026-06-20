@@ -2,6 +2,8 @@ import type { Control, FieldValues, Path, RegisterOptions } from 'react-hook-for
 import { Controller } from 'react-hook-form';
 import { Text, TextInput, View } from 'react-native';
 
+import { colors } from '../theme/colors';
+
 type InputFieldProps<TFieldValues extends FieldValues> = {
   control: Control<TFieldValues>;
   name: Path<TFieldValues>;
@@ -32,29 +34,29 @@ export function InputField<TFieldValues extends FieldValues>({
       rules={rules}
       render={({ field: { onChange, onBlur, value }, fieldState: { error } }) => (
         <View className="gap-2">
-          <Text className="font-mono text-[12px] font-bold uppercase tracking-[1.2px] text-[#666]">
+          <Text className="font-mono text-[12px] font-bold uppercase tracking-[1.2px] text-text-muted">
             {displayLabel}
           </Text>
 
-          <View className="rounded-[16px] border border-[#CBCCC9] bg-white">
+          <View className="rounded-[16px] border border-border-default bg-white">
             <TextInput
-              className="h-[50px] px-4 text-[15px] text-[#111]"
+              className="h-[50px] px-4 text-[15px] text-text-primary"
               autoCapitalize={autoCapitalize}
               autoCorrect={false}
               keyboardType={keyboardType}
               onBlur={onBlur}
               onChangeText={onChange}
               placeholder={placeholder}
-              placeholderTextColor="#9A9B97"
+              placeholderTextColor={colors.text.placeholder}
               secureTextEntry={secureTextEntry}
-              selectionColor="#FF8400"
+              selectionColor={colors.brand.primary}
               textAlignVertical="center"
               value={(value as string) ?? ''}
             />
           </View>
 
           {error?.message ? (
-            <Text className="text-[12px] text-[#B45309]">{error.message}</Text>
+            <Text className="text-[12px] text-text-danger">{error.message}</Text>
           ) : null}
         </View>
       )}

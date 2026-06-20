@@ -11,8 +11,8 @@ type ButtonProps = ComponentProps<typeof Pressable> & {
 };
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-[#FF8400] active:opacity-90',
-  secondary: 'bg-[#E7E8E5] active:opacity-85',
+  primary: 'bg-brand-primary active:opacity-90',
+  secondary: 'bg-control-secondary active:opacity-85',
 };
 
 export function Button({
@@ -29,7 +29,7 @@ export function Button({
       {...props}
     >
       {leftIcon ? <View className="items-center justify-center">{leftIcon}</View> : null}
-      <Text className="text-[15px] font-bold text-[#111]">{children}</Text>
+      <Text className="text-[15px] font-bold text-text-primary">{children}</Text>
       {rightIcon ? <View className="items-center justify-center">{rightIcon}</View> : null}
     </Pressable>
   );

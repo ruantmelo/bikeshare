@@ -4,7 +4,9 @@
     "strict": true,
     "paths": {
       "@/components": ["./src/components/index"],
-      "@/components/*": ["./src/components/*"]
+      "@/components/*": ["./src/components/*"],
+      "@/screens": ["./src/screens/index"],
+      "@/screens/*": ["./src/screens/*"]
     }
   }
 }

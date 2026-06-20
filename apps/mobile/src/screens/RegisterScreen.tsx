@@ -6,6 +6,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 
 import { Button, InputField } from '@/components';
+import { colors } from '../theme/colors';
 
 type RegisterFormValues = {
   name: string;
@@ -42,20 +43,20 @@ export function RegisterScreen({ onBackToLogin }: RegisterScreenProps) {
   });
 
   return (
-    <SafeAreaView className="flex-1 bg-[#F2F3F0]">
+    <SafeAreaView className="flex-1 bg-background-app">
       <StatusBar style="dark" />
 
       <View className="flex-1 gap-[22px] px-[18px] py-4">
         <View className="gap-2">
-          <Text className="text-[28px] font-extrabold tracking-[-0.9px] text-[#111]">
+          <Text className="text-[28px] font-extrabold tracking-[-0.9px] text-text-primary">
             Criar conta
           </Text>
-          <Text className="text-[14px] leading-5 text-[#666]">
+          <Text className="text-[14px] leading-5 text-text-muted">
             Dados básicos para iniciar e consultar suas viagens.
           </Text>
         </View>
 
-        <View className="gap-[14px] rounded-[16px] border border-[#CBCCC9] bg-white p-4">
+        <View className="gap-[14px] rounded-[16px] border border-border-default bg-white p-4">
           <InputField
             control={control}
             name="name"
@@ -108,7 +109,7 @@ export function RegisterScreen({ onBackToLogin }: RegisterScreenProps) {
             <Button
               onPress={onSubmit}
               disabled={registerMutation.isPending}
-              rightIcon={<Check color="#111111" size={18} strokeWidth={2.8} />}
+              rightIcon={<Check color={colors.text.primary} size={18} strokeWidth={2.8} />}
             >
               Cadastrar
             </Button>
@@ -116,7 +117,7 @@ export function RegisterScreen({ onBackToLogin }: RegisterScreenProps) {
             <Button
               variant="secondary"
               onPress={onBackToLogin}
-              leftIcon={<ArrowLeft color="#111111" size={18} strokeWidth={2.8} />}
+              leftIcon={<ArrowLeft color={colors.text.primary} size={18} strokeWidth={2.8} />}
             >
               Voltar
             </Button>

@@ -6,6 +6,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 
 import { BrandMark, Button, InputField } from '@/components';
+import { colors } from '../theme/colors';
 
 type LoginFormValues = {
   email: string;
@@ -40,7 +41,7 @@ export function LoginScreen({ onCreateAccount }: LoginScreenProps) {
   });
 
   return (
-    <SafeAreaView className="flex-1 bg-[#F2F3F0]">
+    <SafeAreaView className="flex-1 bg-background-app">
       <StatusBar style="dark" />
 
       <View className="flex-1 gap-[22px] px-[18px] py-4">
@@ -48,16 +49,16 @@ export function LoginScreen({ onCreateAccount }: LoginScreenProps) {
           <BrandMark />
 
           <View className="gap-2">
-            <Text className="text-[32px] font-extrabold tracking-[-1px] text-[#111]">
+            <Text className="text-[32px] font-extrabold tracking-[-1px] text-text-primary">
               BikeShare UFAL
             </Text>
-            <Text className="text-[15px] leading-6 text-[#666]">
+            <Text className="text-[15px] leading-6 text-text-muted">
               Acesse para alugar bicicletas conectadas ao sistema embarcado.
             </Text>
           </View>
         </View>
 
-        <View className="gap-4 rounded-[16px] border border-[#CBCCC9] bg-white p-4">
+        <View className="gap-4 rounded-[16px] border border-border-default bg-white p-4">
           <InputField
             control={control}
             name="email"
@@ -91,7 +92,7 @@ export function LoginScreen({ onCreateAccount }: LoginScreenProps) {
             <Button
               onPress={onSubmit}
               disabled={loginMutation.isPending}
-              rightIcon={<ArrowRight color="#111111" size={18} strokeWidth={2.8} />}
+              rightIcon={<ArrowRight color={colors.text.primary} size={18} strokeWidth={2.8} />}
             >
               Entrar
             </Button>
