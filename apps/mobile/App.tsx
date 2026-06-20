@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { Alert, Text, View } from "react-native";
+
+import { Button } from "@/components";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+    <View className="flex-1 items-center justify-center gap-4 bg-slate-950 px-6">
+      <Text className="text-center text-2xl font-bold text-white">
+        NativeWind is ready
+      </Text>
+      <Text className="text-center text-base text-slate-300">
+        This button is styled with Tailwind classes from a component imported
+        via @/components.
+      </Text>
+      <Button onPress={() => Alert.alert("NativeWind", "The button works!")}>
+        Press me
+      </Button>
       <StatusBar style="auto" />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

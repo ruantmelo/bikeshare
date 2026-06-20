@@ -145,7 +145,8 @@
                   "content": "Acesse para alugar bicicletas conectadas ao sistema embarcado.",
                   "lineHeight": 1.25,
                   "fontFamily": "$--font-secondary",
-                  "fontSize": 15
+                  "fontSize": 15,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -216,7 +217,8 @@
                           "content": "aluno@ufal.br",
                           "lineHeight": 1.25,
                           "fontFamily": "$--font-secondary",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -276,7 +278,8 @@
                           "content": "••••••••",
                           "lineHeight": 1.25,
                           "fontFamily": "$--font-secondary",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -477,7 +480,8 @@
                   "content": "Dados básicos para iniciar e consultar suas viagens.",
                   "lineHeight": 1.25,
                   "fontFamily": "$--font-secondary",
-                  "fontSize": 14
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -548,7 +552,8 @@
                           "content": "Ruan Melo",
                           "lineHeight": 1.25,
                           "fontFamily": "$--font-secondary",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -608,7 +613,8 @@
                           "content": "ruan@ic.ufal.br",
                           "lineHeight": 1.25,
                           "fontFamily": "$--font-secondary",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -668,7 +674,8 @@
                           "content": "••••••••",
                           "lineHeight": 1.25,
                           "fontFamily": "$--font-secondary",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -728,7 +735,8 @@
                           "content": "(82) 99999-0000",
                           "lineHeight": 1.25,
                           "fontFamily": "$--font-secondary",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -866,24 +874,378 @@
           "children": [
             {
               "type": "frame",
-              "id": "SepXE",
+              "id": "P6b0Nr",
               "x": 0,
               "y": 0,
               "name": "Mapbox Home Map",
               "metadata": {
-                "type": "mapbox-static-map",
-                "source": "/tmp/opencode/mapbox_home.png"
+                "type": "mapbox-styled-background",
+                "center": [
+                  -35.735,
+                  -9.556
+                ],
+                "zoom": 15.2,
+                "source": "Mapbox MCP geometry; static API unavailable"
               },
               "clip": true,
               "width": 390,
               "height": 718,
-              "fill": {
-                "type": "image",
-                "enabled": true,
-                "url": "../../../../../tmp/opencode/mapbox_home.png",
-                "mode": "fill"
-              },
-              "layout": "none"
+              "fill": "#E8ECE6",
+              "layout": "none",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 28,
+                  "id": "DCctm",
+                  "x": 0,
+                  "y": 34,
+                  "name": "Map Park Area North",
+                  "fill": "#D7E7CF",
+                  "width": 148,
+                  "height": 136
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 34,
+                  "id": "t5OiU4",
+                  "x": 238,
+                  "y": 92,
+                  "name": "Map Campus Green",
+                  "fill": "#D7E7CF",
+                  "width": 152,
+                  "height": 188
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 24,
+                  "id": "ooaM0",
+                  "x": 285,
+                  "y": 139,
+                  "name": "Map Lake Detail",
+                  "fill": "#B8DCE7",
+                  "width": 70,
+                  "height": 42
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 9,
+                  "id": "wvPuO",
+                  "x": -24,
+                  "y": 510,
+                  "name": "Home Main Avenue",
+                  "rotation": -38,
+                  "fill": "#F9D38FE6",
+                  "width": 472,
+                  "height": 18
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "JfHcJ",
+                  "x": -20,
+                  "y": 517,
+                  "name": "Home Main Avenue Line",
+                  "rotation": -38,
+                  "fill": "#E7A944",
+                  "width": 460,
+                  "height": 3
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "KqjVV",
+                  "x": -12,
+                  "y": 125,
+                  "name": "Home Road North",
+                  "rotation": -18,
+                  "fill": "#FFFFFFD9",
+                  "width": 260,
+                  "height": 12
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "Ar1OT",
+                  "x": 188,
+                  "y": 172,
+                  "name": "Home Road East",
+                  "rotation": 14,
+                  "fill": "#FFFFFFD9",
+                  "width": 238,
+                  "height": 12
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "Evqqa",
+                  "x": -18,
+                  "y": 314,
+                  "name": "Home Road Center",
+                  "rotation": -8,
+                  "fill": "#FFFFFFD9",
+                  "width": 230,
+                  "height": 12
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "gqvzJ",
+                  "x": 178,
+                  "y": 298,
+                  "name": "Home Road Center East",
+                  "rotation": 16,
+                  "fill": "#FFFFFFD9",
+                  "width": 246,
+                  "height": 12
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "GKi01",
+                  "x": -22,
+                  "y": 610,
+                  "name": "Home Road South",
+                  "rotation": -14,
+                  "fill": "#FFFFFFD9",
+                  "width": 300,
+                  "height": 12
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "KKdCT",
+                  "x": 202,
+                  "y": 580,
+                  "name": "Home Road South East",
+                  "rotation": 19,
+                  "fill": "#FFFFFFD9",
+                  "width": 220,
+                  "height": 12
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "Vm2bm",
+                  "x": 52,
+                  "y": -10,
+                  "name": "Home Vertical West",
+                  "rotation": 4,
+                  "fill": "#FFFFFFD9",
+                  "width": 12,
+                  "height": 520
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "Q3MQL",
+                  "x": 164,
+                  "y": -8,
+                  "name": "Home Vertical Center",
+                  "rotation": -8,
+                  "fill": "#FFFFFFD9",
+                  "width": 12,
+                  "height": 740
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "CPKDN",
+                  "x": 272,
+                  "y": -8,
+                  "name": "Home Vertical East",
+                  "rotation": 8,
+                  "fill": "#FFFFFFD9",
+                  "width": 12,
+                  "height": 740
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 10,
+                  "id": "DHbFb",
+                  "x": 18,
+                  "y": 188,
+                  "name": "Map Building Block 01",
+                  "fill": "#DDE1DA",
+                  "width": 64,
+                  "height": 48
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 10,
+                  "id": "O7VdJD",
+                  "x": 102,
+                  "y": 259,
+                  "name": "Map Building Block 02",
+                  "fill": "#DDE1DA",
+                  "width": 70,
+                  "height": 54
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 10,
+                  "id": "hj0xY",
+                  "x": 268,
+                  "y": 350,
+                  "name": "Map Building Block 03",
+                  "fill": "#DDE1DA",
+                  "width": 84,
+                  "height": 54
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 10,
+                  "id": "j9qO9",
+                  "x": 32,
+                  "y": 524,
+                  "name": "Map Building Block 04",
+                  "fill": "#DDE1DA",
+                  "width": 86,
+                  "height": 60
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 10,
+                  "id": "mYvWB",
+                  "x": 241,
+                  "y": 605,
+                  "name": "Map Building Block 05",
+                  "fill": "#DDE1DA",
+                  "width": 74,
+                  "height": 50
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 10,
+                  "id": "QdMyC",
+                  "x": 306,
+                  "y": 34,
+                  "name": "Map Building Block 06",
+                  "fill": "#DDE1DA",
+                  "width": 70,
+                  "height": 40
+                },
+                {
+                  "type": "ellipse",
+                  "id": "wyxXq",
+                  "x": 191,
+                  "y": 339,
+                  "name": "Bike Marker Selected Halo",
+                  "fill": "#FF840033",
+                  "width": 26,
+                  "height": 26,
+                  "stroke": "#FF8400",
+                  "strokeWidth": 1
+                },
+                {
+                  "type": "ellipse",
+                  "id": "BD0RX",
+                  "x": 198,
+                  "y": 346,
+                  "name": "Bike Marker Selected",
+                  "fill": "#FF8400",
+                  "width": 12,
+                  "height": 12,
+                  "stroke": "#FFFFFF",
+                  "strokeWidth": 3
+                },
+                {
+                  "type": "ellipse",
+                  "id": "LgPUu",
+                  "x": 238,
+                  "y": 222,
+                  "name": "Bike Marker Northeast Halo",
+                  "fill": "#FF840033",
+                  "width": 26,
+                  "height": 26,
+                  "stroke": "#FF8400",
+                  "strokeWidth": 1
+                },
+                {
+                  "type": "ellipse",
+                  "id": "cqyWz",
+                  "x": 245,
+                  "y": 229,
+                  "name": "Bike Marker Northeast",
+                  "fill": "#FF8400",
+                  "width": 12,
+                  "height": 12,
+                  "stroke": "#FFFFFF",
+                  "strokeWidth": 3
+                },
+                {
+                  "type": "ellipse",
+                  "id": "pjDTA",
+                  "x": 90,
+                  "y": 432,
+                  "name": "Bike Marker Southwest Halo",
+                  "fill": "#FF840033",
+                  "width": 26,
+                  "height": 26,
+                  "stroke": "#FF8400",
+                  "strokeWidth": 1
+                },
+                {
+                  "type": "ellipse",
+                  "id": "biFTC",
+                  "x": 97,
+                  "y": 439,
+                  "name": "Bike Marker Southwest",
+                  "fill": "#FF8400",
+                  "width": 12,
+                  "height": 12,
+                  "stroke": "#FFFFFF",
+                  "strokeWidth": 3
+                },
+                {
+                  "type": "ellipse",
+                  "id": "FNl21",
+                  "x": 289,
+                  "y": 494,
+                  "name": "Bike Marker South Halo",
+                  "fill": "#FF840033",
+                  "width": 26,
+                  "height": 26,
+                  "stroke": "#FF8400",
+                  "strokeWidth": 1
+                },
+                {
+                  "type": "ellipse",
+                  "id": "j8sSJV",
+                  "x": 296,
+                  "y": 501,
+                  "name": "Bike Marker South",
+                  "fill": "#FF8400",
+                  "width": 12,
+                  "height": 12,
+                  "stroke": "#FFFFFF",
+                  "strokeWidth": 3
+                },
+                {
+                  "type": "frame",
+                  "id": "MTtqY",
+                  "x": 12,
+                  "y": 692,
+                  "name": "Map Attribution",
+                  "fill": "#FFFFFFCC",
+                  "cornerRadius": 6,
+                  "padding": [
+                    3,
+                    6
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Ukcg0",
+                      "name": "Map Attribution Text",
+                      "fill": "#555555",
+                      "content": "© Mapbox © OpenStreetMap",
+                      "fontFamily": "Geist",
+                      "fontSize": 8,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "type": "frame",
@@ -1729,7 +2091,8 @@
                   "content": "Digite o identificador mostrado na bicicleta.",
                   "lineHeight": 1.25,
                   "fontFamily": "$--font-secondary",
-                  "fontSize": 14
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -1800,7 +2163,8 @@
                           "content": "BIKE_001",
                           "lineHeight": 1.25,
                           "fontFamily": "$--font-secondary",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -2008,24 +2372,366 @@
           "children": [
             {
               "type": "frame",
-              "id": "r4HOgr",
+              "id": "goOaF",
               "x": 0,
               "y": 0,
               "name": "Mapbox Ride Map",
               "metadata": {
-                "type": "mapbox-static-map",
-                "source": "/tmp/opencode/mapbox_ride.png"
+                "type": "mapbox-styled-background",
+                "center": [
+                  -35.735,
+                  -9.556
+                ],
+                "zoom": 15.6,
+                "source": "Mapbox MCP geometry; static API unavailable"
               },
               "clip": true,
               "width": 390,
               "height": 782,
-              "fill": {
-                "type": "image",
-                "enabled": true,
-                "url": "../../../../../tmp/opencode/mapbox_ride.png",
-                "mode": "fill"
-              },
-              "layout": "none"
+              "fill": "#E8ECE6",
+              "layout": "none",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 34,
+                  "id": "u5Sz7m",
+                  "x": 218,
+                  "y": 72,
+                  "name": "Ride Map Park Area",
+                  "fill": "#D7E7CF",
+                  "width": 172,
+                  "height": 178
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 42,
+                  "id": "dLppM",
+                  "x": 0,
+                  "y": 486,
+                  "name": "Ride Map Green Corridor",
+                  "fill": "#D7E7CF",
+                  "width": 130,
+                  "height": 178
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 22,
+                  "id": "cNShY",
+                  "x": 276,
+                  "y": 126,
+                  "name": "Ride Map Water",
+                  "fill": "#B8DCE7",
+                  "width": 78,
+                  "height": 38
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 9,
+                  "id": "WEVLV",
+                  "x": -28,
+                  "y": 574,
+                  "name": "Ride Main Avenue",
+                  "rotation": -42,
+                  "fill": "#F9D38FE6",
+                  "width": 500,
+                  "height": 18
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "pQ068",
+                  "x": -22,
+                  "y": 581,
+                  "name": "Ride Main Avenue Line",
+                  "rotation": -42,
+                  "fill": "#E7A944",
+                  "width": 482,
+                  "height": 3
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "ZsikW",
+                  "x": -10,
+                  "y": 245,
+                  "name": "Ride Road North",
+                  "rotation": -8,
+                  "fill": "#FFFFFFD9",
+                  "width": 265,
+                  "height": 12
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "XofmD",
+                  "x": 200,
+                  "y": 250,
+                  "name": "Ride Road North East",
+                  "rotation": 17,
+                  "fill": "#FFFFFFD9",
+                  "width": 226,
+                  "height": 12
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "eB32s",
+                  "x": -20,
+                  "y": 376,
+                  "name": "Ride Road Center",
+                  "rotation": -12.000000000000002,
+                  "fill": "#FFFFFFD9",
+                  "width": 250,
+                  "height": 12
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "N5aaT",
+                  "x": 185,
+                  "y": 363,
+                  "name": "Ride Road Center East",
+                  "rotation": 16,
+                  "fill": "#FFFFFFD9",
+                  "width": 238,
+                  "height": 12
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "MYZPz",
+                  "x": -20,
+                  "y": 670,
+                  "name": "Ride Road South",
+                  "rotation": -17,
+                  "fill": "#FFFFFFD9",
+                  "width": 296,
+                  "height": 12
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "J2vEh",
+                  "x": 210,
+                  "y": 622,
+                  "name": "Ride Road South East",
+                  "rotation": 18,
+                  "fill": "#FFFFFFD9",
+                  "width": 214,
+                  "height": 12
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "hkfjw",
+                  "x": 52,
+                  "y": -10,
+                  "name": "Ride Vertical West",
+                  "rotation": 4,
+                  "fill": "#FFFFFFD9",
+                  "width": 12,
+                  "height": 640
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "jDnyD",
+                  "x": 174,
+                  "y": -8,
+                  "name": "Ride Vertical Center",
+                  "rotation": -7,
+                  "fill": "#FFFFFFD9",
+                  "width": 12,
+                  "height": 810
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "Hc0Hy",
+                  "x": 282,
+                  "y": -8,
+                  "name": "Ride Vertical East",
+                  "rotation": 8,
+                  "fill": "#FFFFFFD9",
+                  "width": 12,
+                  "height": 810
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 10,
+                  "id": "M56eP",
+                  "x": 24,
+                  "y": 282,
+                  "name": "Ride Map Building Block 01",
+                  "fill": "#DDE1DA",
+                  "width": 76,
+                  "height": 50
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 10,
+                  "id": "KIjTA",
+                  "x": 114,
+                  "y": 174,
+                  "name": "Ride Map Building Block 02",
+                  "fill": "#DDE1DA",
+                  "width": 66,
+                  "height": 42
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 10,
+                  "id": "LhSoK",
+                  "x": 274,
+                  "y": 340,
+                  "name": "Ride Map Building Block 03",
+                  "fill": "#DDE1DA",
+                  "width": 76,
+                  "height": 54
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 10,
+                  "id": "KcVje",
+                  "x": 28,
+                  "y": 596,
+                  "name": "Ride Map Building Block 04",
+                  "fill": "#DDE1DA",
+                  "width": 92,
+                  "height": 58
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 10,
+                  "id": "UQWn5",
+                  "x": 236,
+                  "y": 660,
+                  "name": "Ride Map Building Block 05",
+                  "fill": "#DDE1DA",
+                  "width": 82,
+                  "height": 50
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 10,
+                  "id": "qhtrV",
+                  "x": 304,
+                  "y": 32,
+                  "name": "Ride Map Building Block 06",
+                  "fill": "#DDE1DA",
+                  "width": 62,
+                  "height": 38
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 4,
+                  "id": "Ksya7",
+                  "x": 92,
+                  "y": 640,
+                  "name": "Ride Route Segment 01",
+                  "rotation": -62,
+                  "fill": "#FF8400",
+                  "width": 88,
+                  "height": 8
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 4,
+                  "id": "QLjf9",
+                  "x": 138,
+                  "y": 560,
+                  "name": "Ride Route Segment 02",
+                  "rotation": -58.00000000000001,
+                  "fill": "#FF8400",
+                  "width": 96,
+                  "height": 8
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 4,
+                  "id": "q1jio",
+                  "x": 184,
+                  "y": 480,
+                  "name": "Ride Route Segment 03",
+                  "rotation": -53,
+                  "fill": "#FF8400",
+                  "width": 98,
+                  "height": 8
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 4,
+                  "id": "a1g1Mz",
+                  "x": 226,
+                  "y": 402,
+                  "name": "Ride Route Segment 04",
+                  "rotation": -48.00000000000001,
+                  "fill": "#FF8400",
+                  "width": 95,
+                  "height": 8
+                },
+                {
+                  "type": "ellipse",
+                  "id": "AYc55",
+                  "x": 86,
+                  "y": 632,
+                  "name": "Ride Start Marker",
+                  "fill": "#FFFFFF",
+                  "width": 20,
+                  "height": 20,
+                  "stroke": "#FF8400",
+                  "strokeWidth": 5
+                },
+                {
+                  "type": "ellipse",
+                  "id": "n3EaAW",
+                  "x": 247,
+                  "y": 302,
+                  "name": "Ride Current Position Halo",
+                  "fill": "#FF840033",
+                  "width": 40,
+                  "height": 40,
+                  "stroke": "#FF8400",
+                  "strokeWidth": 2
+                },
+                {
+                  "type": "ellipse",
+                  "id": "s8Paak",
+                  "x": 260,
+                  "y": 315,
+                  "name": "Ride Current Position",
+                  "fill": "#FF8400",
+                  "width": 14,
+                  "height": 14,
+                  "stroke": "#FFFFFF",
+                  "strokeWidth": 3
+                },
+                {
+                  "type": "frame",
+                  "id": "hmlMG",
+                  "x": 12,
+                  "y": 704,
+                  "name": "Ride Map Attribution",
+                  "fill": "#FFFFFFCC",
+                  "cornerRadius": 6,
+                  "padding": [
+                    3,
+                    6
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "P1AbG",
+                      "name": "Ride Map Attribution Text",
+                      "fill": "#555555",
+                      "content": "© Mapbox © OpenStreetMap",
+                      "fontFamily": "Geist",
+                      "fontSize": 8,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "type": "frame",
@@ -2391,7 +3097,8 @@
                   "content": "Obrigado por usar o BikeShare UFAL.",
                   "lineHeight": 1.25,
                   "fontFamily": "$--font-secondary",
-                  "fontSize": 14
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -2836,7 +3543,8 @@
                   "content": "Corridas concluídas e sincronizadas com o backend.",
                   "lineHeight": 1.25,
                   "fontFamily": "$--font-secondary",
-                  "fontSize": 14
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -2909,7 +3617,8 @@
                   "content": "Hoje · 18 min · 2,8 km",
                   "lineHeight": 1.25,
                   "fontFamily": "$--font-secondary",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -2982,7 +3691,8 @@
                   "content": "Ontem · 11 min · 1,5 km",
                   "lineHeight": 1.25,
                   "fontFamily": "$--font-secondary",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -3055,7 +3765,8 @@
                   "content": "12 jun · 26 min · 4,2 km",
                   "lineHeight": 1.25,
                   "fontFamily": "$--font-secondary",
-                  "fontSize": 13
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             }
@@ -4062,7 +4773,8 @@
           "content": "Usar estes estados para renderizar pins e filtros da frota no app.",
           "lineHeight": 1.25,
           "fontFamily": "$--font-secondary",
-          "fontSize": 13
+          "fontSize": 13,
+          "fontWeight": "normal"
         },
         {
           "type": "frame",
@@ -4111,7 +4823,8 @@
                   "content": "Bike pronta para aluguel.",
                   "lineHeight": 1.25,
                   "fontFamily": "$--font-secondary",
-                  "fontSize": 12
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
             }
@@ -4164,7 +4877,8 @@
                   "content": "Viagem em andamento.",
                   "lineHeight": 1.25,
                   "fontFamily": "$--font-secondary",
-                  "fontSize": 12
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
             }
@@ -4217,7 +4931,8 @@
                   "content": "Falha reportada pelo firmware.",
                   "lineHeight": 1.25,
                   "fontFamily": "$--font-secondary",
-                  "fontSize": 12
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
             }
@@ -4270,7 +4985,8 @@
                   "content": "Placa sem identificação válida.",
                   "lineHeight": 1.25,
                   "fontFamily": "$--font-secondary",
-                  "fontSize": 12
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
             }
