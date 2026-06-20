@@ -1,3 +1,4 @@
+import { BikeStatus } from '@prisma/client'
 import mqtt from 'mqtt'
 import dotenv from 'dotenv'
 import prisma from '../prisma/client.js'
@@ -44,7 +45,7 @@ export function startMqttSubscriber(broadcast: (data: BroadcastMessage) => void)
       await prisma.bike.upsert({
         where: { id: bikeId },
         update: { lat, lng, speed },
-        create: { id: bikeId, lat, lng, speed, status: 'available' },
+        create: { id: bikeId, lat, lng, speed, status: BikeStatus.AVAILABLE },
       })
 
       await prisma.telemetry.create({
@@ -56,11 +57,12 @@ export function startMqttSubscriber(broadcast: (data: BroadcastMessage) => void)
 
     if (type === 'events') {
       const { event, status } = payload as EventPayload
+      const bikeStatus = status as BikeStatus
 
       await prisma.bike.upsert({
         where: { id: bikeId },
-        update: { status },
-        create: { id: bikeId, status },
+        update: { status: bikeStatus },
+        create: { id: bikeId, status: bikeStatus },
       })
 
       broadcast({ type: 'event', bikeId, event, status })

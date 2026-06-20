@@ -1,3 +1,4 @@
+import { BikeStatus } from '@prisma/client'
 import type { FastifyInstance } from 'fastify'
 import prisma from '../prisma/client.js'
 import { authenticate } from '../middleware/auth.js'
@@ -13,7 +14,7 @@ export default async function rideRoutes(app: FastifyInstance) {
 
     const bike = await prisma.bike.findUnique({ where: { id: bikeId } })
     if (!bike) return reply.code(404).send({ error: 'Bike não encontrada' })
-    if (bike.status !== 'available') return reply.code(400).send({ error: 'Bike não disponível' })
+    if (bike.status !== BikeStatus.AVAILABLE) return reply.code(400).send({ error: 'Bike não disponível' })
 
     const activeRide = await prisma.ride.findFirst({
       where: { userId, endedAt: null },
@@ -26,7 +27,7 @@ export default async function rideRoutes(app: FastifyInstance) {
 
     await prisma.bike.update({
       where: { id: bikeId },
-      data: { status: 'in_use' },
+      data: { status: BikeStatus.IN_USE },
     })
 
     return ride
@@ -47,7 +48,7 @@ export default async function rideRoutes(app: FastifyInstance) {
 
     await prisma.bike.update({
       where: { id: ride.bikeId },
-      data: { status: 'available' },
+      data: { status: BikeStatus.AVAILABLE },
     })
 
     return updated

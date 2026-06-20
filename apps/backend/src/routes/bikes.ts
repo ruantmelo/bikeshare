@@ -1,3 +1,4 @@
+import { BikeStatus } from '@prisma/client'
 import type { FastifyInstance } from 'fastify'
 import prisma from '../prisma/client.js'
 import { authenticate, adminOnly } from '../middleware/auth.js'
@@ -9,7 +10,7 @@ interface CreateBikeBody {
 export default async function bikeRoutes(app: FastifyInstance) {
   app.get('/', { preHandler: authenticate }, async () => {
     return prisma.bike.findMany({
-      where: { status: 'available' },
+      where: { status: BikeStatus.AVAILABLE },
       select: { id: true, lat: true, lng: true, status: true },
     })
   })
@@ -23,7 +24,7 @@ export default async function bikeRoutes(app: FastifyInstance) {
     if (existing) return reply.code(400).send({ error: 'Bike já cadastrada' })
 
     const bike = await prisma.bike.create({
-      data: { id, status: 'available' },
+      data: { id, status: BikeStatus.AVAILABLE },
     })
 
     return bike
@@ -56,7 +57,7 @@ export default async function bikeRoutes(app: FastifyInstance) {
 
       const bike = await prisma.bike.findUnique({ where: { id: bikeId } })
       if (!bike) return reply.code(404).send({ error: 'Bike não encontrada' })
-      if (bike.status === 'in_use') return reply.code(400).send({ error: 'Bike em uso' })
+      if (bike.status === BikeStatus.IN_USE) return reply.code(400).send({ error: 'Bike em uso' })
 
       await prisma.bike.delete({ where: { id: bikeId } })
       return { message: 'Bike removida com sucesso' }
