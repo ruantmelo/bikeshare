@@ -5,6 +5,7 @@ import cors from '@fastify/cors'
 import swagger from '@fastify/swagger'
 import swaggerUi from '@fastify/swagger-ui'
 import dotenv from 'dotenv'
+import { jsonSchemaTransform, serializerCompiler, validatorCompiler } from 'fastify-type-provider-zod'
 
 import authRoutes from './routes/auth.js'
 import bikeRoutes from './routes/bikes.js'
@@ -29,11 +30,15 @@ const app = Fastify({
         },
 })
 
+app.setValidatorCompiler(validatorCompiler)
+app.setSerializerCompiler(serializerCompiler)
+
 app.register(cors, { origin: '*' })
 app.register(fjwt, { secret: process.env.JWT_SECRET ?? '' })
 app.register(fws)
 
 await app.register(swagger, {
+  transform: jsonSchemaTransform,
   openapi: {
     info: {
       title: 'Bikeshare API',
