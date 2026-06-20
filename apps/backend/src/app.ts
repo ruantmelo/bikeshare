@@ -1,6 +1,6 @@
 import Fastify from 'fastify'
 import fjwt from '@fastify/jwt'
-import fws from '@fastify/websocket'
+import fws, { type WebSocket } from '@fastify/websocket'
 import cors from '@fastify/cors'
 import swagger from '@fastify/swagger'
 import swaggerUi from '@fastify/swagger-ui'
@@ -10,13 +10,14 @@ import authRoutes from './routes/auth.js'
 import bikeRoutes from './routes/bikes.js'
 import rideRoutes from './routes/rides.js'
 import { startMqttSubscriber } from './mqtt/subscriber.js'
+import type { BroadcastMessage } from './types/index.js'
 
 dotenv.config()
 
 const app = Fastify({ logger: true })
 
 app.register(cors, { origin: '*' })
-app.register(fjwt, { secret: process.env.JWT_SECRET })
+app.register(fjwt, { secret: process.env.JWT_SECRET ?? '' })
 app.register(fws)
 
 await app.register(swagger, {
@@ -45,12 +46,12 @@ app.register(rideRoutes, { prefix: '/rides' })
 
 app.get('/ws', { websocket: true }, (socket) => {
   app.log.info('Dashboard conectado via WebSocket')
-  app.wsClients = app.wsClients || new Set()
+  app.wsClients = app.wsClients ?? new Set<WebSocket>()
   app.wsClients.add(socket)
-  socket.on('close', () => app.wsClients.delete(socket))
+  socket.on('close', () => app.wsClients?.delete(socket))
 })
 
-export function broadcast(data) {
+export function broadcast(data: BroadcastMessage) {
   if (!app.wsClients) return
   const msg = JSON.stringify(data)
   for (const client of app.wsClients) {

@@ -1,8 +1,13 @@
+import type { FastifyInstance } from 'fastify'
 import prisma from '../prisma/client.js'
 import { authenticate } from '../middleware/auth.js'
 
-export default async function rideRoutes(app) {
-  app.post('/start', { preHandler: authenticate }, async (request, reply) => {
+interface StartRideBody {
+  bikeId: string
+}
+
+export default async function rideRoutes(app: FastifyInstance) {
+  app.post<{ Body: StartRideBody }>('/start', { preHandler: authenticate }, async (request, reply) => {
     const { bikeId } = request.body
     const userId = request.user.id
 

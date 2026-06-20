@@ -1,8 +1,14 @@
+import type { FastifyInstance } from 'fastify'
 import bcrypt from 'bcrypt'
 import prisma from '../prisma/client.js'
 
-export default async function authRoutes(app) {
-  app.post('/register', async (request, reply) => {
+interface Credentials {
+  email: string
+  password: string
+}
+
+export default async function authRoutes(app: FastifyInstance) {
+  app.post<{ Body: Credentials }>('/register', async (request, reply) => {
     const { email, password } = request.body
 
     const existing = await prisma.user.findUnique({ where: { email } })
@@ -17,7 +23,7 @@ export default async function authRoutes(app) {
     return { token }
   })
 
-  app.post('/login', async (request, reply) => {
+  app.post<{ Body: Credentials }>('/login', async (request, reply) => {
     const { email, password } = request.body
 
     const user = await prisma.user.findUnique({ where: { email } })
