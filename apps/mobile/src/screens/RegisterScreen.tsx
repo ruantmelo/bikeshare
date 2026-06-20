@@ -1,18 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
+import { useRouter } from 'expo-router';
+import { useEffect } from 'react';
 import { Check, ArrowLeft } from 'lucide-react-native';
-import { Alert, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useMutation } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 
 import { Button, InputField } from '@/components';
+import { apiRequest } from '../api/client';
+import { useSession } from '../auth/SessionProvider';
+import type { AuthResponse } from '../auth/types';
 import { colors } from '../theme/colors';
 
 type RegisterFormValues = {
-  name: string;
   email: string;
   password: string;
-  phone: string;
 };
 
 type RegisterScreenProps = {
@@ -20,27 +23,41 @@ type RegisterScreenProps = {
 };
 
 export function RegisterScreen({ onBackToLogin }: RegisterScreenProps) {
+  const router = useRouter();
+  const { setSession, session, isLoading } = useSession();
   const { control, handleSubmit } = useForm<RegisterFormValues>({
-    defaultValues: { name: '', email: '', password: '', phone: '' },
+    defaultValues: { email: '', password: '' },
     mode: 'onSubmit',
   });
 
   const registerMutation = useMutation({
-    mutationFn: async (values: RegisterFormValues): Promise<RegisterFormValues> => {
-      await new Promise((resolve) => setTimeout(resolve, 950));
-      return values;
+    mutationFn: async (values: RegisterFormValues): Promise<AuthResponse> => {
+      return apiRequest<AuthResponse>('/auth/register', {
+        method: 'POST',
+        body: JSON.stringify(values),
+      });
     },
-    onSuccess: () => {
-      Alert.alert('Cadastro', 'Conta criada com sucesso.');
-    },
-    onError: () => {
-      Alert.alert('Cadastro', 'Não foi possível concluir o cadastro.');
+    onSuccess: async (data) => {
+      await setSession(data);
+      router.replace('/(tabs)');
     },
   });
 
   const onSubmit = handleSubmit((values: RegisterFormValues) => {
     registerMutation.mutate(values);
   });
+
+  const handleBackToLogin = onBackToLogin ?? (() => router.replace('/(auth)/login'));
+
+  useEffect(() => {
+    if (!isLoading && session) {
+      router.replace('/(tabs)');
+    }
+  }, [isLoading, router, session]);
+
+  const errorMessage = registerMutation.error?.message ?? null;
+
+  if (isLoading || session) return null;
 
   return (
     <SafeAreaView className="flex-1 bg-background-app">
@@ -49,23 +66,16 @@ export function RegisterScreen({ onBackToLogin }: RegisterScreenProps) {
       <View className="flex-1 gap-[22px] px-[18px] py-4">
         <View className="gap-2">
           <Text className="text-[28px] font-extrabold tracking-[-0.9px] text-text-primary">
-            Criar conta
+            Cadastro de usuário
           </Text>
           <Text className="text-[14px] leading-5 text-text-muted">
-            Dados básicos para iniciar e consultar suas viagens.
+            Informe seu email e senha para fazer o cadastro.
           </Text>
         </View>
 
-        <View className="gap-[14px] rounded-[16px] border border-border-default bg-white p-4">
-          <InputField
-            control={control}
-            name="name"
-            label="Nome"
-            placeholder="Seu nome completo"
-            autoCapitalize="words"
-            rules={{ required: 'Informe seu nome.' }}
-          />
+        {errorMessage ? <Text className="text-sm text-text-danger">{errorMessage}</Text> : null}
 
+        <View className="gap-[14px] rounded-[16px] border border-border-default bg-white p-4">
           <InputField
             control={control}
             name="email"
@@ -74,7 +84,7 @@ export function RegisterScreen({ onBackToLogin }: RegisterScreenProps) {
             keyboardType="email-address"
             autoCapitalize="none"
             rules={{
-              required: 'Informe seu e-mail institucional.',
+              required: 'Informe seu e-mail.',
               pattern: {
                 value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                 message: 'Digite um e-mail válido.',
@@ -95,16 +105,6 @@ export function RegisterScreen({ onBackToLogin }: RegisterScreenProps) {
             }}
           />
 
-          <InputField
-            control={control}
-            name="phone"
-            label="Telefone"
-            placeholder="(00) 00000-0000"
-            keyboardType="phone-pad"
-            autoCapitalize="none"
-            rules={{ required: 'Informe seu telefone.' }}
-          />
-
           <View className="gap-3 pt-1">
             <Button
               onPress={onSubmit}
@@ -116,7 +116,7 @@ export function RegisterScreen({ onBackToLogin }: RegisterScreenProps) {
 
             <Button
               variant="secondary"
-              onPress={onBackToLogin}
+              onPress={handleBackToLogin}
               leftIcon={<ArrowLeft color={colors.text.primary} size={18} strokeWidth={2.8} />}
             >
               Voltar

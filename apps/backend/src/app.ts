@@ -14,7 +14,20 @@ import type { BroadcastMessage } from './types/index.js'
 
 dotenv.config()
 
-const app = Fastify({ logger: true })
+const app = Fastify({
+  logger:
+    process.env.NODE_ENV === 'production'
+      ? true
+      : {
+          transport: {
+            target: 'pino-pretty',
+            options: {
+              translateTime: 'HH:MM:ss Z',
+              ignore: 'pid,hostname',
+            },
+          },
+        },
+})
 
 app.register(cors, { origin: '*' })
 app.register(fjwt, { secret: process.env.JWT_SECRET ?? '' })

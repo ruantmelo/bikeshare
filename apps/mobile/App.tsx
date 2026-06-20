@@ -15,7 +15,7 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <SafeAreaProvider>
         {screen === 'login' ? (
-          <LoginScreen onCreateAccount={() => setScreen('register')} />
+          <LoginScreen onRegister={() => setScreen('register')} />
         ) : (
           <RegisterScreen onBackToLogin={() => setScreen('login')} />
         )}
