@@ -213,6 +213,7 @@ export default function HomeMapScreen() {
                 <BikeMarker
                   key={bike.id}
                   bike={bike}
+                  isSelected={bike.id === selectedBikeId}
                   onPress={setSelectedBikeId}
                 />
               ))}
