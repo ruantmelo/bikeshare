@@ -1,13 +1,13 @@
-import { History, House, User } from 'lucide-react-native';
-import { Pressable, Text, View } from 'react-native';
+import { History, Map, User } from 'lucide-react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { colors } from '../theme/colors';
 
 const TAB_META = {
   index: {
-    label: 'Início',
-    icon: House,
+    label: 'Mapa',
+    icon: Map,
   },
   historico: {
     label: 'Histórico',
@@ -24,7 +24,10 @@ type FloatingTabBarProps = {
     index: number;
     routes: Array<{ key: string; name: string }>;
   };
-  descriptors: Record<string, { options: { tabBarAccessibilityLabel?: string } }>;
+  descriptors: Record<
+    string,
+    { options: { tabBarAccessibilityLabel?: string; tabBarStyle?: unknown } }
+  >;
   navigation: {
     emit: (event: {
       type: 'tabPress';
@@ -37,11 +40,19 @@ type FloatingTabBarProps = {
 
 export function FloatingTabBar({ state, descriptors, navigation }: FloatingTabBarProps) {
   const insets = useSafeAreaInsets();
+  const focusedRoute = state.routes[state.index];
+  const focusedTabBarStyle = StyleSheet.flatten(
+    focusedRoute ? descriptors[focusedRoute.key]?.options.tabBarStyle : undefined,
+  ) as { display?: string } | undefined;
+
+  if (focusedTabBarStyle?.display === 'none') {
+    return null;
+  }
 
   return (
     <View
       pointerEvents="box-none"
-      className="absolute inset-x-0 bottom-0"
+      className="absolute inset-x-0 bottom-0 bg-white/90"
       style={{ paddingBottom: insets.bottom }}
     >
       <View className="h-[64px] w-full flex-row items-center border-t border-border-default bg-white/90 px-[18px] shadow-[0_-10px_28px_rgba(17,17,17,0.12)]">
@@ -71,7 +82,8 @@ export function FloatingTabBar({ state, descriptors, navigation }: FloatingTabBa
               accessibilityLabel={descriptors[route.key]?.options.tabBarAccessibilityLabel ?? label}
             >
               <View
-                className={`h-10 flex-row items-center justify-center gap-2 rounded-full px-4 ${isFocused ? 'bg-control-selected' : ''}`}
+                className="h-10 flex-row items-center justify-center gap-2 px-4"
+                style={[styles.tabPill, isFocused && styles.tabPillSelected]}
               >
                 <Icon
                   size={18}
@@ -91,3 +103,13 @@ export function FloatingTabBar({ state, descriptors, navigation }: FloatingTabBa
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  tabPill: {
+    borderRadius: 999,
+    overflow: 'hidden',
+  },
+  tabPillSelected: {
+    backgroundColor: colors.control.selected,
+  },
+});

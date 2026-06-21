@@ -1,9 +1,10 @@
-import { Tabs } from 'expo-router';
-import { useRouter } from 'expo-router';
-import { useEffect } from 'react';
+import { Tabs } from "expo-router";
+import { useRouter } from "expo-router";
+import { useEffect } from "react";
 
-import { FloatingTabBar } from '@/components';
-import { useSession } from '../../src/auth/SessionProvider';
+import { FloatingTabBar } from "@/components";
+import { useSession } from "../../src/auth/SessionProvider";
+import { NavigationBar } from "expo-navigation-bar";
 
 export default function TabsLayout() {
   const router = useRouter();
@@ -11,7 +12,7 @@ export default function TabsLayout() {
 
   useEffect(() => {
     if (!isLoading && !session) {
-      router.replace('/(auth)/login');
+      router.replace("/(auth)/login");
     }
   }, [isLoading, router, session]);
 
@@ -20,13 +21,16 @@ export default function TabsLayout() {
   }
 
   return (
-    <Tabs
-      screenOptions={{ headerShown: false }}
-      tabBar={(props) => <FloatingTabBar {...props} />}
-    >
-      <Tabs.Screen name="index" options={{ title: 'Início' }} />
-      <Tabs.Screen name="historico" options={{ title: 'Histórico' }} />
-      <Tabs.Screen name="perfil" options={{ title: 'Perfil' }} />
-    </Tabs>
+    <>
+      <Tabs
+        screenOptions={{ headerShown: false }}
+        tabBar={(props) => <FloatingTabBar {...props} />}
+      >
+        <Tabs.Screen name="index" options={{ title: "Mapa" }} />
+        <Tabs.Screen name="historico" options={{ title: "Histórico" }} />
+        <Tabs.Screen name="perfil" options={{ title: "Perfil" }} />
+      </Tabs>
+      <NavigationBar style="dark" />
+    </>
   );
 }

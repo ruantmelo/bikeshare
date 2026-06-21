@@ -1348,11 +1348,11 @@
             },
             {
               "type": "frame",
-              "id": "asCeQ",
+              "id": "unFDN",
               "x": 18,
-              "y": 636,
+              "y": 612,
               "name": "Floating Enter Bike Id",
-              "width": 172,
+              "width": 282,
               "height": 52,
               "fill": "$--primary",
               "cornerRadius": "$--radius-pill",
@@ -1376,7 +1376,7 @@
               "children": [
                 {
                   "type": "icon",
-                  "id": "j1HcrO",
+                  "id": "BojNF",
                   "name": "Floating Enter Bike Id Icon",
                   "width": 18,
                   "height": 18,
@@ -1386,7 +1386,7 @@
                 },
                 {
                   "type": "text",
-                  "id": "s1006k",
+                  "id": "EHIQ6",
                   "name": "Floating Enter Bike Id Label",
                   "fill": "$--primary-foreground",
                   "content": "Inserir ID",
@@ -1399,9 +1399,9 @@
             },
             {
               "type": "frame",
-              "id": "u3S4RN",
+              "id": "LTkde",
               "x": 316,
-              "y": 636,
+              "y": 612,
               "name": "Floating Center Map",
               "width": 56,
               "height": 52,
@@ -1424,7 +1424,7 @@
               "children": [
                 {
                   "type": "icon",
-                  "id": "j9Lri",
+                  "id": "Gr1eQ",
                   "name": "Floating Center Map Icon",
                   "width": 18,
                   "height": 18,
@@ -1837,142 +1837,19 @@
           ]
         },
         {
-          "type": "frame",
-          "id": "LSYN7",
-          "name": "Tab Bar",
+          "id": "tuJr6",
+          "type": "ref",
+          "ref": "MiCFV",
+          "name": "Bottom Navigation - Home Active",
           "width": "fill_container",
-          "height": 64,
-          "fill": "#FFFFFFCC",
-          "cornerRadius": "$--radius-pill",
-          "effect": {
-            "type": "shadow",
-            "shadowType": "outer",
-            "color": "#00000022",
-            "offset": {
-              "x": 0,
-              "y": 8
-            },
-            "blur": 24
-          },
-          "gap": 6,
-          "padding": 6,
-          "children": [
-            {
-              "type": "frame",
-              "id": "I78z9",
-              "name": "Tab Início",
-              "width": "fill_container",
-              "height": "fill_container",
-              "fill": "$--secondary",
-              "cornerRadius": "$--radius-pill",
-              "layout": "vertical",
-              "gap": 2,
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "icon",
-                  "id": "LFgHp",
-                  "name": "Tab Início Icon",
-                  "width": 19,
-                  "height": 19,
-                  "icon": "home",
-                  "library": "lucide",
-                  "fill": "$--primary"
-                },
-                {
-                  "type": "text",
-                  "id": "vGVNU",
-                  "name": "Tab Início Label",
-                  "fill": "$--foreground",
-                  "content": "Início",
-                  "lineHeight": 1.2,
-                  "fontFamily": "$--font-primary",
-                  "fontSize": 10,
-                  "fontWeight": "700"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "s5dKp",
-              "name": "Tab Histórico",
-              "width": "fill_container",
-              "height": "fill_container",
-              "fill": "#FFFFFF00",
-              "cornerRadius": "$--radius-pill",
-              "layout": "vertical",
-              "gap": 2,
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "icon",
-                  "id": "DH71H",
-                  "name": "Tab Histórico Icon",
-                  "width": 19,
-                  "height": 19,
-                  "icon": "clock",
-                  "library": "lucide",
-                  "fill": "$--muted-foreground"
-                },
-                {
-                  "type": "text",
-                  "id": "hGHeI",
-                  "name": "Tab Histórico Label",
-                  "fill": "$--muted-foreground",
-                  "content": "Histórico",
-                  "lineHeight": 1.2,
-                  "fontFamily": "$--font-primary",
-                  "fontSize": 10,
-                  "fontWeight": "700"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "jNvpC",
-              "name": "Tab Perfil",
-              "width": "fill_container",
-              "height": "fill_container",
-              "fill": "#FFFFFF00",
-              "cornerRadius": "$--radius-pill",
-              "layout": "vertical",
-              "gap": 2,
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "icon",
-                  "id": "vo6DX",
-                  "name": "Tab Perfil Icon",
-                  "width": 19,
-                  "height": 19,
-                  "icon": "user",
-                  "library": "lucide",
-                  "fill": "$--muted-foreground"
-                },
-                {
-                  "type": "text",
-                  "id": "H41bt",
-                  "name": "Tab Perfil Label",
-                  "fill": "$--muted-foreground",
-                  "content": "Perfil",
-                  "lineHeight": 1.2,
-                  "fontFamily": "$--font-primary",
-                  "fontSize": 10,
-                  "fontWeight": "700"
-                }
-              ]
-            }
-          ]
+          "height": 64
         }
       ]
     },
     {
       "type": "frame",
       "id": "j8zgj2",
-      "x": 2669,
+      "x": 2840,
       "y": 0,
       "name": "MVP 04 - Inserir ID",
       "clip": true,
@@ -3812,135 +3689,12 @@
           ]
         },
         {
-          "type": "frame",
-          "id": "JvkDX",
-          "name": "Tab Bar",
+          "id": "AI2lG",
+          "type": "ref",
+          "ref": "u4TWF",
+          "name": "Bottom Navigation - History Active",
           "width": "fill_container",
-          "height": 64,
-          "fill": "#FFFFFFCC",
-          "cornerRadius": "$--radius-pill",
-          "effect": {
-            "type": "shadow",
-            "shadowType": "outer",
-            "color": "#00000022",
-            "offset": {
-              "x": 0,
-              "y": 8
-            },
-            "blur": 24
-          },
-          "gap": 6,
-          "padding": 6,
-          "children": [
-            {
-              "type": "frame",
-              "id": "DaPvj",
-              "name": "Tab Início",
-              "width": "fill_container",
-              "height": "fill_container",
-              "fill": "#FFFFFF00",
-              "cornerRadius": "$--radius-pill",
-              "layout": "vertical",
-              "gap": 2,
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "icon",
-                  "id": "EKZOT",
-                  "name": "Tab Início Icon",
-                  "width": 19,
-                  "height": 19,
-                  "icon": "home",
-                  "library": "lucide",
-                  "fill": "$--muted-foreground"
-                },
-                {
-                  "type": "text",
-                  "id": "ZtUeq",
-                  "name": "Tab Início Label",
-                  "fill": "$--muted-foreground",
-                  "content": "Início",
-                  "lineHeight": 1.2,
-                  "fontFamily": "$--font-primary",
-                  "fontSize": 10,
-                  "fontWeight": "700"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "D3Tvp",
-              "name": "Tab Histórico",
-              "width": "fill_container",
-              "height": "fill_container",
-              "fill": "$--secondary",
-              "cornerRadius": "$--radius-pill",
-              "layout": "vertical",
-              "gap": 2,
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "icon",
-                  "id": "oOLY6",
-                  "name": "Tab Histórico Icon",
-                  "width": 19,
-                  "height": 19,
-                  "icon": "clock",
-                  "library": "lucide",
-                  "fill": "$--primary"
-                },
-                {
-                  "type": "text",
-                  "id": "ypiL9",
-                  "name": "Tab Histórico Label",
-                  "fill": "$--foreground",
-                  "content": "Histórico",
-                  "lineHeight": 1.2,
-                  "fontFamily": "$--font-primary",
-                  "fontSize": 10,
-                  "fontWeight": "700"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "mG8mu",
-              "name": "Tab Perfil",
-              "width": "fill_container",
-              "height": "fill_container",
-              "fill": "#FFFFFF00",
-              "cornerRadius": "$--radius-pill",
-              "layout": "vertical",
-              "gap": 2,
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "icon",
-                  "id": "D20M8e",
-                  "name": "Tab Perfil Icon",
-                  "width": 19,
-                  "height": 19,
-                  "icon": "user",
-                  "library": "lucide",
-                  "fill": "$--muted-foreground"
-                },
-                {
-                  "type": "text",
-                  "id": "Jlitq",
-                  "name": "Tab Perfil Label",
-                  "fill": "$--muted-foreground",
-                  "content": "Perfil",
-                  "lineHeight": 1.2,
-                  "fontFamily": "$--font-primary",
-                  "fontSize": 10,
-                  "fontWeight": "700"
-                }
-              ]
-            }
-          ]
+          "height": 64
         }
       ]
     },
@@ -3961,8 +3715,8 @@
         {
           "type": "frame",
           "id": "sDh9q",
-          "x": 1452,
-          "y": 960,
+          "x": 1464,
+          "y": 1057,
           "name": "MVP 08 - Perfil do usuário",
           "clip": true,
           "width": 390,
@@ -4604,152 +4358,23 @@
               ]
             },
             {
-              "type": "frame",
-              "id": "Hu82s",
-              "name": "Tab Bar",
+              "id": "aBDtn",
+              "type": "ref",
+              "ref": "RViL7",
+              "name": "Bottom Navigation - Profile Active",
               "width": "fill_container",
-              "height": 64,
-              "fill": "#FFFFFFCC",
-              "cornerRadius": "$--radius-pill",
-              "effect": {
-                "type": "shadow",
-                "shadowType": "outer",
-                "color": "#00000022",
-                "offset": {
-                  "x": 0,
-                  "y": 8
-                },
-                "blur": 24
-              },
-              "gap": 6,
-              "padding": 6,
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "YRHV6",
-                  "name": "Tab Início",
-                  "metadata": {
-                    "type": "prototype-link",
-                    "target": "MVP 03 - Home Mapa",
-                    "action": "Início"
-                  },
-                  "width": "fill_container",
-                  "height": "fill_container",
-                  "fill": "#FFFFFF00",
-                  "cornerRadius": "$--radius-pill",
-                  "layout": "vertical",
-                  "gap": 2,
-                  "justifyContent": "center",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon",
-                      "id": "Ogmsf",
-                      "name": "Tab Início Icon",
-                      "width": 19,
-                      "height": 19,
-                      "icon": "home",
-                      "library": "lucide",
-                      "fill": "$--muted-foreground"
-                    },
-                    {
-                      "type": "text",
-                      "id": "oOVkE",
-                      "name": "Tab Início Label",
-                      "fill": "$--muted-foreground",
-                      "content": "Início",
-                      "lineHeight": 1.2,
-                      "fontFamily": "$--font-primary",
-                      "fontSize": 10,
-                      "fontWeight": "700"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "DwkPo",
-                  "name": "Tab Histórico",
-                  "metadata": {
-                    "type": "prototype-link",
-                    "target": "MVP 07 - Histórico",
-                    "action": "Histórico"
-                  },
-                  "width": "fill_container",
-                  "height": "fill_container",
-                  "fill": "#FFFFFF00",
-                  "cornerRadius": "$--radius-pill",
-                  "layout": "vertical",
-                  "gap": 2,
-                  "justifyContent": "center",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon",
-                      "id": "LBIlj",
-                      "name": "Tab Histórico Icon",
-                      "width": 19,
-                      "height": 19,
-                      "icon": "clock",
-                      "library": "lucide",
-                      "fill": "$--muted-foreground"
-                    },
-                    {
-                      "type": "text",
-                      "id": "bXZSc",
-                      "name": "Tab Histórico Label",
-                      "fill": "$--muted-foreground",
-                      "content": "Histórico",
-                      "lineHeight": 1.2,
-                      "fontFamily": "$--font-primary",
-                      "fontSize": 10,
-                      "fontWeight": "700"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "XOoHM",
-                  "name": "Tab Perfil",
-                  "metadata": {
-                    "type": "prototype-link",
-                    "target": "MVP 08 - Perfil do usuário",
-                    "action": "Perfil"
-                  },
-                  "width": "fill_container",
-                  "height": "fill_container",
-                  "fill": "$--secondary",
-                  "cornerRadius": "$--radius-pill",
-                  "layout": "vertical",
-                  "gap": 2,
-                  "justifyContent": "center",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon",
-                      "id": "uwEEC",
-                      "name": "Tab Perfil Icon",
-                      "width": 19,
-                      "height": 19,
-                      "icon": "user",
-                      "library": "lucide",
-                      "fill": "$--primary"
-                    },
-                    {
-                      "type": "text",
-                      "id": "YEUb2",
-                      "name": "Tab Perfil Label",
-                      "fill": "$--foreground",
-                      "content": "Perfil",
-                      "lineHeight": 1.2,
-                      "fontFamily": "$--font-primary",
-                      "fontSize": 10,
-                      "fontWeight": "700"
-                    }
-                  ]
-                }
-              ]
+              "height": 64
             }
           ]
+        },
+        {
+          "type": "rectangle",
+          "id": "RjV66",
+          "x": 1053,
+          "y": 1638,
+          "fill": "#CCCCCC",
+          "width": 95,
+          "height": 40
         }
       ]
     },
@@ -5026,6 +4651,1353 @@
                   "fontFamily": "$--font-secondary",
                   "fontSize": 12,
                   "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "MiCFV",
+      "x": 2028,
+      "y": -638,
+      "name": "component/Bottom Navigation/Home Active",
+      "reusable": true,
+      "metadata": {
+        "type": "bottom-navigation-variant",
+        "component": "Bottom Navigation",
+        "active": "home"
+      },
+      "width": 390,
+      "height": 64,
+      "fill": "#FFFFFFCC",
+      "effect": {
+        "type": "shadow",
+        "shadowType": "outer",
+        "color": "#00000018",
+        "offset": {
+          "x": 0,
+          "y": -8
+        },
+        "blur": 24
+      },
+      "gap": 6,
+      "padding": [
+        6,
+        18
+      ],
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "mKlMQ",
+          "name": "Tab Início",
+          "metadata": {
+            "type": "bottom-navigation-item",
+            "route": "home",
+            "active": true
+          },
+          "width": 114,
+          "height": 52,
+          "fill": "$--secondary",
+          "cornerRadius": "$--radius-pill",
+          "gap": 8,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "H9IT6",
+              "name": "Tab Início Icon",
+              "width": 19,
+              "height": 19,
+              "icon": "house",
+              "library": "lucide",
+              "fill": "$--primary"
+            },
+            {
+              "type": "text",
+              "id": "QKcmt",
+              "name": "Tab Início Label",
+              "fill": "$--foreground",
+              "content": "Início",
+              "lineHeight": 1.2,
+              "fontFamily": "$--font-primary",
+              "fontSize": 12,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "eL3fJ",
+          "name": "Tab Histórico",
+          "metadata": {
+            "type": "bottom-navigation-item",
+            "route": "history",
+            "active": false
+          },
+          "width": 114,
+          "height": 52,
+          "fill": "#FFFFFF00",
+          "cornerRadius": "$--radius-pill",
+          "gap": 8,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "u8wWu",
+              "name": "Tab Histórico Icon",
+              "width": 19,
+              "height": 19,
+              "icon": "history",
+              "library": "lucide",
+              "fill": "$--muted-foreground"
+            },
+            {
+              "type": "text",
+              "id": "xGBpR",
+              "name": "Tab Histórico Label",
+              "fill": "$--muted-foreground",
+              "content": "Histórico",
+              "lineHeight": 1.2,
+              "fontFamily": "$--font-primary",
+              "fontSize": 12,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "b9RQTj",
+          "name": "Tab Perfil",
+          "metadata": {
+            "type": "bottom-navigation-item",
+            "route": "profile",
+            "active": false
+          },
+          "width": 114,
+          "height": 52,
+          "fill": "#FFFFFF00",
+          "cornerRadius": "$--radius-pill",
+          "gap": 8,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "fUujN",
+              "name": "Tab Perfil Icon",
+              "width": 19,
+              "height": 19,
+              "icon": "user",
+              "library": "lucide",
+              "fill": "$--muted-foreground"
+            },
+            {
+              "type": "text",
+              "id": "IcbhO",
+              "name": "Tab Perfil Label",
+              "fill": "$--muted-foreground",
+              "content": "Perfil",
+              "lineHeight": 1.2,
+              "fontFamily": "$--font-primary",
+              "fontSize": 12,
+              "fontWeight": "700"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "u4TWF",
+      "x": 2458,
+      "y": -638,
+      "name": "component/Bottom Navigation/History Active",
+      "reusable": true,
+      "metadata": {
+        "type": "bottom-navigation-variant",
+        "component": "Bottom Navigation",
+        "active": "history"
+      },
+      "width": 390,
+      "height": 64,
+      "fill": "#FFFFFFCC",
+      "effect": {
+        "type": "shadow",
+        "shadowType": "outer",
+        "color": "#00000018",
+        "offset": {
+          "x": 0,
+          "y": -8
+        },
+        "blur": 24
+      },
+      "gap": 6,
+      "padding": [
+        6,
+        18
+      ],
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "Zmhts",
+          "name": "Tab Início",
+          "metadata": {
+            "type": "bottom-navigation-item",
+            "route": "home",
+            "active": false
+          },
+          "width": 114,
+          "height": 52,
+          "fill": "#FFFFFF00",
+          "cornerRadius": "$--radius-pill",
+          "gap": 8,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "ectDq",
+              "name": "Tab Início Icon",
+              "width": 19,
+              "height": 19,
+              "icon": "house",
+              "library": "lucide",
+              "fill": "$--muted-foreground"
+            },
+            {
+              "type": "text",
+              "id": "TRCtD",
+              "name": "Tab Início Label",
+              "fill": "$--muted-foreground",
+              "content": "Início",
+              "lineHeight": 1.2,
+              "fontFamily": "$--font-primary",
+              "fontSize": 12,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "r1PdbP",
+          "name": "Tab Histórico",
+          "metadata": {
+            "type": "bottom-navigation-item",
+            "route": "history",
+            "active": true
+          },
+          "width": 114,
+          "height": 52,
+          "fill": "$--secondary",
+          "cornerRadius": "$--radius-pill",
+          "gap": 8,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "S71Nf",
+              "name": "Tab Histórico Icon",
+              "width": 19,
+              "height": 19,
+              "icon": "history",
+              "library": "lucide",
+              "fill": "$--primary"
+            },
+            {
+              "type": "text",
+              "id": "hvMF8",
+              "name": "Tab Histórico Label",
+              "fill": "$--foreground",
+              "content": "Histórico",
+              "lineHeight": 1.2,
+              "fontFamily": "$--font-primary",
+              "fontSize": 12,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "eWPOI",
+          "name": "Tab Perfil",
+          "metadata": {
+            "type": "bottom-navigation-item",
+            "route": "profile",
+            "active": false
+          },
+          "width": 114,
+          "height": 52,
+          "fill": "#FFFFFF00",
+          "cornerRadius": "$--radius-pill",
+          "gap": 8,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "ah1BW",
+              "name": "Tab Perfil Icon",
+              "width": 19,
+              "height": 19,
+              "icon": "user",
+              "library": "lucide",
+              "fill": "$--muted-foreground"
+            },
+            {
+              "type": "text",
+              "id": "a1KBA1",
+              "name": "Tab Perfil Label",
+              "fill": "$--muted-foreground",
+              "content": "Perfil",
+              "lineHeight": 1.2,
+              "fontFamily": "$--font-primary",
+              "fontSize": 12,
+              "fontWeight": "700"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "RViL7",
+      "x": 2888,
+      "y": -638,
+      "name": "component/Bottom Navigation/Profile Active",
+      "reusable": true,
+      "metadata": {
+        "type": "bottom-navigation-variant",
+        "component": "Bottom Navigation",
+        "active": "profile"
+      },
+      "width": 390,
+      "height": 64,
+      "fill": "#FFFFFFCC",
+      "effect": {
+        "type": "shadow",
+        "shadowType": "outer",
+        "color": "#00000018",
+        "offset": {
+          "x": 0,
+          "y": -8
+        },
+        "blur": 24
+      },
+      "gap": 6,
+      "padding": [
+        6,
+        18
+      ],
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "K68XN4",
+          "name": "Tab Início",
+          "metadata": {
+            "type": "bottom-navigation-item",
+            "route": "home",
+            "active": false
+          },
+          "width": 114,
+          "height": 52,
+          "fill": "#FFFFFF00",
+          "cornerRadius": "$--radius-pill",
+          "gap": 8,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "AKZYC",
+              "name": "Tab Início Icon",
+              "width": 19,
+              "height": 19,
+              "icon": "house",
+              "library": "lucide",
+              "fill": "$--muted-foreground"
+            },
+            {
+              "type": "text",
+              "id": "VhsNn",
+              "name": "Tab Início Label",
+              "fill": "$--muted-foreground",
+              "content": "Início",
+              "lineHeight": 1.2,
+              "fontFamily": "$--font-primary",
+              "fontSize": 12,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "q2A0ro",
+          "name": "Tab Histórico",
+          "metadata": {
+            "type": "bottom-navigation-item",
+            "route": "history",
+            "active": false
+          },
+          "width": 114,
+          "height": 52,
+          "fill": "#FFFFFF00",
+          "cornerRadius": "$--radius-pill",
+          "gap": 8,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "N2YydX",
+              "name": "Tab Histórico Icon",
+              "width": 19,
+              "height": 19,
+              "icon": "history",
+              "library": "lucide",
+              "fill": "$--muted-foreground"
+            },
+            {
+              "type": "text",
+              "id": "c5dbuR",
+              "name": "Tab Histórico Label",
+              "fill": "$--muted-foreground",
+              "content": "Histórico",
+              "lineHeight": 1.2,
+              "fontFamily": "$--font-primary",
+              "fontSize": 12,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "uTvrX",
+          "name": "Tab Perfil",
+          "metadata": {
+            "type": "bottom-navigation-item",
+            "route": "profile",
+            "active": true
+          },
+          "width": 114,
+          "height": 52,
+          "fill": "$--secondary",
+          "cornerRadius": "$--radius-pill",
+          "gap": 8,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "m9gPEg",
+              "name": "Tab Perfil Icon",
+              "width": 19,
+              "height": 19,
+              "icon": "user",
+              "library": "lucide",
+              "fill": "$--primary"
+            },
+            {
+              "type": "text",
+              "id": "QocAH",
+              "name": "Tab Perfil Label",
+              "fill": "$--foreground",
+              "content": "Perfil",
+              "lineHeight": 1.2,
+              "fontFamily": "$--font-primary",
+              "fontSize": 12,
+              "fontWeight": "700"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "uML1f",
+      "x": 3310,
+      "y": 0,
+      "name": "MVP 03 - Home Mapa / Bike selecionada",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "$--background",
+      "layout": "none",
+      "children": [
+        {
+          "type": "frame",
+          "id": "D4NH1Z",
+          "x": 0,
+          "y": 0,
+          "name": "Status Bar",
+          "width": 390,
+          "height": 62,
+          "padding": [
+            0,
+            22
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "C9zQzS",
+              "name": "Status Time",
+              "fill": "$--foreground",
+              "content": "9:41",
+              "lineHeight": 1.25,
+              "fontFamily": "$--font-secondary",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "EZL7e",
+              "name": "Status Indicators",
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "M5MuXk",
+                  "name": "Signal Icon",
+                  "width": 17,
+                  "height": 17,
+                  "icon": "signal",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                },
+                {
+                  "type": "icon",
+                  "id": "z0uVU",
+                  "name": "Wifi Icon",
+                  "width": 17,
+                  "height": 17,
+                  "icon": "wifi",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                },
+                {
+                  "type": "icon",
+                  "id": "jrDGn",
+                  "name": "Battery Icon",
+                  "width": 21,
+                  "height": 21,
+                  "icon": "battery",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "EQrpq",
+          "x": 0,
+          "y": 62,
+          "name": "Content",
+          "clip": true,
+          "width": 390,
+          "height": 540,
+          "layout": "none",
+          "children": [
+            {
+              "type": "frame",
+              "id": "KmbJW",
+              "x": 0,
+              "y": 0,
+              "name": "Mapbox Home Map",
+              "metadata": {
+                "type": "mapbox-styled-background",
+                "center": [
+                  -35.735,
+                  -9.556
+                ],
+                "zoom": 15.2,
+                "source": "Mapbox MCP geometry; static API unavailable"
+              },
+              "clip": true,
+              "width": 390,
+              "height": 540,
+              "fill": "#E8ECE6",
+              "layout": "none",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 28,
+                  "id": "h6Kvuc",
+                  "x": 0,
+                  "y": 34,
+                  "name": "Map Park Area North",
+                  "fill": "#D7E7CF",
+                  "width": 148,
+                  "height": 136
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 34,
+                  "id": "v6TVH",
+                  "x": 238,
+                  "y": 92,
+                  "name": "Map Campus Green",
+                  "fill": "#D7E7CF",
+                  "width": 152,
+                  "height": 188
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 24,
+                  "id": "Hj7bl",
+                  "x": 285,
+                  "y": 139,
+                  "name": "Map Lake Detail",
+                  "fill": "#B8DCE7",
+                  "width": 70,
+                  "height": 42
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 9,
+                  "id": "OeVe8",
+                  "x": -24,
+                  "y": 510,
+                  "name": "Home Main Avenue",
+                  "rotation": -38,
+                  "fill": "#F9D38FE6",
+                  "width": 472,
+                  "height": 18
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "znUQb",
+                  "x": -20,
+                  "y": 517,
+                  "name": "Home Main Avenue Line",
+                  "rotation": -38,
+                  "fill": "#E7A944",
+                  "width": 460,
+                  "height": 3
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "tBUn0",
+                  "x": -12,
+                  "y": 125,
+                  "name": "Home Road North",
+                  "rotation": -18,
+                  "fill": "#FFFFFFD9",
+                  "width": 260,
+                  "height": 12
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "H7RX6v",
+                  "x": 188,
+                  "y": 172,
+                  "name": "Home Road East",
+                  "rotation": 14,
+                  "fill": "#FFFFFFD9",
+                  "width": 238,
+                  "height": 12
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "ITQpK",
+                  "x": -18,
+                  "y": 314,
+                  "name": "Home Road Center",
+                  "rotation": -8,
+                  "fill": "#FFFFFFD9",
+                  "width": 230,
+                  "height": 12
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "wM69y",
+                  "x": 178,
+                  "y": 298,
+                  "name": "Home Road Center East",
+                  "rotation": 16,
+                  "fill": "#FFFFFFD9",
+                  "width": 246,
+                  "height": 12
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "P0GOo",
+                  "x": -22,
+                  "y": 610,
+                  "name": "Home Road South",
+                  "rotation": -14,
+                  "fill": "#FFFFFFD9",
+                  "width": 300,
+                  "height": 12
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "SY46i",
+                  "x": 202,
+                  "y": 580,
+                  "name": "Home Road South East",
+                  "rotation": 19,
+                  "fill": "#FFFFFFD9",
+                  "width": 220,
+                  "height": 12
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "pUtXb",
+                  "x": 52,
+                  "y": -10,
+                  "name": "Home Vertical West",
+                  "rotation": 4,
+                  "fill": "#FFFFFFD9",
+                  "width": 12,
+                  "height": 520
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "XGPJv",
+                  "x": 164,
+                  "y": -8,
+                  "name": "Home Vertical Center",
+                  "rotation": -8,
+                  "fill": "#FFFFFFD9",
+                  "width": 12,
+                  "height": 740
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 6,
+                  "id": "zJorS",
+                  "x": 272,
+                  "y": -8,
+                  "name": "Home Vertical East",
+                  "rotation": 8,
+                  "fill": "#FFFFFFD9",
+                  "width": 12,
+                  "height": 740
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 10,
+                  "id": "OSbO0",
+                  "x": 18,
+                  "y": 188,
+                  "name": "Map Building Block 01",
+                  "fill": "#DDE1DA",
+                  "width": 64,
+                  "height": 48
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 10,
+                  "id": "lCBF6",
+                  "x": 102,
+                  "y": 259,
+                  "name": "Map Building Block 02",
+                  "fill": "#DDE1DA",
+                  "width": 70,
+                  "height": 54
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 10,
+                  "id": "YJekC",
+                  "x": 268,
+                  "y": 350,
+                  "name": "Map Building Block 03",
+                  "fill": "#DDE1DA",
+                  "width": 84,
+                  "height": 54
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 10,
+                  "id": "OZx2t",
+                  "x": 32,
+                  "y": 524,
+                  "name": "Map Building Block 04",
+                  "fill": "#DDE1DA",
+                  "width": 86,
+                  "height": 60
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 10,
+                  "id": "Bca5b",
+                  "x": 241,
+                  "y": 605,
+                  "name": "Map Building Block 05",
+                  "fill": "#DDE1DA",
+                  "width": 74,
+                  "height": 50
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 10,
+                  "id": "slZ9T",
+                  "x": 306,
+                  "y": 34,
+                  "name": "Map Building Block 06",
+                  "fill": "#DDE1DA",
+                  "width": 70,
+                  "height": 40
+                },
+                {
+                  "type": "ellipse",
+                  "id": "n3ufq",
+                  "x": 191,
+                  "y": 339,
+                  "name": "Bike Marker Selected Halo",
+                  "fill": "#FF840033",
+                  "width": 26,
+                  "height": 26,
+                  "stroke": "#FF8400",
+                  "strokeWidth": 1
+                },
+                {
+                  "type": "ellipse",
+                  "id": "VccCX",
+                  "x": 198,
+                  "y": 346,
+                  "name": "Bike Marker Selected",
+                  "fill": "#FF8400",
+                  "width": 12,
+                  "height": 12,
+                  "stroke": "#FFFFFF",
+                  "strokeWidth": 3
+                },
+                {
+                  "type": "ellipse",
+                  "id": "I92gef",
+                  "x": 238,
+                  "y": 222,
+                  "name": "Bike Marker Northeast Halo",
+                  "fill": "#FF840033",
+                  "width": 26,
+                  "height": 26,
+                  "stroke": "#FF8400",
+                  "strokeWidth": 1
+                },
+                {
+                  "type": "ellipse",
+                  "id": "pY0ys",
+                  "x": 245,
+                  "y": 229,
+                  "name": "Bike Marker Northeast",
+                  "fill": "#FF8400",
+                  "width": 12,
+                  "height": 12,
+                  "stroke": "#FFFFFF",
+                  "strokeWidth": 3
+                },
+                {
+                  "type": "ellipse",
+                  "id": "D3OKLs",
+                  "x": 90,
+                  "y": 432,
+                  "name": "Bike Marker Southwest Halo",
+                  "fill": "#FF840033",
+                  "width": 26,
+                  "height": 26,
+                  "stroke": "#FF8400",
+                  "strokeWidth": 1
+                },
+                {
+                  "type": "ellipse",
+                  "id": "WrBJt",
+                  "x": 97,
+                  "y": 439,
+                  "name": "Bike Marker Southwest",
+                  "fill": "#FF8400",
+                  "width": 12,
+                  "height": 12,
+                  "stroke": "#FFFFFF",
+                  "strokeWidth": 3
+                },
+                {
+                  "type": "ellipse",
+                  "id": "zCEB5",
+                  "x": 289,
+                  "y": 494,
+                  "name": "Bike Marker South Halo",
+                  "fill": "#FF840033",
+                  "width": 26,
+                  "height": 26,
+                  "stroke": "#FF8400",
+                  "strokeWidth": 1
+                },
+                {
+                  "type": "ellipse",
+                  "id": "pA71O",
+                  "x": 296,
+                  "y": 501,
+                  "name": "Bike Marker South",
+                  "fill": "#FF8400",
+                  "width": 12,
+                  "height": 12,
+                  "stroke": "#FFFFFF",
+                  "strokeWidth": 3
+                },
+                {
+                  "type": "frame",
+                  "id": "QElqp",
+                  "x": 12,
+                  "y": 692,
+                  "name": "Map Attribution",
+                  "fill": "#FFFFFFCC",
+                  "cornerRadius": 6,
+                  "padding": [
+                    3,
+                    6
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "iIp62",
+                      "name": "Map Attribution Text",
+                      "fill": "#555555",
+                      "content": "© Mapbox © OpenStreetMap",
+                      "fontFamily": "Geist",
+                      "fontSize": 8,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Jlnbt",
+              "x": 18,
+              "y": 18,
+              "name": "Home Floating Header",
+              "width": 274,
+              "fill": "#FFFFFFDD",
+              "cornerRadius": 24,
+              "stroke": "$--border",
+              "strokeWidth": 1,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#00000018",
+                "offset": {
+                  "x": 0,
+                  "y": 8
+                },
+                "blur": 22
+              },
+              "padding": [
+                14,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "wH5n2",
+                  "name": "Home Floating Text",
+                  "layout": "vertical",
+                  "gap": 3,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "K5uJey",
+                      "name": "Home Floating Title",
+                      "fill": "$--foreground",
+                      "content": "Olá, Ruan 👋",
+                      "lineHeight": 1.25,
+                      "fontFamily": "$--font-secondary",
+                      "fontSize": 19,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "text",
+                      "id": "U4q9U",
+                      "name": "Home Microcopy",
+                      "fill": "$--muted-foreground",
+                      "content": "Bike BIKE-001 selecionada",
+                      "lineHeight": 1.2,
+                      "fontFamily": "$--font-primary",
+                      "fontSize": 11,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "mWVST",
+              "x": 316,
+              "y": 466,
+              "name": "Floating Center Map",
+              "width": 56,
+              "height": 52,
+              "fill": "$--card",
+              "cornerRadius": "$--radius-pill",
+              "stroke": "$--border",
+              "strokeWidth": 1,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#00000022",
+                "offset": {
+                  "x": 0,
+                  "y": 8
+                },
+                "blur": 22
+              },
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "b0bMr5",
+                  "name": "Floating Center Map Icon",
+                  "width": 18,
+                  "height": 18,
+                  "icon": "locate-fixed",
+                  "library": "lucide",
+                  "fill": "$--foreground"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "C8aGTX",
+              "x": 184,
+              "y": 322,
+              "name": "Bike Selected Marker Highlight",
+              "metadata": {
+                "type": "tap-target",
+                "targetPopup": "Bike Selected Popup"
+              },
+              "width": 42,
+              "height": 42,
+              "fill": "#FF840033",
+              "cornerRadius": "$--radius-pill",
+              "stroke": "$--primary",
+              "strokeWidth": 2,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "a68tR",
+                  "name": "Bike Selected Marker Dot",
+                  "fill": "$--primary",
+                  "width": 14,
+                  "height": 14,
+                  "stroke": "$--card",
+                  "strokeWidth": 3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "cGWIo",
+          "x": 0,
+          "y": 602,
+          "name": "Selected Bike Bottom Sheet",
+          "width": 390,
+          "height": 242,
+          "fill": "#FFFFFF",
+          "cornerRadius": [
+            24,
+            24,
+            0,
+            0
+          ],
+          "stroke": "#CBCCC9",
+          "strokeWidth": {
+            "top": 1
+          },
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#0000001F",
+            "offset": {
+              "x": 0,
+              "y": -8
+            },
+            "blur": 24
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 999,
+              "id": "bRTwk",
+              "x": 173,
+              "y": 16,
+              "name": "Bottom Sheet Handle",
+              "fill": "#D9DAD6",
+              "width": 44,
+              "height": 4
+            },
+            {
+              "type": "frame",
+              "id": "b73PT",
+              "x": 18,
+              "y": 34,
+              "name": "Selected Bike Summary",
+              "width": 354,
+              "height": 54,
+              "layout": "none",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "AiPn3",
+                  "x": 0,
+                  "y": 0,
+                  "name": "Bike Icon Container",
+                  "width": 54,
+                  "height": 54,
+                  "fill": "#FF84001F",
+                  "cornerRadius": 18,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "N06ie",
+                      "x": 13,
+                      "y": 13,
+                      "name": "Bike Icon",
+                      "width": 28,
+                      "height": 28,
+                      "icon": "bike",
+                      "library": "lucide",
+                      "fill": "#FF8400"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "F0Pu4",
+                  "x": 66,
+                  "y": 15,
+                  "name": "Selected Bike Title",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 252,
+                  "content": "Bike BIKE-001",
+                  "lineHeight": 1.2,
+                  "fontFamily": "Geist",
+                  "fontSize": 20,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "k4KCX",
+                  "x": 283,
+                  "y": 6,
+                  "name": "Selected Bike Battery",
+                  "fill": "#1E7D32",
+                  "content": "86%",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 32,
+                  "fontWeight": "800"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "lsKkS",
+              "x": 18,
+              "y": 102,
+              "name": "Selected Bike Metrics",
+              "width": 354,
+              "height": 56,
+              "layout": "none",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "yyLkx",
+                  "x": 0,
+                  "y": 0,
+                  "name": "Bike Metric Distância",
+                  "width": 112,
+                  "height": 56,
+                  "fill": "#F2F3F0",
+                  "cornerRadius": 14,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "dNExz",
+                      "x": 12,
+                      "y": 10,
+                      "name": "Bike Metric Label Distância",
+                      "fill": "#666666",
+                      "content": "Distância",
+                      "fontFamily": "Geist",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "xjXP5",
+                      "x": 12,
+                      "y": 27,
+                      "name": "Bike Metric Value Distância",
+                      "fill": "#111111",
+                      "content": "120 m",
+                      "fontFamily": "Geist",
+                      "fontSize": 15,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "M13W4",
+                  "x": 121,
+                  "y": 0,
+                  "name": "Bike Metric Autonomia",
+                  "width": 112,
+                  "height": 56,
+                  "fill": "#F2F3F0",
+                  "cornerRadius": 14,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Nw6WI",
+                      "x": 12,
+                      "y": 10,
+                      "name": "Bike Metric Label Autonomia",
+                      "fill": "#666666",
+                      "content": "Autonomia",
+                      "fontFamily": "Geist",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "FELhy",
+                      "x": 12,
+                      "y": 27,
+                      "name": "Bike Metric Value Autonomia",
+                      "fill": "#111111",
+                      "content": "18 km",
+                      "fontFamily": "Geist",
+                      "fontSize": 15,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "KJmGm",
+                  "x": 242,
+                  "y": 0,
+                  "name": "Bike Metric Tarifa",
+                  "width": 112,
+                  "height": 56,
+                  "fill": "#F2F3F0",
+                  "cornerRadius": 14,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "r41K9",
+                      "x": 12,
+                      "y": 10,
+                      "name": "Bike Metric Label Tarifa",
+                      "fill": "#666666",
+                      "content": "Status",
+                      "fontFamily": "Geist",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "UTzVr",
+                      "x": 12,
+                      "y": 28,
+                      "name": "Bike Popup Value Status",
+                      "fill": "$--color-success-foreground",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container(78)",
+                      "content": "Disponível",
+                      "lineHeight": 1.25,
+                      "fontFamily": "$--font-secondary",
+                      "fontSize": 13,
+                      "fontWeight": "800"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "T1z2gp",
+              "x": 18,
+              "y": 172,
+              "name": "Selected Bike Actions",
+              "width": 354,
+              "height": 52,
+              "layout": "none",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "wvfDv",
+                  "x": 0,
+                  "y": 0,
+                  "name": "Rent Selected Bike Button",
+                  "width": 354,
+                  "height": 52,
+                  "fill": "#FF8400",
+                  "cornerRadius": 999,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "Aj3v5",
+                      "x": 103,
+                      "y": 16,
+                      "name": "Rent Selected Bike Icon",
+                      "width": 19,
+                      "height": 19,
+                      "icon": "lock-open",
+                      "library": "lucide",
+                      "fill": "#111111"
+                    },
+                    {
+                      "type": "text",
+                      "id": "yve0h",
+                      "x": 130,
+                      "y": 16,
+                      "name": "Rent Selected Bike Label",
+                      "fill": "#111111",
+                      "content": "Alugar bicicleta",
+                      "fontFamily": "Geist",
+                      "fontSize": 15,
+                      "fontWeight": "800"
+                    }
+                  ]
                 }
               ]
             }
