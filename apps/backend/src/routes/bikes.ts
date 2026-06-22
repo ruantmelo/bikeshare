@@ -19,12 +19,23 @@ const listBikesQuerySchema = z
     message: 'Informe lat e lng juntos',
   })
 
+const nearbyBikesQuerySchema = z.object({
+  lat: z.coerce.number().min(-90).max(90),
+  lng: z.coerce.number().min(-180).max(180),
+})
+
 const bikeListItemSchema = z.object({
   id: z.string(),
   lat: z.number().nullable(),
   lng: z.number().nullable(),
   status: z.enum(BikeStatus),
   distance: z.number().nullable().optional(),
+})
+
+const nearbyBikeListItemSchema = bikeListItemSchema.extend({
+  lat: z.number(),
+  lng: z.number(),
+  distance: z.number(),
 })
 
 /** Distância em metros entre dois pontos (fórmula de Haversine). */
@@ -39,8 +50,77 @@ function haversineMeters(lat1: number, lng1: number, lat2: number, lng2: number)
   return 2 * R * Math.asin(Math.sqrt(a))
 }
 
+/** Gera um número determinístico entre 0 e 1 a partir de uma string. */
+function hashToUnitInterval(value: string): number {
+  let hash = 2_166_136_261
+
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index)
+    hash = Math.imul(hash, 16_777_619)
+  }
+
+  return (hash >>> 0) / 4_294_967_295
+}
+
+/** Posiciona a bike entre 100 e 1.000 metros do usuário. */
+function generateNearbyPosition(userLat: number, userLng: number, bikeId: string) {
+  const earthRadiusMeters = 6_371_000
+  const minDistanceMeters = 100
+  const maxDistanceMeters = 1_000
+  const distance =
+    minDistanceMeters +
+    hashToUnitInterval(`${bikeId}:distance`) * (maxDistanceMeters - minDistanceMeters)
+  const bearing = hashToUnitInterval(`${bikeId}:bearing`) * 2 * Math.PI
+  const angularDistance = distance / earthRadiusMeters
+  const lat1 = (userLat * Math.PI) / 180
+  const lng1 = (userLng * Math.PI) / 180
+
+  const lat2 = Math.asin(
+    Math.sin(lat1) * Math.cos(angularDistance) +
+      Math.cos(lat1) * Math.sin(angularDistance) * Math.cos(bearing),
+  )
+  const lng2 =
+    lng1 +
+    Math.atan2(
+      Math.sin(bearing) * Math.sin(angularDistance) * Math.cos(lat1),
+      Math.cos(angularDistance) - Math.sin(lat1) * Math.sin(lat2),
+    )
+
+  return {
+    lat: (lat2 * 180) / Math.PI,
+    lng: ((((lng2 * 180) / Math.PI + 180) % 360) + 360) % 360 - 180,
+    distance: Math.round(distance),
+  }
+}
+
 export default async function bikeRoutes(app: FastifyInstance) {
   const zodApp = app.withTypeProvider<ZodTypeProvider>()
+
+  zodApp.get(
+    '/nearby',
+    {
+      preHandler: authenticate,
+      schema: {
+        security: [{ bearerAuth: [] }],
+        querystring: nearbyBikesQuerySchema,
+        response: { 200: z.array(nearbyBikeListItemSchema) },
+      },
+    },
+    async (request) => {
+      const { lat, lng } = request.query
+      const bikes = await prisma.bike.findMany({
+        where: { status: BikeStatus.AVAILABLE },
+        select: { id: true, status: true },
+      })
+
+      return bikes
+        .map((bike) => ({
+          ...bike,
+          ...generateNearbyPosition(lat, lng, bike.id),
+        }))
+        .sort((a, b) => a.distance - b.distance)
+    },
+  )
 
   zodApp.get(
     '/',

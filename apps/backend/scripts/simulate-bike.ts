@@ -48,14 +48,13 @@ client.on('connect', () => {
     publish(`bikes/${BIKE_ID}/telemetry`, { lat, lng, speed })
   }, 3000)
 
-  // O ciclo de corrida só faz sentido para bikes que começam disponíveis.
-  if (status === 'available') {
+  if (status === 'AVAILABLE') {
     setTimeout(() => {
-      publish(`bikes/${BIKE_ID}/events`, { event: 'ride_started', status: 'in_use' })
+      publish(`bikes/${BIKE_ID}/events`, { event: 'ride_started', status: 'IN_USE' })
     }, 5000)
 
     setTimeout(() => {
-      publish(`bikes/${BIKE_ID}/events`, { event: 'ride_ended', status: 'available' })
+      publish(`bikes/${BIKE_ID}/events`, { event: 'ride_ended', status: 'AVAILABLE' })
     }, 20000)
   }
 })
