@@ -8,7 +8,7 @@ interface StartRideBody {
 }
 
 export default async function rideRoutes(app: FastifyInstance) {
-  app.post<{ Body: StartRideBody }>('/start', { preHandler: authenticate }, async (request, reply) => {
+  app.post<{ Body: StartRideBody }>('/start', { preHandler: authenticate, schema: { security: [{ bearerAuth: [] }] } }, async (request, reply) => {
     const { bikeId } = request.body
     const userId = request.user.id
 
@@ -33,7 +33,7 @@ export default async function rideRoutes(app: FastifyInstance) {
     return ride
   })
 
-  app.post('/end', { preHandler: authenticate }, async (request, reply) => {
+  app.post('/end', { preHandler: authenticate, schema: { security: [{ bearerAuth: [] }] } }, async (request, reply) => {
     const userId = request.user.id
 
     const ride = await prisma.ride.findFirst({
@@ -54,7 +54,7 @@ export default async function rideRoutes(app: FastifyInstance) {
     return updated
   })
 
-  app.get('/active', { preHandler: authenticate }, async (request) => {
+  app.get('/active', { preHandler: authenticate, schema: { security: [{ bearerAuth: [] }] } }, async (request) => {
     const userId = request.user.id
     return prisma.ride.findFirst({
       where: { userId, endedAt: null },
@@ -62,7 +62,7 @@ export default async function rideRoutes(app: FastifyInstance) {
     })
   })
 
-  app.get('/history', { preHandler: authenticate }, async (request) => {
+  app.get('/history', { preHandler: authenticate, schema: { security: [{ bearerAuth: [] }] } }, async (request) => {
     const userId = request.user.id
     return prisma.ride.findMany({
       where: { userId },

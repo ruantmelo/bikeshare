@@ -47,7 +47,7 @@ await app.register(swagger, {
     },
     components: {
       securitySchemes: {
-        bearerAuth: { type: 'http', scheme: 'bearer' },
+        bearerAuth: { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
       },
     },
   },
