@@ -1,0 +1,3 @@
+# Use pnpm workspaces and a shared contracts package
+
+BikeShare UFAL will use pnpm workspaces with `apps/*` and `packages/*` so the backend, mobile app, and web app can share internal packages through one workspace lockfile. Shared API contracts will live in `packages/contracts` as `@bikeshare/contracts`, with Zod schemas as the source of truth, inferred TypeScript types for callers, and built `dist/` JavaScript plus declarations consumed through `workspace:*`. We chose pnpm workspaces over npm workspaces despite the existing per-app npm lockfiles because the project now needs an explicit monorepo boundary and a reliable shared contract package rather than duplicated request and response interfaces.

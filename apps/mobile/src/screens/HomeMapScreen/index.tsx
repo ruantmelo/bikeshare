@@ -10,10 +10,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { useNavigation, useRouter } from "expo-router";
 import { Button } from "@/components";
+import { useActiveRideQuery } from "../../rides";
+import { useNearbyBicyclesQuery } from "../../bicycles";
 
 import { GreetingsCard } from "./Greetings";
 import { ActionButtons } from "./ActionButtons";
-import { BikeRecord, createBikes, makeRegion, MapState } from "./utils";
+import { BikeRecord, makeRegion, MapState, nearbyBicycleToRecord } from "./utils";
 import { BikeMarker } from "./BikeMarker";
 import { SelectedBikeDrawer } from "./SelectedBikeDrawer";
 
@@ -25,6 +27,7 @@ const SELECTED_BIKE_DRAWER_CENTER_OFFSET = 0.18;
 export default function HomeMapScreen() {
   const router = useRouter();
   const navigation = useNavigation();
+  const activeRideQuery = useActiveRideQuery();
 
   const mapRef = useRef<ElementRef<typeof MapView> | null>(null);
   const [selectedBikeId, setSelectedBikeId] = useState<BikeRecord["id"] | null>(
@@ -38,16 +41,34 @@ export default function HomeMapScreen() {
     longitude: number;
   } | null>(null);
 
+  const nearbyBicyclesQuery = useNearbyBicyclesQuery(
+    userLocation?.latitude,
+    userLocation?.longitude,
+  );
   const bikes = useMemo(
-    () => (userLocation ? createBikes(userLocation) : []),
-    [userLocation],
+    () => nearbyBicyclesQuery.data?.map(nearbyBicycleToRecord) ?? [],
+    [nearbyBicyclesQuery.data],
   );
   const selectedBike = useMemo(
     () => bikes.find((bike) => bike.id === selectedBikeId) ?? null,
     [bikes, selectedBikeId],
   );
 
-  const openInsertId = () => router.push("/insert-id");
+  const hasActiveRide = Boolean(activeRideQuery.data);
+  const openInsertId = () => {
+    if (hasActiveRide) {
+      router.replace("/ride/current");
+      return;
+    }
+
+    router.push("/insert-id");
+  };
+
+  useEffect(() => {
+    if (activeRideQuery.data) {
+      router.replace("/ride/current");
+    }
+  }, [activeRideQuery.data, router]);
 
   const handleMapPress = (event: MapPressEvent) => {
     if (event.nativeEvent.action === "marker-press") return;
@@ -187,6 +208,32 @@ export default function HomeMapScreen() {
     );
   };
 
+  const renderNearbyBicyclesState = () => {
+    if (locationStatus !== "ready" || !userLocation || selectedBike || hasActiveRide) {
+      return null;
+    }
+
+    if (nearbyBicyclesQuery.isLoading || nearbyBicyclesQuery.isFetching) {
+      return <MapStatusOverlay message="Buscando bicicletas próximas…" />;
+    }
+
+    if (nearbyBicyclesQuery.isError) {
+      return (
+        <MapStatusOverlay
+          message="Não foi possível buscar bicicletas próximas."
+          actionLabel="Tentar novamente"
+          onAction={() => void nearbyBicyclesQuery.refetch()}
+        />
+      );
+    }
+
+    if (nearbyBicyclesQuery.data && nearbyBicyclesQuery.data.length === 0) {
+      return <MapStatusOverlay message="Nenhuma bicicleta disponível por perto." />;
+    }
+
+    return null;
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-background-app" edges={["top"]}>
       <StatusBar style="dark" />
@@ -224,18 +271,22 @@ export default function HomeMapScreen() {
             <SelectedBikeDrawer
               onClose={() => setSelectedBikeId(null)}
               onRentBike={(bikeId) => {
-                console.log("[HomeMapScreen] Renting bike", bikeId);
-                setSelectedBikeId(bikeId as any);
+                router.push({
+                  pathname: "/insert-id",
+                  params: { bicycleId: bikeId },
+                });
               }}
               selectedBike={selectedBike}
               userLocation={userLocation}
             />
           ) : null}
+
+          {renderNearbyBicyclesState()}
         </View>
 
         {!selectedBike && <GreetingsCard name="João" />}
 
-        {selectedBike ? null : (
+        {selectedBike || hasActiveRide ? null : (
           <ActionButtons
             onInsertIdPress={openInsertId}
             onUserCenterPress={() => userLocation && centerMap(userLocation)}
@@ -243,6 +294,29 @@ export default function HomeMapScreen() {
         )}
       </View>
     </SafeAreaView>
+  );
+}
+
+function MapStatusOverlay({
+  message,
+  actionLabel,
+  onAction,
+}: {
+  message: string;
+  actionLabel?: string;
+  onAction?: () => void;
+}) {
+  return (
+    <View className="absolute left-[18px] right-[18px] top-[120px] z-20 rounded-[24px] border border-border-default bg-white/95 px-4 py-4 shadow-[0_10px_28px_rgba(17,17,17,0.12)]">
+      <Text className="text-[14px] font-semibold leading-5 text-text-primary">
+        {message}
+      </Text>
+      {actionLabel && onAction ? (
+        <Button onPress={onAction} variant="secondary" className="mt-3 h-[44px]">
+          {actionLabel}
+        </Button>
+      ) : null}
+    </View>
   );
 }
 

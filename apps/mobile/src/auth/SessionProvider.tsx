@@ -1,4 +1,5 @@
 import * as SecureStore from 'expo-secure-store';
+import { useQueryClient } from '@tanstack/react-query';
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
 
@@ -19,6 +20,7 @@ const SessionContext = createContext<SessionContextValue | null>(null);
 const SESSION_KEY = 'bikeshare.session';
 
 export function SessionProvider({ children }: { children: ReactNode }) {
+  const queryClient = useQueryClient();
   const [session, setSessionState] = useState<Session | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -45,12 +47,14 @@ export function SessionProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const setSession = async (nextSession: Session) => {
+    queryClient.clear();
     setSessionState(nextSession);
     setApiToken(nextSession.token);
     await SecureStore.setItemAsync(SESSION_KEY, JSON.stringify(nextSession));
   };
 
   const clearSession = async () => {
+    queryClient.clear();
     setSessionState(null);
     setApiToken(null);
     await SecureStore.deleteItemAsync(SESSION_KEY);

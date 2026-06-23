@@ -62,7 +62,7 @@ export function SelectedBikeDrawer({
         <View className="mt-4 flex-row items-start justify-between">
           <View className="flex-1 pr-4">
             <Text className="text-[12px] font-semibold uppercase tracking-[1.6px] text-brand-primary">
-              Bike selecionada
+              Bicicleta selecionada
             </Text>
             <Text className="mt-1 text-[24px] font-extrabold tracking-[-0.6px] text-text-primary">
               {selectedBike.id}
@@ -72,7 +72,7 @@ export function SelectedBikeDrawer({
           <IconButton
             onPress={onClose}
             icon={<X color={colors.text.primary} size={16} strokeWidth={2.5} />}
-            accessibilityLabel="Fechar detalhes da bike selecionada"
+            accessibilityLabel="Fechar detalhes da bicicleta selecionada"
             className="h-10 w-10 bg-control-selected"
           />
         </View>
@@ -80,7 +80,7 @@ export function SelectedBikeDrawer({
         <View className="mt-5 flex-row gap-3">
           <InfoPill label="Distância" value={distance} />
           <InfoPill label="Bateria" value={selectedBike.battery} />
-          <InfoPill label="Status" value={selectedBike.status} />
+          <InfoPill label="Status" value={BIKE_STATUS_LABELS[selectedBike.status]} />
         </View>
 
         {selectedBike.available ? (

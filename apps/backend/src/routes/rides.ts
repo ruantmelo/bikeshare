@@ -1,73 +1,163 @@
+import {
+  activeRideResponseSchema,
+  rideErrorResponseSchema,
+  rideHistoryResponseSchema,
+  rideWithBicycleSchema,
+  startRideRequestSchema,
+  type RideErrorResponse,
+  type RideWithBicycle,
+} from '@bikeshare/contracts'
 import { BikeStatus } from '@prisma/client'
 import type { FastifyInstance } from 'fastify'
+import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import prisma from '../prisma/client.js'
 import { authenticate } from '../middleware/auth.js'
 
-interface StartRideBody {
-  bikeId: string
+type RideWithBike = Awaited<ReturnType<typeof findRideWithBike>>
+
+function rideError(code: RideErrorResponse['code'], message: string): RideErrorResponse {
+  return { code, message }
+}
+
+function toRideWithBicycle(ride: NonNullable<RideWithBike>): RideWithBicycle {
+  return {
+    id: ride.id,
+    bicycleId: ride.bikeId,
+    startedAt: ride.startedAt.toISOString(),
+    endedAt: ride.endedAt?.toISOString() ?? null,
+    bicycle: {
+      id: ride.bike.id,
+      status: ride.bike.status,
+      latitude: ride.bike.lat,
+      longitude: ride.bike.lng,
+    },
+  }
+}
+
+async function findRideWithBike(rideId: string) {
+  return prisma.ride.findUnique({
+    where: { id: rideId },
+    include: { bike: true },
+  })
 }
 
 export default async function rideRoutes(app: FastifyInstance) {
-  app.post<{ Body: StartRideBody }>('/start', { preHandler: authenticate, schema: { security: [{ bearerAuth: [] }] } }, async (request, reply) => {
-    const { bikeId } = request.body
-    const userId = request.user.id
+  const zodApp = app.withTypeProvider<ZodTypeProvider>()
 
-    const bike = await prisma.bike.findUnique({ where: { id: bikeId } })
-    if (!bike) return reply.code(404).send({ error: 'Bike não encontrada' })
-    if (bike.status !== BikeStatus.AVAILABLE) return reply.code(400).send({ error: 'Bike não disponível' })
+  zodApp.post(
+    '/start',
+    {
+      preHandler: authenticate,
+      schema: {
+        security: [{ bearerAuth: [] }],
+        body: startRideRequestSchema,
+        response: {
+          200: rideWithBicycleSchema,
+          400: rideErrorResponseSchema,
+          404: rideErrorResponseSchema,
+        },
+      },
+    },
+    async (request, reply) => {
+      const { bicycleId } = request.body
+      const userId = request.user.id
 
-    const activeRide = await prisma.ride.findFirst({
-      where: { userId, endedAt: null },
-    })
-    if (activeRide) return reply.code(400).send({ error: 'Você já tem uma corrida ativa' })
+      const bike = await prisma.bike.findUnique({ where: { id: bicycleId } })
+      if (!bike) return reply.code(404).send(rideError('BICYCLE_NOT_FOUND', 'Bicicleta não encontrada'))
+      if (bike.status !== BikeStatus.AVAILABLE) {
+        return reply.code(400).send(rideError('BICYCLE_NOT_AVAILABLE', 'Bicicleta não disponível'))
+      }
 
-    const ride = await prisma.ride.create({
-      data: { userId, bikeId },
-    })
+      const activeRide = await prisma.ride.findFirst({
+        where: { userId, endedAt: null },
+      })
+      if (activeRide) return reply.code(400).send(rideError('ACTIVE_RIDE_EXISTS', 'Você já tem uma corrida ativa'))
 
-    await prisma.bike.update({
-      where: { id: bikeId },
-      data: { status: BikeStatus.IN_USE },
-    })
+      const ride = await prisma.ride.create({
+        data: { userId, bikeId: bicycleId },
+      })
 
-    return ride
-  })
+      const updatedBike = await prisma.bike.update({
+        where: { id: bicycleId },
+        data: { status: BikeStatus.IN_USE },
+      })
 
-  app.post('/end', { preHandler: authenticate, schema: { security: [{ bearerAuth: [] }] } }, async (request, reply) => {
-    const userId = request.user.id
+      return toRideWithBicycle({ ...ride, bike: updatedBike })
+    },
+  )
 
-    const ride = await prisma.ride.findFirst({
-      where: { userId, endedAt: null },
-    })
-    if (!ride) return reply.code(404).send({ error: 'Nenhuma corrida ativa' })
+  zodApp.post(
+    '/end',
+    {
+      preHandler: authenticate,
+      schema: {
+        security: [{ bearerAuth: [] }],
+        response: {
+          200: rideWithBicycleSchema,
+          404: rideErrorResponseSchema,
+        },
+      },
+    },
+    async (request, reply) => {
+      const userId = request.user.id
 
-    const updated = await prisma.ride.update({
-      where: { id: ride.id },
-      data: { endedAt: new Date() },
-    })
+      const ride = await prisma.ride.findFirst({
+        where: { userId, endedAt: null },
+      })
+      if (!ride) return reply.code(404).send(rideError('ACTIVE_RIDE_NOT_FOUND', 'Nenhuma corrida ativa'))
 
-    await prisma.bike.update({
-      where: { id: ride.bikeId },
-      data: { status: BikeStatus.AVAILABLE },
-    })
+      const updated = await prisma.ride.update({
+        where: { id: ride.id },
+        data: { endedAt: new Date() },
+      })
 
-    return updated
-  })
+      const updatedBike = await prisma.bike.update({
+        where: { id: ride.bikeId },
+        data: { status: BikeStatus.AVAILABLE },
+      })
 
-  app.get('/active', { preHandler: authenticate, schema: { security: [{ bearerAuth: [] }] } }, async (request) => {
-    const userId = request.user.id
-    return prisma.ride.findFirst({
-      where: { userId, endedAt: null },
-      include: { bike: true },
-    })
-  })
+      return toRideWithBicycle({ ...updated, bike: updatedBike })
+    },
+  )
 
-  app.get('/history', { preHandler: authenticate, schema: { security: [{ bearerAuth: [] }] } }, async (request) => {
-    const userId = request.user.id
-    return prisma.ride.findMany({
-      where: { userId },
-      orderBy: { startedAt: 'desc' },
-      include: { bike: true },
-    })
-  })
+  zodApp.get(
+    '/active',
+    {
+      preHandler: authenticate,
+      schema: {
+        security: [{ bearerAuth: [] }],
+        response: { 200: activeRideResponseSchema },
+      },
+    },
+    async (request) => {
+      const userId = request.user.id
+      const ride = await prisma.ride.findFirst({
+        where: { userId, endedAt: null },
+        include: { bike: true },
+      })
+
+      return ride ? toRideWithBicycle(ride) : null
+    },
+  )
+
+  zodApp.get(
+    '/history',
+    {
+      preHandler: authenticate,
+      schema: {
+        security: [{ bearerAuth: [] }],
+        response: { 200: rideHistoryResponseSchema },
+      },
+    },
+    async (request) => {
+      const userId = request.user.id
+      const rides = await prisma.ride.findMany({
+        where: { userId },
+        orderBy: { startedAt: 'desc' },
+        include: { bike: true },
+      })
+
+      return rides.map(toRideWithBicycle)
+    },
+  )
 }

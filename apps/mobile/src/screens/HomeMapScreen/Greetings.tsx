@@ -7,7 +7,7 @@ export function GreetingsCard({ name }: { name: string }) {
         Olá, {name} 👋
       </Text>
       <Text className="mt-1 text-[14px] leading-5 text-text-muted">
-        Escolha uma bike no mapa
+        Escolha uma bicicleta no mapa
       </Text>
     </View>
   );

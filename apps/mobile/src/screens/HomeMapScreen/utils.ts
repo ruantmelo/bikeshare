@@ -1,3 +1,4 @@
+import { NearbyBicycle } from '@bikeshare/contracts';
 import { Region } from "react-native-maps";
 import { colors } from "../../theme/colors";
 
@@ -18,12 +19,13 @@ export const BIKE_STATUS_COLORS = {
 } as const;
 
 export type BikeRecord = {
-  id: "BIKE_001" | "BIKE_002" | "BIKE_003" | "BIKE_004";
+  id: string;
   battery: string;
   status: BIKE_STATUS;
   note: string;
   available: boolean;
   coordinate: { latitude: number; longitude: number };
+  distanceMeters: number;
 };
 
 export type MapState = "loading" | "denied" | "failure" | "ready";
@@ -118,6 +120,18 @@ export function createBikes(userLocation: {
     available: bike.available,
     coordinate: coordinateFromOffset(userLocation, bike.distance, bike.bearing),
   })) as BikeRecord[];
+}
+
+export function nearbyBicycleToRecord(bicycle: NearbyBicycle): BikeRecord {
+  return {
+    id: bicycle.id,
+    battery: '—',
+    status: bicycle.status,
+    note: 'Bicicleta próxima',
+    available: bicycle.status === 'AVAILABLE',
+    coordinate: { latitude: bicycle.latitude, longitude: bicycle.longitude },
+    distanceMeters: bicycle.distanceMeters,
+  };
 }
 
 export function calculateDistanceMeters(

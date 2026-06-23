@@ -4,8 +4,15 @@
 
 - This app uses Expo SDK `56.0.0` (`expo` package `~56.0.12`).
 - Read the exact versioned docs at https://docs.expo.dev/versions/v56.0.0/ before writing Expo code.
+- This repository uses pnpm workspaces. Prefer `pnpm expo ...` from `apps/mobile`
+  or `pnpm --filter mobile exec expo ...` from the workspace root; avoid `npx expo ...`.
+- Android development build:
+  - `cd apps/mobile && pnpm expo run:android`
+  - `cd apps/mobile && pnpm expo start --dev-client`
+- Clear Metro cache with `pnpm expo start --clear --dev-client`; do not pass
+  `--clear` to `expo run:android` because it is not a supported argument.
 - If Expo Go hangs while loading over LAN, use tunnel mode:
-  - `npx expo start --tunnel -c`
+  - `pnpm expo start --tunnel --clear`
   - LAN mode can fail on networks that block device-to-device traffic, VPNs, firewalls, or isolated Wi-Fi.
 
 ## Project structure
@@ -41,7 +48,7 @@
 - Expo Router root layout `app/_layout.tsx` imports `../global.css`; keep that import for NativeWind styles.
 - `index.ts` is not the active entry while `package.json` uses `expo-router/entry`.
 - `metro.config.js` wraps Expo Metro with:
-  - `withNativeWind(config, { input: './global.css' })`
+  - `withNativeWind(config, { input: path.resolve(projectRoot, 'global.css'), configPath: path.resolve(projectRoot, 'tailwind.config.js') })`
 - `babel.config.js` uses:
   - `['babel-preset-expo', { jsxImportSource: 'nativewind' }]`
   - `nativewind/babel`
@@ -74,8 +81,8 @@
 ## Validation
 
 - Run TypeScript check after code changes:
-  - `npx tsc --noEmit`
+  - `pnpm exec tsc --noEmit`
 - Run Expo diagnostics when dependencies or config change:
-  - `npx expo-doctor`
+  - `pnpm expo-doctor`
 - For bundling sanity checks:
-  - `npx expo export --platform android --clear`
+  - `pnpm expo export --platform android --clear`

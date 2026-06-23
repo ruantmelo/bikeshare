@@ -9,6 +9,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useEffect } from "react";
 
 import { SessionProvider, useSession } from "../src/auth/SessionProvider";
+import { RideFlowProvider } from "../src/rides";
 import { colors } from "../src/theme/colors";
 
 const queryClient = new QueryClient();
@@ -17,11 +18,21 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <SessionProvider>
-        <SafeAreaProvider>
-          <RootNavigator />
-        </SafeAreaProvider>
+        <SessionScopedProviders />
       </SessionProvider>
     </QueryClientProvider>
+  );
+}
+
+function SessionScopedProviders() {
+  const { session } = useSession();
+
+  return (
+    <RideFlowProvider key={session?.user.id ?? 'anonymous'}>
+      <SafeAreaProvider>
+        <RootNavigator />
+      </SafeAreaProvider>
+    </RideFlowProvider>
   );
 }
 
@@ -61,6 +72,8 @@ function RootNavigator() {
         <Stack.Screen name="(auth)" />
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="insert-id" />
+        <Stack.Screen name="ride/current" />
+        <Stack.Screen name="ride/finished" />
       </Stack>
     </>
   );

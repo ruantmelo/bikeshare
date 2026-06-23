@@ -1,0 +1,13 @@
+{
+  "name": "bikeshare-ufal",
+  "private": true,
+  "packageManager": "pnpm@10.15.1",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build:contracts": "pnpm --filter @bikeshare/contracts build",
+    "postinstall": "pnpm build:contracts"
+  }
+}

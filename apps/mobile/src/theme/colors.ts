@@ -2,6 +2,9 @@ export const colors = {
   brand: {
     primary: "#FF8400",
   },
+  status: {
+    success: "#16A34A",
+  },
   background: {
     app: "#F2F3F0",
     map: "#E8ECE6",

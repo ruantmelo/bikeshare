@@ -1,4 +1,5 @@
 import { BikeStatus } from '@prisma/client'
+import { nearbyBicyclesResponseSchema } from '@bikeshare/contracts'
 import type { FastifyInstance } from 'fastify'
 import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import { z } from 'zod/v4'
@@ -30,12 +31,6 @@ const bikeListItemSchema = z.object({
   lng: z.number().nullable(),
   status: z.enum(BikeStatus),
   distance: z.number().nullable().optional(),
-})
-
-const nearbyBikeListItemSchema = bikeListItemSchema.extend({
-  lat: z.number(),
-  lng: z.number(),
-  distance: z.number(),
 })
 
 /** Distância em metros entre dois pontos (fórmula de Haversine). */
@@ -103,7 +98,7 @@ export default async function bikeRoutes(app: FastifyInstance) {
       schema: {
         security: [{ bearerAuth: [] }],
         querystring: nearbyBikesQuerySchema,
-        response: { 200: z.array(nearbyBikeListItemSchema) },
+        response: { 200: nearbyBicyclesResponseSchema },
       },
     },
     async (request) => {
@@ -115,10 +110,15 @@ export default async function bikeRoutes(app: FastifyInstance) {
 
       return bikes
         .map((bike) => ({
-          ...bike,
-          ...generateNearbyPosition(lat, lng, bike.id),
+          id: bike.id,
+          status: bike.status,
+          ...(() => {
+            const { lat: latitude, lng: longitude, distance: distanceMeters } =
+              generateNearbyPosition(lat, lng, bike.id)
+            return { latitude, longitude, distanceMeters }
+          })(),
         }))
-        .sort((a, b) => a.distance - b.distance)
+        .sort((a, b) => a.distanceMeters - b.distanceMeters)
     },
   )
 

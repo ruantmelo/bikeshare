@@ -36,25 +36,90 @@
 - After NativeWind config changes, restart Expo with cache clear:
 
 ```sh
-npx expo start -c
+cd apps/mobile
+pnpm expo start --clear --dev-client
 ```
+
+## Android development build
+
+This project uses pnpm workspaces. Run mobile Expo commands through pnpm from
+`apps/mobile` so the workspace dependencies and local Expo CLI are used.
+
+From a clean checkout, install dependencies and build shared contracts from the
+workspace root:
+
+```sh
+pnpm install
+```
+
+The root `postinstall` script runs `pnpm build:contracts`, which generates the
+`@bikeshare/contracts` package consumed by the mobile app.
+
+Configure the mobile environment:
+
+```sh
+cd apps/mobile
+cp .env.example .env
+```
+
+Set `EXPO_PUBLIC_API_URL` to a URL reachable from the Android device/emulator.
+For a physical device, use the host machine IP, for example:
+
+```env
+EXPO_PUBLIC_API_URL=http://192.168.1.10:3000
+```
+
+Build and install the Android development build:
+
+```sh
+cd apps/mobile
+pnpm expo run:android
+```
+
+Start Metro for the installed development build:
+
+```sh
+cd apps/mobile
+pnpm expo start --dev-client
+```
+
+If Metro, NativeWind styles, or workspace resolution look stale, clear Metro's
+cache:
+
+```sh
+cd apps/mobile
+pnpm expo start --clear --dev-client
+```
+
+Do not pass `--clear` to `expo run:android`; that command does not accept it.
+To clear native Android build caches, remove the generated native cache folders
+before rebuilding:
+
+```sh
+cd apps/mobile
+rm -rf android/.gradle android/build android/app/build .expo
+pnpm expo run:android
+```
+
+Prefer `pnpm expo ...` or `pnpm --filter mobile exec expo ...` over `npx expo ...`
+in this repository.
 
 ## Validation
 
 After mobile code changes, run from `apps/mobile`:
 
 ```sh
-npx tsc --noEmit
+pnpm exec tsc --noEmit
 ```
 
 When dependencies or Expo config change, also run:
 
 ```sh
-npx expo-doctor
+pnpm expo-doctor
 ```
 
 For Android bundle sanity checks, run:
 
 ```sh
-npx expo export --platform android --clear
+pnpm expo export --platform android --clear
 ```

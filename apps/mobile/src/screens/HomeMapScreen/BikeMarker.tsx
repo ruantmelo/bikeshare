@@ -18,10 +18,7 @@ export function BikeMarker({ bike, isSelected = false, onPress }: BikeMarkerProp
       key={`${bike.id}-${isSelected ? "selected" : "default"}`}
       coordinate={bike.coordinate}
       zIndex={isSelected ? 10 : 1}
-      onPress={() => {
-        console.log("[BikeMarker] Pressed bike", bike.id);
-        onPress(bike.id);
-      }}
+      onPress={() => onPress(bike.id)}
       tracksViewChanges
     >
       <View className="items-center justify-center">

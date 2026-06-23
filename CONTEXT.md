@@ -19,3 +19,7 @@ _Avoid_: Random bike, map marker
 **User Location**:
 The User's foreground device position used to center nearby Bicycle discovery while the app screen is open.
 _Avoid_: Background tracking, live navigation location
+
+**Ride**:
+The period of Bicycle use started by a User and recorded by BikeShare UFAL until the User finishes it.
+_Avoid_: Rental, rent flow, trip

@@ -5,7 +5,7 @@ import {
   type StyleProp,
   type ViewStyle,
 } from "react-native";
-import { BikeRecord, calculateDistanceMeters, formatDistance } from "./utils";
+import { BIKE_STATUS_LABELS, BikeRecord, calculateDistanceMeters, formatDistance } from "./utils";
 import { Button, IconButton } from "@/components";
 import { BatteryCharging, Hash, Unlock, X } from "lucide-react-native";
 import { colors } from "../../theme/colors";
@@ -103,7 +103,7 @@ export function BikeCard({
               Situação
             </Text>
             <Text className="text-[15px] font-bold text-text-primary">
-              {selectedBike.status}
+              {BIKE_STATUS_LABELS[selectedBike.status]}
             </Text>
           </View>
         </View>
@@ -117,11 +117,11 @@ export function BikeCard({
           }
           className="mt-4 h-[48px]"
         >
-          Alugar esta bike
+          Alugar esta bicicleta
         </Button>
       ) : (
         <Button disabled className="mt-4 h-[48px]">
-          Bike indisponível
+          Bicicleta indisponível
         </Button>
       )}
     </View>
