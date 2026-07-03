@@ -27,8 +27,8 @@ const nearbyBikesQuerySchema = z.object({
 
 const bikeListItemSchema = z.object({
   id: z.string(),
-  lat: z.number().nullable(),
-  lng: z.number().nullable(),
+  latitude: z.number().nullable(),
+  longitude: z.number().nullable(),
   status: z.enum(BikeStatus),
   distance: z.number().nullable().optional(),
 })
@@ -82,8 +82,8 @@ function generateNearbyPosition(userLat: number, userLng: number, bikeId: string
     )
 
   return {
-    lat: (lat2 * 180) / Math.PI,
-    lng: ((((lng2 * 180) / Math.PI + 180) % 360) + 360) % 360 - 180,
+    latitude: (lat2 * 180) / Math.PI,
+    longitude: ((((lng2 * 180) / Math.PI + 180) % 360) + 360) % 360 - 180,
     distance: Math.round(distance),
   }
 }
@@ -105,19 +105,24 @@ export default async function bikeRoutes(app: FastifyInstance) {
       const { lat, lng } = request.query
       const bikes = await prisma.bike.findMany({
         where: { status: BikeStatus.AVAILABLE },
-        select: { id: true, status: true },
+        select: { id: true, status: true, latitude: true, longitude: true },
       })
 
       return bikes
-        .map((bike) => ({
-          id: bike.id,
-          status: bike.status,
-          ...(() => {
-            const { lat: latitude, lng: longitude, distance: distanceMeters } =
-              generateNearbyPosition(lat, lng, bike.id)
-            return { latitude, longitude, distanceMeters }
-          })(),
-        }))
+        .map((bike) => {
+          if (bike.latitude !== null && bike.longitude !== null) {
+            return {
+              id: bike.id,
+              status: bike.status,
+              latitude: bike.latitude,
+              longitude: bike.longitude,
+              distanceMeters: Math.round(haversineMeters(lat, lng, bike.latitude, bike.longitude)),
+            }
+          }
+
+          const { latitude, longitude, distance: distanceMeters } = generateNearbyPosition(lat, lng, bike.id)
+          return { id: bike.id, status: bike.status, latitude, longitude, distanceMeters }
+        })
         .sort((a, b) => a.distanceMeters - b.distanceMeters)
     },
   )
@@ -137,7 +142,7 @@ export default async function bikeRoutes(app: FastifyInstance) {
 
       const bikes = await prisma.bike.findMany({
         where: { status: BikeStatus.AVAILABLE },
-        select: { id: true, lat: true, lng: true, status: true },
+        select: { id: true, latitude: true, longitude: true, status: true },
       })
 
       // Sem posição do usuário: retorna a lista como está.
@@ -150,8 +155,8 @@ export default async function bikeRoutes(app: FastifyInstance) {
         .map((bike) => ({
           ...bike,
           distance:
-            bike.lat !== null && bike.lng !== null
-              ? Math.round(haversineMeters(lat, lng, bike.lat, bike.lng))
+            bike.latitude !== null && bike.longitude !== null
+              ? Math.round(haversineMeters(lat, lng, bike.latitude, bike.longitude))
               : null,
         }))
         .sort((a, b) => {
@@ -171,7 +176,7 @@ export default async function bikeRoutes(app: FastifyInstance) {
     if (existing) return reply.code(400).send({ error: 'Bike já cadastrada' })
 
     const bike = await prisma.bike.create({
-      data: { id, status: BikeStatus.AVAILABLE },
+      data: { id, status: BikeStatus.UNREGISTERED },
     })
 
     return bike

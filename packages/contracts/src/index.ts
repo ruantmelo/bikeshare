@@ -1,10 +1,16 @@
 import { z } from 'zod'
 
-export const bicycleStatusValues = ['UNREGISTERED', 'AVAILABLE', 'IN_USE', 'ERROR'] as const
+export const bicycleStatusValues = ['UNREGISTERED', 'AVAILABLE', 'RESERVED', 'IN_USE', 'ERROR'] as const
 
 export const bicycleStatusSchema = z.enum(bicycleStatusValues)
 
 export type BicycleStatus = z.infer<typeof bicycleStatusSchema>
+
+export const rideStatusValues = ['RESERVED', 'IN_USE', 'COMPLETED', 'CANCELLED', 'EXPIRED'] as const
+
+export const rideStatusSchema = z.enum(rideStatusValues)
+
+export type RideStatus = z.infer<typeof rideStatusSchema>
 
 export const nearbyBicycleSchema = z.object({
   id: z.string(),
@@ -38,7 +44,9 @@ export type StartRideRequest = z.infer<typeof startRideRequestSchema>
 export const rideWithBicycleSchema = z.object({
   id: z.string(),
   bicycleId: z.string(),
-  startedAt: z.string().datetime(),
+  status: rideStatusSchema,
+  reservedAt: z.string().datetime(),
+  startedAt: z.string().datetime().nullable(),
   endedAt: z.string().datetime().nullable(),
   bicycle: bicycleSummarySchema,
 })
@@ -58,6 +66,7 @@ export const rideErrorCodeValues = [
   'BICYCLE_NOT_AVAILABLE',
   'ACTIVE_RIDE_EXISTS',
   'ACTIVE_RIDE_NOT_FOUND',
+  'COMMAND_PUBLISH_FAILED',
 ] as const
 
 export const rideErrorCodeSchema = z.enum(rideErrorCodeValues)

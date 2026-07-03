@@ -7,11 +7,12 @@ import {
   type RideErrorResponse,
   type RideWithBicycle,
 } from '@bikeshare/contracts'
-import { BikeStatus } from '@prisma/client'
+import { BicycleEventType, BikeStatus, RideStatus } from '@prisma/client'
 import type { FastifyInstance } from 'fastify'
 import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import prisma from '../prisma/client.js'
 import { authenticate } from '../middleware/auth.js'
+import { publishBikeCommand } from '../mqtt/subscriber.js'
 
 type RideWithBike = Awaited<ReturnType<typeof findRideWithBike>>
 
@@ -23,13 +24,15 @@ function toRideWithBicycle(ride: NonNullable<RideWithBike>): RideWithBicycle {
   return {
     id: ride.id,
     bicycleId: ride.bikeId,
-    startedAt: ride.startedAt.toISOString(),
+    status: ride.status,
+    reservedAt: ride.reservedAt.toISOString(),
+    startedAt: ride.startedAt?.toISOString() ?? null,
     endedAt: ride.endedAt?.toISOString() ?? null,
     bicycle: {
       id: ride.bike.id,
       status: ride.bike.status,
-      latitude: ride.bike.lat,
-      longitude: ride.bike.lng,
+      latitude: ride.bike.latitude,
+      longitude: ride.bike.longitude,
     },
   }
 }
@@ -55,6 +58,7 @@ export default async function rideRoutes(app: FastifyInstance) {
           200: rideWithBicycleSchema,
           400: rideErrorResponseSchema,
           404: rideErrorResponseSchema,
+          502: rideErrorResponseSchema,
         },
       },
     },
@@ -69,17 +73,61 @@ export default async function rideRoutes(app: FastifyInstance) {
       }
 
       const activeRide = await prisma.ride.findFirst({
-        where: { userId, endedAt: null },
+        where: { userId, status: { in: [RideStatus.RESERVED, RideStatus.IN_USE] }, endedAt: null },
       })
       if (activeRide) return reply.code(400).send(rideError('ACTIVE_RIDE_EXISTS', 'Você já tem uma corrida ativa'))
 
+      const reservedAt = new Date()
+      const reservedUntil = new Date(reservedAt.getTime() + 60_000)
+
       const ride = await prisma.ride.create({
-        data: { userId, bikeId: bicycleId },
+        data: { userId, bikeId: bicycleId, status: RideStatus.RESERVED, reservedAt },
       })
 
       const updatedBike = await prisma.bike.update({
         where: { id: bicycleId },
-        data: { status: BikeStatus.IN_USE },
+        data: { status: BikeStatus.RESERVED, reservedUntil },
+      })
+
+      try {
+        await publishBikeCommand(bicycleId, {
+          protocolVersion: 1,
+          type: 'rent_authorize',
+          rental_id: ride.id,
+        })
+      } catch {
+        const failedAt = new Date()
+        await prisma.ride.update({
+          where: { id: ride.id },
+          data: { status: RideStatus.CANCELLED, endedAt: failedAt },
+        })
+        await prisma.bike.update({
+          where: { id: bicycleId },
+          data: { status: BikeStatus.AVAILABLE, reservedUntil: null },
+        })
+        await prisma.bicycleEvent.create({
+          data: {
+            bikeId: bicycleId,
+            rideId: ride.id,
+            event: BicycleEventType.command_publish_failed,
+            status: BikeStatus.AVAILABLE,
+            reason: 'mqtt_publish_failed',
+            createdAt: failedAt,
+          },
+        })
+        return reply
+          .code(502)
+          .send(rideError('COMMAND_PUBLISH_FAILED', 'Não foi possível autorizar a bicicleta'))
+      }
+
+      await prisma.bicycleEvent.create({
+        data: {
+          bikeId: bicycleId,
+          rideId: ride.id,
+          event: BicycleEventType.reservation_started,
+          status: BikeStatus.RESERVED,
+          createdAt: reservedAt,
+        },
       })
 
       return toRideWithBicycle({ ...ride, bike: updatedBike })
@@ -102,18 +150,19 @@ export default async function rideRoutes(app: FastifyInstance) {
       const userId = request.user.id
 
       const ride = await prisma.ride.findFirst({
-        where: { userId, endedAt: null },
+        where: { userId, status: { in: [RideStatus.RESERVED, RideStatus.IN_USE] }, endedAt: null },
       })
       if (!ride) return reply.code(404).send(rideError('ACTIVE_RIDE_NOT_FOUND', 'Nenhuma corrida ativa'))
 
+      const endedAt = new Date()
       const updated = await prisma.ride.update({
         where: { id: ride.id },
-        data: { endedAt: new Date() },
+        data: { status: RideStatus.COMPLETED, endedAt },
       })
 
       const updatedBike = await prisma.bike.update({
         where: { id: ride.bikeId },
-        data: { status: BikeStatus.AVAILABLE },
+        data: { status: BikeStatus.AVAILABLE, reservedUntil: null },
       })
 
       return toRideWithBicycle({ ...updated, bike: updatedBike })
@@ -132,7 +181,7 @@ export default async function rideRoutes(app: FastifyInstance) {
     async (request) => {
       const userId = request.user.id
       const ride = await prisma.ride.findFirst({
-        where: { userId, endedAt: null },
+        where: { userId, status: { in: [RideStatus.RESERVED, RideStatus.IN_USE] }, endedAt: null },
         include: { bike: true },
       })
 
@@ -153,7 +202,7 @@ export default async function rideRoutes(app: FastifyInstance) {
       const userId = request.user.id
       const rides = await prisma.ride.findMany({
         where: { userId },
-        orderBy: { startedAt: 'desc' },
+        orderBy: { reservedAt: 'desc' },
         include: { bike: true },
       })
 

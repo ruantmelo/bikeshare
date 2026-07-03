@@ -11,6 +11,7 @@ import authRoutes from './routes/auth.js'
 import bikeRoutes from './routes/bikes.js'
 import rideRoutes from './routes/rides.js'
 import { startMqttSubscriber } from './mqtt/subscriber.js'
+import { startReservationExpirationWorker } from './reservations/expiration.js'
 import type { BroadcastMessage } from './types/index.js'
 
 dotenv.config()
@@ -78,5 +79,6 @@ export function broadcast(data: BroadcastMessage) {
 }
 
 startMqttSubscriber(broadcast)
+startReservationExpirationWorker(app.log)
 
 export default app
