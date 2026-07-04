@@ -78,7 +78,7 @@ export function broadcast(data: BroadcastMessage) {
   }
 }
 
-startMqttSubscriber(broadcast)
+startMqttSubscriber(broadcast, app.log)
 startReservationExpirationWorker(app.log)
 
 export default app

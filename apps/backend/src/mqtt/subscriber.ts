@@ -1,6 +1,7 @@
 import { BicycleEventType, BikeStatus, RideStatus, type Prisma } from '@prisma/client'
 import mqtt, { type MqttClient } from 'mqtt'
 import dotenv from 'dotenv'
+import type { FastifyBaseLogger } from 'fastify'
 import { z } from 'zod/v4'
 import prisma from '../prisma/client.js'
 import type { BroadcastMessage } from '../types/index.js'
@@ -60,6 +61,10 @@ function parseTopic(topic: string) {
 
 function normalizeRideId(rideId: string | null | undefined) {
   return rideId ?? undefined
+}
+
+function nullableRideId(rideId: string | null | undefined) {
+  return rideId ?? null
 }
 
 async function findRideForForeignKey(bikeId: string, rideId: string | null | undefined) {
@@ -187,6 +192,19 @@ async function handleTelemetry(payload: TelemetryPayload, broadcast: (data: Broa
   const receivedAt = new Date()
   const rideForForeignKey = await findRideForForeignKey(payload.bikeId, payload.rideId)
   const rideId = normalizeRideId(rideForForeignKey?.id)
+  const gnss = payload.gnss.valid
+    ? {
+        latitude: payload.gnss.latitude ?? null,
+        longitude: payload.gnss.longitude ?? null,
+        altitudeMeters: payload.gnss.altitudeMeters ?? null,
+        accuracyMeters: payload.gnss.accuracyMeters ?? null,
+      }
+    : {
+        latitude: null,
+        longitude: null,
+        altitudeMeters: null,
+        accuracyMeters: null,
+      }
 
   const telemetry = await prisma.telemetry.create({
     data: {
@@ -196,10 +214,10 @@ async function handleTelemetry(payload: TelemetryPayload, broadcast: (data: Broa
       uptimeMs: BigInt(payload.uptimeMs),
       speedMetersPerSecond: payload.speedMetersPerSecond ?? null,
       gnssValid: payload.gnss.valid,
-      latitude: payload.gnss.latitude ?? null,
-      longitude: payload.gnss.longitude ?? null,
-      altitudeMeters: payload.gnss.altitudeMeters ?? null,
-      accuracyMeters: payload.gnss.accuracyMeters ?? null,
+      latitude: gnss.latitude,
+      longitude: gnss.longitude,
+      altitudeMeters: gnss.altitudeMeters,
+      accuracyMeters: gnss.accuracyMeters,
       motionValid: payload.motion.valid,
       moving: payload.motion.moving ?? null,
       accelX: payload.motion.accel?.x ?? null,
@@ -216,8 +234,8 @@ async function handleTelemetry(payload: TelemetryPayload, broadcast: (data: Broa
   await prisma.bike.update({
     where: { id: payload.bikeId },
     data: {
-      latitude: payload.gnss.valid ? (payload.gnss.latitude ?? null) : undefined,
-      longitude: payload.gnss.valid ? (payload.gnss.longitude ?? null) : undefined,
+      latitude: gnss.latitude,
+      longitude: gnss.longitude,
       speedMetersPerSecond: payload.speedMetersPerSecond ?? null,
       lastTelemetryAt: receivedAt,
     },
@@ -228,7 +246,7 @@ async function handleTelemetry(payload: TelemetryPayload, broadcast: (data: Broa
   broadcast({
     type: 'telemetry',
     bikeId: payload.bikeId,
-    rideId: payload.rideId ?? null,
+    rideId: nullableRideId(rideId),
     status: payload.status,
     latitude: telemetry.latitude,
     longitude: telemetry.longitude,
@@ -330,18 +348,18 @@ export async function publishBikeCommand(bikeId: string, command: object) {
   })
 }
 
-export function startMqttSubscriber(broadcast: (data: BroadcastMessage) => void) {
+export function startMqttSubscriber(broadcast: (data: BroadcastMessage) => void, log: FastifyBaseLogger) {
   mqttClient = mqtt.connect(process.env.MQTT_BROKER ?? '')
 
   mqttClient.on('connect', () => {
-    console.log('MQTT conectado')
+    log.info('MQTT conectado')
     mqttClient?.subscribe(['bikes/+/telemetry', 'bikes/+/events'])
   })
 
   mqttClient.on('message', async (topic, message) => {
     const topicParts = parseTopic(topic)
     if (!topicParts) {
-      console.error('Tópico MQTT inválido:', topic)
+      log.error({ topic }, 'Tópico MQTT inválido')
       return
     }
 
@@ -349,36 +367,40 @@ export function startMqttSubscriber(broadcast: (data: BroadcastMessage) => void)
     try {
       rawPayload = JSON.parse(message.toString())
     } catch {
-      console.error('Payload MQTT inválido:', message.toString())
+      log.error({ payload: message.toString() }, 'Payload MQTT inválido')
       return
     }
 
     const schema = topicParts.type === 'telemetry' ? telemetryPayloadSchema : eventPayloadSchema
     const parsed = schema.safeParse(rawPayload)
     if (!parsed.success) {
-      console.error('Payload MQTT fora do protocolo:', parsed.error.issues)
+      log.error({ issues: parsed.error.issues }, 'Payload MQTT fora do protocolo')
       return
     }
 
     if (parsed.data.bikeId !== topicParts.bikeId) {
-      console.error('Payload MQTT com bikeId divergente:', { topic, bikeId: parsed.data.bikeId })
+      log.error({ topic, bikeId: parsed.data.bikeId }, 'Payload MQTT com bikeId divergente')
       return
     }
 
     const bike = await prisma.bike.findUnique({ where: { id: topicParts.bikeId } })
     if (!bike) {
-      console.error('Payload MQTT de bicicleta desconhecida:', topicParts.bikeId)
+      log.error({ bikeId: topicParts.bikeId }, 'Payload MQTT de bicicleta desconhecida')
       return
     }
 
-    if (topicParts.type === 'telemetry') {
-      await handleTelemetry(parsed.data as TelemetryPayload, broadcast)
-    } else {
-      await handleEvent(parsed.data as EventPayload, broadcast)
+    try {
+      if (topicParts.type === 'telemetry') {
+        await handleTelemetry(parsed.data as TelemetryPayload, broadcast)
+      } else {
+        await handleEvent(parsed.data as EventPayload, broadcast)
+      }
+    } catch (error) {
+      log.error({ err: error, topic }, 'Erro ao processar mensagem MQTT')
     }
   })
 
   mqttClient.on('error', (err) => {
-    console.error('Erro MQTT:', err.message)
+    log.error({ err }, 'Erro MQTT')
   })
 }

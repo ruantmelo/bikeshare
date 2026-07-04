@@ -11,25 +11,29 @@ async function expireOverdueReservations(log: FastifyBaseLogger) {
       status: BikeStatus.RESERVED,
       reservedUntil: { lte: now },
     },
-    include: {
-      rides: {
+    select: { id: true },
+  })
+
+  let expiredCount = 0
+  for (const bike of overdueBikes) {
+    await prisma.$transaction(async (tx) => {
+      const expiredBike = await tx.bike.updateMany({
         where: {
+          id: bike.id,
+          status: BikeStatus.RESERVED,
+          reservedUntil: { lte: now },
+        },
+        data: { status: BikeStatus.AVAILABLE, reservedUntil: null },
+      })
+      if (expiredBike.count === 0) return
+
+      const pendingRide = await tx.ride.findFirst({
+        where: {
+          bikeId: bike.id,
           status: RideStatus.RESERVED,
           endedAt: null,
         },
         orderBy: { reservedAt: 'desc' },
-        take: 1,
-      },
-    },
-  })
-
-  for (const bike of overdueBikes) {
-    const pendingRide = bike.rides[0]
-
-    await prisma.$transaction(async (tx) => {
-      await tx.bike.update({
-        where: { id: bike.id },
-        data: { status: BikeStatus.AVAILABLE, reservedUntil: null },
       })
 
       if (pendingRide) {
@@ -49,11 +53,12 @@ async function expireOverdueReservations(log: FastifyBaseLogger) {
           createdAt: now,
         },
       })
+      expiredCount += 1
     })
   }
 
-  if (overdueBikes.length > 0) {
-    log.info({ count: overdueBikes.length }, 'Reservas expiradas')
+  if (expiredCount > 0) {
+    log.info({ count: expiredCount }, 'Reservas expiradas')
   }
 }
 

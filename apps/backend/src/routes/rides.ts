@@ -80,14 +80,24 @@ export default async function rideRoutes(app: FastifyInstance) {
       const reservedAt = new Date()
       const reservedUntil = new Date(reservedAt.getTime() + 60_000)
 
-      const ride = await prisma.ride.create({
-        data: { userId, bikeId: bicycleId, status: RideStatus.RESERVED, reservedAt },
-      })
+      const { ride, updatedBike } = await prisma.$transaction(async (tx) => {
+        const claimedBike = await tx.bike.updateMany({
+          where: { id: bicycleId, status: BikeStatus.AVAILABLE },
+          data: { status: BikeStatus.RESERVED, reservedUntil },
+        })
 
-      const updatedBike = await prisma.bike.update({
-        where: { id: bicycleId },
-        data: { status: BikeStatus.RESERVED, reservedUntil },
+        if (claimedBike.count === 0) return { ride: null, updatedBike: null }
+
+        const ride = await tx.ride.create({
+          data: { userId, bikeId: bicycleId, status: RideStatus.RESERVED, reservedAt },
+        })
+        const updatedBike = await tx.bike.findUniqueOrThrow({ where: { id: bicycleId } })
+
+        return { ride, updatedBike }
       })
+      if (!ride || !updatedBike) {
+        return reply.code(400).send(rideError('BICYCLE_NOT_AVAILABLE', 'Bicicleta não disponível'))
+      }
 
       try {
         await publishBikeCommand(bicycleId, {
@@ -155,9 +165,10 @@ export default async function rideRoutes(app: FastifyInstance) {
       if (!ride) return reply.code(404).send(rideError('ACTIVE_RIDE_NOT_FOUND', 'Nenhuma corrida ativa'))
 
       const endedAt = new Date()
+      const nextRideStatus = ride.status === RideStatus.RESERVED ? RideStatus.CANCELLED : RideStatus.COMPLETED
       const updated = await prisma.ride.update({
         where: { id: ride.id },
-        data: { status: RideStatus.COMPLETED, endedAt },
+        data: { status: nextRideStatus, endedAt },
       })
 
       const updatedBike = await prisma.bike.update({

@@ -42,6 +42,8 @@ export function BikesPage({ bikes, onBikeAdded, onBikeDeleted }) {
   }
 
   const bikeList = Object.values(bikes)
+  const formatSpeed = (speedMetersPerSecond) =>
+    speedMetersPerSecond != null ? `${(Number(speedMetersPerSecond) * 3.6).toFixed(1)} km/h` : '—'
 
   return (
     <div className="p-6">
@@ -87,9 +89,11 @@ export function BikesPage({ bikes, onBikeAdded, onBikeDeleted }) {
                 <TableRow key={bike.id}>
                   <TableCell className="font-mono font-medium">{bike.id}</TableCell>
                   <TableCell><StatusBadge status={bike.status} /></TableCell>
-                  <TableCell>{bike.speed != null ? `${Number(bike.speed).toFixed(1)} km/h` : '—'}</TableCell>
+                  <TableCell>{formatSpeed(bike.speedMetersPerSecond)}</TableCell>
                   <TableCell className="font-mono text-xs text-muted-foreground">
-                    {bike.lat && bike.lng ? `${bike.lat.toFixed(4)}, ${bike.lng.toFixed(4)}` : '—'}
+                    {bike.latitude != null && bike.longitude != null
+                      ? `${bike.latitude.toFixed(4)}, ${bike.longitude.toFixed(4)}`
+                      : '—'}
                   </TableCell>
                   <TableCell className="text-muted-foreground text-sm">
                     {bike.updatedAt ? new Date(bike.updatedAt).toLocaleString('pt-BR') : '—'}

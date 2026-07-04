@@ -1,21 +1,21 @@
 import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet'
 import { Card, CardContent } from '@/components/ui/card'
-import { StatusBadge } from '@/components/StatusBadge'
 import 'leaflet/dist/leaflet.css'
 
 const statusColors = {
-  available: '#2dc653',
-  in_use: '#4895ef',
-  error: '#e63946',
-  unregistered: '#8ba0b4',
+  AVAILABLE: '#2dc653',
+  RESERVED: '#f4a261',
+  IN_USE: '#4895ef',
+  ERROR: '#e63946',
+  UNREGISTERED: '#8ba0b4',
 }
 
 function Stats({ bikes }) {
   const values = Object.values(bikes)
   const total = values.length
-  const available = values.filter(b => b.status === 'available').length
-  const inUse = values.filter(b => b.status === 'in_use').length
-  const error = values.filter(b => b.status === 'error').length
+  const available = values.filter(b => b.status === 'AVAILABLE').length
+  const inUse = values.filter(b => b.status === 'IN_USE').length
+  const error = values.filter(b => b.status === 'ERROR').length
 
   return (
     <div className="grid grid-cols-4 gap-3 p-4">
@@ -37,7 +37,9 @@ function Stats({ bikes }) {
 }
 
 export function MapPage({ bikes }) {
-  const bikesWithLocation = Object.values(bikes).filter(b => b.lat && b.lng)
+  const bikesWithLocation = Object.values(bikes).filter(
+    b => b.latitude != null && b.longitude != null,
+  )
 
   return (
     <div className="flex flex-col h-full">
@@ -55,7 +57,7 @@ export function MapPage({ bikes }) {
           {bikesWithLocation.map(bike => (
             <CircleMarker
               key={bike.id}
-              center={[bike.lat, bike.lng]}
+              center={[bike.latitude, bike.longitude]}
               radius={10}
               pathOptions={{
                 fillColor: statusColors[bike.status] || '#8ba0b4',
@@ -67,7 +69,9 @@ export function MapPage({ bikes }) {
               <Popup>
                 <b>{bike.id}</b><br />
                 Status: {bike.status}<br />
-                {bike.speed != null && <>Velocidade: {Number(bike.speed).toFixed(1)} km/h</>}
+                {bike.speedMetersPerSecond != null && (
+                  <>Velocidade: {(Number(bike.speedMetersPerSecond) * 3.6).toFixed(1)} km/h</>
+                )}
               </Popup>
             </CircleMarker>
           ))}
