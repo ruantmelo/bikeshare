@@ -7,7 +7,13 @@ export function cn(...inputs) {
 
 export function statusLabel(status) {
   const map = {
+    AVAILABLE: 'Disponível',
+    RESERVED: 'Reservada',
+    IN_USE: 'Em uso',
+    ERROR: 'Erro',
+    UNREGISTERED: 'Não registrada',
     available: 'Disponível',
+    reserved: 'Reservada',
     in_use: 'Em uso',
     error: 'Erro',
     unregistered: 'Não registrada',

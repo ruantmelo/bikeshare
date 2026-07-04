@@ -1,0 +1,3 @@
+# Reserve Rides before Bicycle use starts
+
+BikeShare UFAL will expose `RESERVED` as a public Bicycle Status and create a Ride when a User reserves a Bicycle, before physical use starts. The Ride will have an explicit lifecycle status, with `reservedAt` recording authorization time and nullable `startedAt` recording when firmware reports actual use, because the backend needs a durable Ride ID to authorize firmware while the UI and database still need to distinguish reserved, in-use, completed, cancelled, and expired Rides. The backend will actively expire overdue reservations and record a Bicycle Event when it does, rather than relying only on firmware MQTT events, so the database and UI recover even when a reservation-expired message is missed.

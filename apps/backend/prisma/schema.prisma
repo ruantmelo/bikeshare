@@ -14,8 +14,27 @@ enum UserRole {
 enum BikeStatus {
   UNREGISTERED
   AVAILABLE
+  RESERVED
   IN_USE
   ERROR
+}
+
+enum RideStatus {
+  RESERVED
+  IN_USE
+  COMPLETED
+  CANCELLED
+  EXPIRED
+}
+
+enum BicycleEventType {
+  bicycle_online
+  reservation_started
+  reservation_expired
+  ride_started
+  ride_ended
+  command_rejected
+  command_publish_failed
 }
 
 model User {
@@ -28,32 +47,68 @@ model User {
 }
 
 model Bike {
-  id        String      @id
-  status    BikeStatus  @default(UNREGISTERED)
-  lat       Float?
-  lng       Float?
-  speed     Float?
-  updatedAt DateTime    @updatedAt
-  rides     Ride[]
-  telemetry Telemetry[]
+  id                   String           @id
+  status               BikeStatus       @default(UNREGISTERED)
+  latitude             Float?
+  longitude            Float?
+  speedMetersPerSecond Float?
+  reservedUntil        DateTime?
+  lastTelemetryAt      DateTime?
+  updatedAt            DateTime         @updatedAt
+  rides                Ride[]
+  telemetry            Telemetry[]
+  events               BicycleEvent[]
 }
 
 model Ride {
-  id        String    @id @default(uuid())
-  userId    String
-  bikeId    String
-  startedAt DateTime  @default(now())
-  endedAt   DateTime?
-  user      User      @relation(fields: [userId], references: [id])
-  bike      Bike      @relation(fields: [bikeId], references: [id])
+  id         String     @id @default(uuid())
+  userId     String
+  bikeId     String
+  status     RideStatus
+  reservedAt DateTime
+  startedAt  DateTime?
+  endedAt    DateTime?
+  user       User       @relation(fields: [userId], references: [id])
+  bike       Bike       @relation(fields: [bikeId], references: [id])
+  telemetry  Telemetry[]
+  events     BicycleEvent[]
 }
 
 model Telemetry {
-  id        String   @id @default(uuid())
+  id                   String     @id @default(uuid())
+  bikeId               String
+  rideId               String?
+  status               BikeStatus
+  uptimeMs             BigInt
+  speedMetersPerSecond Float?
+  gnssValid            Boolean
+  latitude             Float?
+  longitude            Float?
+  altitudeMeters       Float?
+  accuracyMeters       Float?
+  motionValid          Boolean
+  moving               Boolean?
+  accelX               Float?
+  accelY               Float?
+  accelZ               Float?
+  gyroX                Float?
+  gyroY                Float?
+  gyroZ                Float?
+  temperatureCelsius   Float?
+  createdAt            DateTime   @default(now())
+  bike                 Bike       @relation(fields: [bikeId], references: [id])
+  ride                 Ride?      @relation(fields: [rideId], references: [id])
+}
+
+model BicycleEvent {
+  id        String             @id @default(uuid())
   bikeId    String
-  lat       Float
-  lng       Float
-  speed     Float
-  createdAt DateTime @default(now())
-  bike      Bike     @relation(fields: [bikeId], references: [id])
+  rideId    String?
+  event     BicycleEventType
+  status    BikeStatus?
+  reason    String?
+  details   Json?
+  createdAt DateTime           @default(now())
+  bike      Bike               @relation(fields: [bikeId], references: [id])
+  ride      Ride?              @relation(fields: [rideId], references: [id])
 }

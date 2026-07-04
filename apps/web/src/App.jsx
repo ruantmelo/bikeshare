@@ -29,9 +29,10 @@ function ProtectedApp() {
             [msg.bikeId]: {
               ...prev[msg.bikeId],
               id: msg.bikeId,
-              lat: msg.lat,
-              lng: msg.lng,
-              speed: msg.speed,
+              latitude: msg.latitude,
+              longitude: msg.longitude,
+              speedMetersPerSecond: msg.speedMetersPerSecond,
+              status: msg.status,
               updatedAt: new Date().toISOString(),
             },
           }))
@@ -42,7 +43,7 @@ function ProtectedApp() {
             [msg.bikeId]: {
               ...prev[msg.bikeId],
               id: msg.bikeId,
-              status: msg.status,
+              status: msg.status ?? prev[msg.bikeId]?.status,
               updatedAt: new Date().toISOString(),
             },
           }))
