@@ -17,7 +17,8 @@ export default function FinishedRideRoute() {
   const totalTimeLabel = useMemo(() => {
     if (!endedRide) return null;
 
-    const startedAt = new Date(endedRide.startedAt).getTime();
+    const durationStartedAt = endedRide.startedAt ?? endedRide.reservedAt;
+    const startedAt = new Date(durationStartedAt).getTime();
     const endedAt = endedRide.endedAt ? new Date(endedRide.endedAt).getTime() : Date.now();
     return formatDuration(Math.floor((endedAt - startedAt) / 1000));
   }, [endedRide]);

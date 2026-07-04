@@ -13,6 +13,7 @@ import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import prisma from '../prisma/client.js'
 import { authenticate } from '../middleware/auth.js'
 import { publishBikeCommand } from '../mqtt/subscriber.js'
+import { encodeFirmwareRideId } from '../mqtt/ride-id.js'
 
 type RideWithBike = Awaited<ReturnType<typeof findRideWithBike>>
 
@@ -103,7 +104,7 @@ export default async function rideRoutes(app: FastifyInstance) {
         await publishBikeCommand(bicycleId, {
           protocolVersion: 1,
           type: 'rent_authorize',
-          rental_id: ride.id,
+          rental_id: encodeFirmwareRideId(ride.id),
         })
       } catch {
         const failedAt = new Date()
@@ -153,6 +154,7 @@ export default async function rideRoutes(app: FastifyInstance) {
         response: {
           200: rideWithBicycleSchema,
           404: rideErrorResponseSchema,
+          502: rideErrorResponseSchema,
         },
       },
     },
@@ -165,6 +167,29 @@ export default async function rideRoutes(app: FastifyInstance) {
       if (!ride) return reply.code(404).send(rideError('ACTIVE_RIDE_NOT_FOUND', 'Nenhuma corrida ativa'))
 
       const endedAt = new Date()
+
+      try {
+        await publishBikeCommand(ride.bikeId, {
+          protocolVersion: 1,
+          type: 'rent_cancel',
+          rental_id: encodeFirmwareRideId(ride.id),
+        })
+      } catch {
+        await prisma.bicycleEvent.create({
+          data: {
+            bikeId: ride.bikeId,
+            rideId: ride.id,
+            event: BicycleEventType.command_publish_failed,
+            status: null,
+            reason: 'mqtt_publish_failed',
+            createdAt: endedAt,
+          },
+        })
+        return reply
+          .code(502)
+          .send(rideError('COMMAND_PUBLISH_FAILED', 'Não foi possível finalizar a bicicleta'))
+      }
+
       const nextRideStatus = ride.status === RideStatus.RESERVED ? RideStatus.CANCELLED : RideStatus.COMPLETED
       const updated = await prisma.ride.update({
         where: { id: ride.id },

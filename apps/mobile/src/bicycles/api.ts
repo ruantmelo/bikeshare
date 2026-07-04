@@ -4,8 +4,8 @@ import { apiRequest } from '../api/client'
 
 export function getNearbyBicycles(latitude: number, longitude: number) {
   const query = new URLSearchParams({
-    lat: String(latitude),
-    lng: String(longitude),
+    latitude: String(latitude),
+    longitude: String(longitude),
   })
 
   return apiRequest<NearbyBicyclesResponse>(`/bikes/nearby?${query.toString()}`)

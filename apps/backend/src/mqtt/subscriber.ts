@@ -1,14 +1,55 @@
 import { BicycleEventType, BikeStatus, RideStatus, type Prisma } from '@prisma/client'
-import mqtt, { type MqttClient } from 'mqtt'
+import mqtt, { type IClientOptions, type MqttClient } from 'mqtt'
 import dotenv from 'dotenv'
 import type { FastifyBaseLogger } from 'fastify'
 import { z } from 'zod/v4'
 import prisma from '../prisma/client.js'
 import type { BroadcastMessage } from '../types/index.js'
+import { decodeFirmwareRideId } from './ride-id.js'
 
 dotenv.config()
 
 let mqttClient: MqttClient | null = null
+
+const DEFAULT_MQTT_BROKER = 'mqtt://localhost:1884'
+
+function optionalEnv(name: string) {
+  const value = process.env[name]?.trim()
+  return value ? value : undefined
+}
+
+function numberEnv(name: string, fallback: number) {
+  const raw = optionalEnv(name)
+  if (!raw) return fallback
+
+  const parsed = Number(raw)
+  return Number.isFinite(parsed) ? parsed : fallback
+}
+
+function booleanEnv(name: string, fallback: boolean) {
+  const raw = optionalEnv(name)
+  if (!raw) return fallback
+
+  if (['1', 'true', 'yes', 'on'].includes(raw.toLowerCase())) return true
+  if (['0', 'false', 'no', 'off'].includes(raw.toLowerCase())) return false
+  return fallback
+}
+
+function buildMqttOptions(): IClientOptions {
+  const username = optionalEnv('MQTT_USERNAME')
+  const password = optionalEnv('MQTT_PASSWORD')
+
+  return {
+    clientId: optionalEnv('MQTT_CLIENT_ID') ?? `bikeshare-backend-${process.pid}`,
+    clean: booleanEnv('MQTT_CLEAN', true),
+    connectTimeout: numberEnv('MQTT_CONNECT_TIMEOUT_MS', 30_000),
+    keepalive: numberEnv('MQTT_KEEPALIVE_SECONDS', 60),
+    reconnectPeriod: numberEnv('MQTT_RECONNECT_PERIOD_MS', 5_000),
+    rejectUnauthorized: booleanEnv('MQTT_REJECT_UNAUTHORIZED', true),
+    ...(username ? { username } : {}),
+    ...(password ? { password } : {}),
+  }
+}
 
 const vectorSchema = z.object({
   x: z.number(),
@@ -20,6 +61,7 @@ const telemetryPayloadSchema = z.object({
   protocolVersion: z.literal(1),
   bikeId: z.string().min(1),
   rideId: z.string().min(1).nullable().optional(),
+  rental_id: z.string().min(1).nullable().optional(),
   status: z.enum(BikeStatus),
   uptimeMs: z.number().int().nonnegative(),
   speedMetersPerSecond: z.number().nonnegative().nullable().optional(),
@@ -43,6 +85,7 @@ const eventPayloadSchema = z.object({
   protocolVersion: z.literal(1),
   bikeId: z.string().min(1),
   rideId: z.string().min(1).nullable().optional(),
+  rental_id: z.string().min(1).nullable().optional(),
   event: z.enum(BicycleEventType),
   status: z.enum(BikeStatus).nullable().optional(),
   reason: z.string().nullable().optional(),
@@ -60,26 +103,32 @@ function parseTopic(topic: string) {
 }
 
 function normalizeRideId(rideId: string | null | undefined) {
-  return rideId ?? undefined
+  return rideId ? decodeFirmwareRideId(rideId) : undefined
 }
 
 function nullableRideId(rideId: string | null | undefined) {
-  return rideId ?? null
+  return rideId ? decodeFirmwareRideId(rideId) : null
+}
+
+function payloadRideId(payload: { rideId?: string | null; rental_id?: string | null }) {
+  return payload.rideId ?? payload.rental_id
 }
 
 async function findRideForForeignKey(bikeId: string, rideId: string | null | undefined) {
-  if (!rideId) return null
+  const normalizedRideId = normalizeRideId(rideId)
+  if (!normalizedRideId) return null
   return prisma.ride.findFirst({
-    where: { id: rideId, bikeId },
+    where: { id: normalizedRideId, bikeId },
     select: { id: true },
   })
 }
 
 async function resolveActiveRide(bikeId: string, rideId: string | null | undefined) {
-  if (rideId) {
+  const normalizedRideId = normalizeRideId(rideId)
+  if (normalizedRideId) {
     return prisma.ride.findFirst({
       where: {
-        id: rideId,
+        id: normalizedRideId,
         bikeId,
         status: { in: [RideStatus.RESERVED, RideStatus.IN_USE] },
         endedAt: null,
@@ -100,17 +149,10 @@ async function resolveActiveRide(bikeId: string, rideId: string | null | undefin
 }
 
 async function reconcileTelemetryRide(payload: TelemetryPayload, receivedAt: Date) {
-  if (payload.status === BikeStatus.RESERVED) {
-    if (!payload.rideId) return null
+  const payloadRide = payloadRideId(payload)
 
-    const ride = await prisma.ride.findFirst({
-      where: {
-        id: payload.rideId,
-        bikeId: payload.bikeId,
-        status: RideStatus.RESERVED,
-        endedAt: null,
-      },
-    })
+  if (payload.status === BikeStatus.RESERVED) {
+    const ride = await resolveActiveRide(payload.bikeId, payloadRide)
     if (!ride) return null
 
     await prisma.bike.update({
@@ -121,7 +163,7 @@ async function reconcileTelemetryRide(payload: TelemetryPayload, receivedAt: Dat
   }
 
   if (payload.status === BikeStatus.IN_USE) {
-    const ride = await resolveActiveRide(payload.bikeId, payload.rideId)
+    const ride = await resolveActiveRide(payload.bikeId, payloadRide)
     if (ride && ride.status === RideStatus.RESERVED) {
       await prisma.ride.update({
         where: { id: ride.id },
@@ -146,7 +188,7 @@ async function reconcileTelemetryRide(payload: TelemetryPayload, receivedAt: Dat
   }
 
   if (payload.status === BikeStatus.AVAILABLE) {
-    const ride = await resolveActiveRide(payload.bikeId, payload.rideId)
+    const ride = await resolveActiveRide(payload.bikeId, payloadRide)
     if (ride) {
       const bike = await prisma.bike.findUnique({ where: { id: payload.bikeId } })
       const reservationExpired =
@@ -154,6 +196,14 @@ async function reconcileTelemetryRide(payload: TelemetryPayload, receivedAt: Dat
         bike?.reservedUntil !== null &&
         bike?.reservedUntil !== undefined &&
         bike.reservedUntil <= receivedAt
+
+      if (ride.status === RideStatus.RESERVED && !reservationExpired) {
+        await prisma.bike.update({
+          where: { id: payload.bikeId },
+          data: { status: BikeStatus.RESERVED },
+        })
+        return ride
+      }
 
       await prisma.ride.update({
         where: { id: ride.id },
@@ -190,7 +240,7 @@ async function reconcileTelemetryRide(payload: TelemetryPayload, receivedAt: Dat
 
 async function handleTelemetry(payload: TelemetryPayload, broadcast: (data: BroadcastMessage) => void) {
   const receivedAt = new Date()
-  const rideForForeignKey = await findRideForForeignKey(payload.bikeId, payload.rideId)
+  const rideForForeignKey = await findRideForForeignKey(payload.bikeId, payloadRideId(payload))
   const rideId = normalizeRideId(rideForForeignKey?.id)
   const gnss = payload.gnss.valid
     ? {
@@ -256,8 +306,8 @@ async function handleTelemetry(payload: TelemetryPayload, broadcast: (data: Broa
 
 async function handleEvent(payload: EventPayload, broadcast: (data: BroadcastMessage) => void) {
   const receivedAt = new Date()
-  const ride = await resolveActiveRide(payload.bikeId, payload.rideId)
-  const rideForForeignKey = ride ?? (await findRideForForeignKey(payload.bikeId, payload.rideId))
+  const ride = await resolveActiveRide(payload.bikeId, payloadRideId(payload))
+  const rideForForeignKey = ride ?? (await findRideForForeignKey(payload.bikeId, payloadRideId(payload)))
   const rideId = rideForForeignKey?.id ?? null
 
   await prisma.bicycleEvent.create({
@@ -349,11 +399,33 @@ export async function publishBikeCommand(bikeId: string, command: object) {
 }
 
 export function startMqttSubscriber(broadcast: (data: BroadcastMessage) => void, log: FastifyBaseLogger) {
-  mqttClient = mqtt.connect(process.env.MQTT_BROKER ?? '')
+  const brokerUrl = optionalEnv('MQTT_BROKER') ?? DEFAULT_MQTT_BROKER
+  const mqttOptions = buildMqttOptions()
+
+  mqttClient = mqtt.connect(brokerUrl, mqttOptions)
 
   mqttClient.on('connect', () => {
-    log.info('MQTT conectado')
-    mqttClient?.subscribe(['bikes/+/telemetry', 'bikes/+/events'])
+    log.info({ brokerUrl, clientId: mqttOptions.clientId }, 'MQTT conectado')
+    mqttClient?.subscribe(['bikes/+/telemetry', 'bikes/+/events'], { qos: 1 }, (error, granted) => {
+      if (error) {
+        log.error({ err: error }, 'Erro ao assinar tópicos MQTT')
+        return
+      }
+
+      log.info({ topics: granted?.map((topic) => topic.topic) }, 'Tópicos MQTT assinados')
+    })
+  })
+
+  mqttClient.on('reconnect', () => {
+    log.info({ brokerUrl, clientId: mqttOptions.clientId }, 'Reconectando ao MQTT')
+  })
+
+  mqttClient.on('offline', () => {
+    log.warn({ brokerUrl, clientId: mqttOptions.clientId }, 'MQTT offline')
+  })
+
+  mqttClient.on('close', () => {
+    log.warn({ brokerUrl, clientId: mqttOptions.clientId }, 'Conexão MQTT fechada')
   })
 
   mqttClient.on('message', async (topic, message) => {
@@ -401,6 +473,6 @@ export function startMqttSubscriber(broadcast: (data: BroadcastMessage) => void,
   })
 
   mqttClient.on('error', (err) => {
-    log.error({ err }, 'Erro MQTT')
+    log.error({ err, brokerUrl, clientId: mqttOptions.clientId }, 'Erro MQTT')
   })
 }

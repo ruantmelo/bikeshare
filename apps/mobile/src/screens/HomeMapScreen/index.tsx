@@ -46,7 +46,10 @@ export default function HomeMapScreen() {
     userLocation?.longitude,
   );
   const bikes = useMemo(
-    () => nearbyBicyclesQuery.data?.map(nearbyBicycleToRecord) ?? [],
+    () =>
+      nearbyBicyclesQuery.data
+        ?.map(nearbyBicycleToRecord)
+        .filter((bike) => bike.available) ?? [],
     [nearbyBicyclesQuery.data],
   );
   const selectedBike = useMemo(
@@ -227,7 +230,7 @@ export default function HomeMapScreen() {
       );
     }
 
-    if (nearbyBicyclesQuery.data && nearbyBicyclesQuery.data.length === 0) {
+    if (nearbyBicyclesQuery.data && bikes.length === 0) {
       return <MapStatusOverlay message="Nenhuma bicicleta disponível por perto." />;
     }
 

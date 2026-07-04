@@ -1,12 +1,13 @@
-import { NearbyBicycle } from '@bikeshare/contracts';
+import type { BicycleStatus, NearbyBicycle } from '@bikeshare/contracts';
 import { Region } from "react-native-maps";
 import { colors } from "../../theme/colors";
 
-export type BIKE_STATUS = "UNREGISTERED" | "AVAILABLE" | "IN_USE" | "ERROR";
+export type BIKE_STATUS = BicycleStatus;
 
 export const BIKE_STATUS_LABELS = {
   UNREGISTERED: "Não registrada",
   AVAILABLE: "Disponível",
+  RESERVED: "Reservada",
   IN_USE: "Em uso",
   ERROR: "Com problema",
 } as const;
@@ -14,6 +15,7 @@ export const BIKE_STATUS_LABELS = {
 export const BIKE_STATUS_COLORS = {
   UNREGISTERED: colors.text.muted,
   AVAILABLE: colors.brand.primary,
+  RESERVED: colors.text.warning,
   IN_USE: colors.text.warning,
   ERROR: colors.text.error,
 } as const;
@@ -119,7 +121,8 @@ export function createBikes(userLocation: {
     note: bike.note,
     available: bike.available,
     coordinate: coordinateFromOffset(userLocation, bike.distance, bike.bearing),
-  })) as BikeRecord[];
+    distanceMeters: bike.distance,
+  }));
 }
 
 export function nearbyBicycleToRecord(bicycle: NearbyBicycle): BikeRecord {

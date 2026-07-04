@@ -2,14 +2,14 @@ import "../global.css";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import * as NavigationBar from "expo-navigation-bar";
-import { Stack } from "expo-router";
+import { Stack, usePathname, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { Platform, Text, View } from "react-native";
+import { AppState, Platform, Text, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useEffect } from "react";
 
 import { SessionProvider, useSession } from "../src/auth/SessionProvider";
-import { RideFlowProvider } from "../src/rides";
+import { RideFlowProvider, useActiveRideQuery } from "../src/rides";
 import { colors } from "../src/theme/colors";
 
 const queryClient = new QueryClient();
@@ -30,10 +30,41 @@ function SessionScopedProviders() {
   return (
     <RideFlowProvider key={session?.user.id ?? 'anonymous'}>
       <SafeAreaProvider>
+        <ActiveRideRedirect />
         <RootNavigator />
       </SafeAreaProvider>
     </RideFlowProvider>
   );
+}
+
+function ActiveRideRedirect() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const { session } = useSession();
+  const activeRideQuery = useActiveRideQuery(Boolean(session));
+  const activeRide = activeRideQuery.data;
+  const refetchActiveRide = activeRideQuery.refetch;
+
+  useEffect(() => {
+    if (!session) return;
+
+    const subscription = AppState.addEventListener('change', (state) => {
+      if (state === 'active') {
+        void refetchActiveRide();
+      }
+    });
+
+    return () => subscription.remove();
+  }, [refetchActiveRide, session]);
+
+  useEffect(() => {
+    if (!session || !activeRide) return;
+    if (pathname === '/ride/current' || pathname === '/ride/finished') return;
+
+    router.replace('/ride/current');
+  }, [activeRide, pathname, router, session]);
+
+  return null;
 }
 
 function RootNavigator() {

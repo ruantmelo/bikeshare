@@ -2,10 +2,6 @@ import { useEffect, useRef } from "react";
 import { Animated, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
-  BatteryCharging,
-  Hash,
-  Lock,
-  MapPin,
   Unlock,
   X,
 } from "lucide-react-native";
@@ -14,7 +10,6 @@ import { Button, IconButton } from "@/components";
 import { colors } from "../../theme/colors";
 import {
   BIKE_STATUS_LABELS,
-  BIKE_STATUS,
   BikeRecord,
   calculateDistanceMeters,
   formatDistance,

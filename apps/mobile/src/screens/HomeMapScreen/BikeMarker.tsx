@@ -7,7 +7,7 @@ import { colors } from "../../theme/colors";
 interface BikeMarkerProps {
   bike: BikeRecord;
   isSelected?: boolean;
-  onPress: (bikeId: any) => void;
+  onPress: (bikeId: BikeRecord["id"]) => void;
 }
 
 export function BikeMarker({ bike, isSelected = false, onPress }: BikeMarkerProps) {
@@ -18,7 +18,11 @@ export function BikeMarker({ bike, isSelected = false, onPress }: BikeMarkerProp
       key={`${bike.id}-${isSelected ? "selected" : "default"}`}
       coordinate={bike.coordinate}
       zIndex={isSelected ? 10 : 1}
-      onPress={() => onPress(bike.id)}
+      onPress={() => {
+        if (bike.available) {
+          onPress(bike.id);
+        }
+      }}
       tracksViewChanges
     >
       <View className="items-center justify-center">

@@ -5,13 +5,16 @@ import { endRide, getActiveRide, getRideHistory, startRide } from '../api/rides'
 import { rideQueryKeys } from './queryKeys';
 import { useRideFlow } from './RideFlowProvider';
 
-export function useActiveRideQuery() {
+export function useActiveRideQuery(enabled = true) {
   const { startedRide } = useRideFlow();
 
   return useQuery({
     queryKey: rideQueryKeys.active(),
     queryFn: getActiveRide,
+    enabled,
     initialData: startedRide ?? undefined,
+    refetchInterval: (query) =>
+      query.state.data ? 2000 : false,
   });
 }
 

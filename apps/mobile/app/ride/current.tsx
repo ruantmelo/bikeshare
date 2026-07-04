@@ -1,7 +1,8 @@
 import { useEffect, useState, type ReactNode } from 'react';
+import type { BicycleStatus } from '@bikeshare/contracts';
 import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { Clock3, MapPinned, Bike } from 'lucide-react-native';
+import { Bike, CircleDot, Clock3, MapPinned } from 'lucide-react-native';
 import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -10,11 +11,27 @@ import { Button } from '@/components';
 import { formatDuration, useActiveRideQuery, useEndRideMutation } from '../../src/rides';
 import { colors } from '../../src/theme/colors';
 
-function formatStartedAtLabel(startedAt: string) {
+const BICYCLE_STATUS_LABELS: Record<BicycleStatus, string> = {
+  UNREGISTERED: 'Não registrada',
+  AVAILABLE: 'Disponível',
+  RESERVED: 'Reservada',
+  IN_USE: 'Em uso',
+  ERROR: 'Com problema',
+};
+
+const BICYCLE_STATUS_COLORS: Record<BicycleStatus, string> = {
+  UNREGISTERED: colors.text.muted,
+  AVAILABLE: colors.status.success,
+  RESERVED: colors.text.warning,
+  IN_USE: colors.brand.primary,
+  ERROR: colors.text.error,
+};
+
+function formatRideTimeLabel(date: string) {
   return new Intl.DateTimeFormat('pt-BR', {
     hour: '2-digit',
     minute: '2-digit',
-  }).format(new Date(startedAt));
+  }).format(new Date(date));
 }
 
 export default function CurrentRideRoute() {
@@ -43,12 +60,26 @@ export default function CurrentRideRoute() {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [ride?.startedAt]);
+  }, [ride?.reservedAt, ride?.startedAt, ride?.status]);
 
-  const startedAtMs = ride ? new Date(ride.startedAt).getTime() : 0;
-  const elapsedSeconds = ride ? Math.floor((now - startedAtMs) / 1000) : 0;
+  const isReservedRide = ride?.status === 'RESERVED';
+  const rideTimeAnchor = ride
+    ? isReservedRide
+      ? ride.reservedAt
+      : ride.startedAt ?? ride.reservedAt
+    : null;
+  const rideTimeAnchorMs = rideTimeAnchor ? new Date(rideTimeAnchor).getTime() : 0;
+  const elapsedSeconds = rideTimeAnchor ? Math.floor((now - rideTimeAnchorMs) / 1000) : 0;
   const timerLabel = formatDuration(elapsedSeconds);
-  const startedAtLabel = ride ? formatStartedAtLabel(ride.startedAt) : '--:--';
+  const rideTimeLabel = rideTimeAnchor ? formatRideTimeLabel(rideTimeAnchor) : '--:--';
+  const statusLabel = isReservedRide ? 'Reserva pendente' : 'Corrida em andamento';
+  const timerTitle = isReservedRide ? 'Tempo reservado' : 'Tempo decorrido';
+  const timeMetricLabel = isReservedRide ? 'Reserva' : 'Início';
+  const bicycleTimingLabel = isReservedRide ? 'Reservada às' : 'Iniciada às';
+  const bicycleStatus = ride?.bicycle.status ?? null;
+  const bicycleStatusLabel = bicycleStatus ? BICYCLE_STATUS_LABELS[bicycleStatus] : '--';
+  const bicycleStatusColor = bicycleStatus ? BICYCLE_STATUS_COLORS[bicycleStatus] : colors.text.muted;
+  const refreshLabel = activeRideQuery.isFetching ? 'Atualizando...' : 'Status atualizado';
   const errorMessage = endRideMutation.error?.message ?? null;
 
   if (activeRideQuery.isFetched && !ride) {
@@ -80,12 +111,12 @@ export default function CurrentRideRoute() {
             <View className="flex-row items-center justify-between">
               <View className="rounded-full border border-border-default bg-white/90 px-4 py-2">
                 <Text className="text-[12px] font-bold uppercase tracking-[1.2px] text-text-muted">
-                  Corrida em andamento
+                  {statusLabel}
                 </Text>
               </View>
 
               <Text className="text-[12px] font-semibold text-text-muted">
-                Atualizando agora
+                {refreshLabel}
               </Text>
             </View>
 
@@ -97,13 +128,13 @@ export default function CurrentRideRoute() {
 
                 <View className="flex-1 gap-1">
                   <Text className="font-mono text-[12px] font-bold uppercase tracking-[1.2px] text-text-muted">
-                    Tempo decorrido
+                    {timerTitle}
                   </Text>
                   <Text className="text-[40px] font-extrabold tracking-[-1.8px] text-text-primary">
                     {activeRideQuery.isLoading && !ride ? '00:00' : timerLabel}
                   </Text>
                   <Text className="text-[14px] leading-5 text-text-muted">
-                    Bicicleta {ride?.bicycleId ?? '—'} · Iniciada às {startedAtLabel}
+                    Bicicleta {ride?.bicycleId ?? '—'} · {bicycleTimingLabel} {rideTimeLabel}
                   </Text>
                 </View>
               </View>
@@ -116,9 +147,18 @@ export default function CurrentRideRoute() {
                 value={ride?.bicycleId ?? '—'}
               />
               <MetricCard
+                icon={<CircleDot color={bicycleStatusColor} size={18} strokeWidth={2.3} />}
+                label="Status"
+                value={bicycleStatusLabel}
+                valueColor={bicycleStatusColor}
+              />
+            </View>
+
+            <View className="flex-row gap-3">
+              <MetricCard
                 icon={<MapPinned color={colors.brand.primary} size={18} strokeWidth={2.3} />}
-                label="Início"
-                value={startedAtLabel}
+                label={timeMetricLabel}
+                value={rideTimeLabel}
               />
             </View>
 
@@ -129,7 +169,7 @@ export default function CurrentRideRoute() {
 
           <View className="gap-3 pt-4">
             <Button
-              disabled={endRideMutation.isPending}
+              disabled={!ride || endRideMutation.isPending}
               onPress={() => void handleFinishRide()}
             >
               Finalizar corrida
@@ -164,10 +204,12 @@ function MetricCard({
   icon,
   label,
   value,
+  valueColor,
 }: {
   icon: ReactNode;
   label: string;
   value: string;
+  valueColor?: string;
 }) {
   return (
     <View className="flex-1 rounded-[22px] border border-border-default bg-white/90 p-4">
@@ -177,7 +219,10 @@ function MetricCard({
       <Text className="font-mono text-[11px] font-bold uppercase tracking-[1.1px] text-text-muted">
         {label}
       </Text>
-      <Text className="mt-1 text-[16px] font-bold tracking-[-0.4px] text-text-primary">
+      <Text
+        className="mt-1 text-[16px] font-bold tracking-[-0.4px] text-text-primary"
+        style={valueColor ? { color: valueColor } : undefined}
+      >
         {value}
       </Text>
     </View>

@@ -10,20 +10,43 @@ interface CreateBikeBody {
   id: string
 }
 
-// Posição do usuário: lat e lng devem ser informados juntos (ou nenhum).
+// Posição do usuário: latitude e longitude devem ser informados juntos (ou nenhum).
 const listBikesQuerySchema = z
   .object({
+    latitude: z.coerce.number().min(-90).max(90).optional(),
+    longitude: z.coerce.number().min(-180).max(180).optional(),
     lat: z.coerce.number().min(-90).max(90).optional(),
     lng: z.coerce.number().min(-180).max(180).optional(),
   })
-  .refine((q) => (q.lat === undefined) === (q.lng === undefined), {
-    message: 'Informe lat e lng juntos',
+  .transform((query) => ({
+    latitude: query.latitude ?? query.lat,
+    longitude: query.longitude ?? query.lng,
+  }))
+  .refine((q) => (q.latitude === undefined) === (q.longitude === undefined), {
+    message: 'Informe latitude e longitude juntos',
   })
 
-const nearbyBikesQuerySchema = z.object({
-  lat: z.coerce.number().min(-90).max(90),
-  lng: z.coerce.number().min(-180).max(180),
-})
+const nearbyBikesQuerySchema = z
+  .object({
+    latitude: z.coerce.number().min(-90).max(90).optional(),
+    longitude: z.coerce.number().min(-180).max(180).optional(),
+    lat: z.coerce.number().min(-90).max(90).optional(),
+    lng: z.coerce.number().min(-180).max(180).optional(),
+  })
+  .transform((query, ctx) => {
+    const latitude = query.latitude ?? query.lat
+    const longitude = query.longitude ?? query.lng
+
+    if (latitude === undefined || longitude === undefined) {
+      ctx.addIssue({
+        code: 'custom',
+        message: 'Informe latitude e longitude',
+      })
+      return z.NEVER
+    }
+
+    return { latitude, longitude }
+  })
 
 const bikeListItemSchema = z.object({
   id: z.string(),
@@ -102,7 +125,7 @@ export default async function bikeRoutes(app: FastifyInstance) {
       },
     },
     async (request) => {
-      const { lat, lng } = request.query
+      const { latitude, longitude } = request.query
       const bikes = await prisma.bike.findMany({
         where: { status: BikeStatus.AVAILABLE },
         select: { id: true, status: true, latitude: true, longitude: true },
@@ -116,12 +139,18 @@ export default async function bikeRoutes(app: FastifyInstance) {
               status: bike.status,
               latitude: bike.latitude,
               longitude: bike.longitude,
-              distanceMeters: Math.round(haversineMeters(lat, lng, bike.latitude, bike.longitude)),
+              distanceMeters: Math.round(haversineMeters(latitude, longitude, bike.latitude, bike.longitude)),
             }
           }
 
-          const { latitude, longitude, distance: distanceMeters } = generateNearbyPosition(lat, lng, bike.id)
-          return { id: bike.id, status: bike.status, latitude, longitude, distanceMeters }
+          const generated = generateNearbyPosition(latitude, longitude, bike.id)
+          return {
+            id: bike.id,
+            status: bike.status,
+            latitude: generated.latitude,
+            longitude: generated.longitude,
+            distanceMeters: generated.distance,
+          }
         })
         .sort((a, b) => a.distanceMeters - b.distanceMeters)
     },
@@ -138,7 +167,7 @@ export default async function bikeRoutes(app: FastifyInstance) {
       },
     },
     async (request) => {
-      const { lat, lng } = request.query
+      const { latitude, longitude } = request.query
 
       const bikes = await prisma.bike.findMany({
         where: { status: BikeStatus.AVAILABLE },
@@ -146,7 +175,7 @@ export default async function bikeRoutes(app: FastifyInstance) {
       })
 
       // Sem posição do usuário: retorna a lista como está.
-      if (lat === undefined || lng === undefined) {
+      if (latitude === undefined || longitude === undefined) {
         return bikes
       }
 
@@ -156,7 +185,7 @@ export default async function bikeRoutes(app: FastifyInstance) {
           ...bike,
           distance:
             bike.latitude !== null && bike.longitude !== null
-              ? Math.round(haversineMeters(lat, lng, bike.latitude, bike.longitude))
+              ? Math.round(haversineMeters(latitude, longitude, bike.latitude, bike.longitude))
               : null,
         }))
         .sort((a, b) => {
